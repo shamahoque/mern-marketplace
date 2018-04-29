@@ -15,6 +15,9 @@ router.route('/api/products/latest')
 router.route('/api/products/related/:productId')
   .get(productCtrl.listRelated)
 
+router.route('/api/products/categories')
+  .get(productCtrl.listCategories)
+
 router.route('/api/products/:productId')
   .get(productCtrl.read)
 

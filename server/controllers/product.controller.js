@@ -130,6 +130,17 @@ const listRelated = (req, res) => {
   })
 }
 
+const listCategories = (req, res) => {
+  Product.distinct('category',{},(err, products) => {
+    if (err) {
+      return res.status(400).json({
+        error: errorHandler.getErrorMessage(err)
+      })
+    }
+    res.json(products)
+  })
+}
+
 export default {
   create,
   productByID,
@@ -140,5 +151,6 @@ export default {
   remove,
   listByShop,
   listLatest,
-  listRelated
+  listRelated,
+  listCategories
 }
