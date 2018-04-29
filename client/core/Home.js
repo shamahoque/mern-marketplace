@@ -5,6 +5,7 @@ import Grid from 'material-ui/Grid'
 import Suggestions from './../product/Suggestions'
 import {listLatest, listCategories} from './../product/api-product.js'
 import Search from './../product/Search'
+import Categories from './../product/Categories'
 
 const styles = theme => ({
   root: {
@@ -42,6 +43,7 @@ class Home extends Component {
         <Grid container spacing={24}>
           <Grid item xs={8} sm={8}>
             <Search categories={this.state.categories}/>
+            <Categories categories={this.state.categories}/>
           </Grid>
           <Grid item xs={4} sm={4}>
             <Suggestions products={this.state.suggestions} title={this.state.suggestionTitle}/>
