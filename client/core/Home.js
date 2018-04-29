@@ -1,40 +1,44 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {withStyles} from 'material-ui/styles'
-import Card, {CardContent, CardMedia} from 'material-ui/Card'
-import Typography from 'material-ui/Typography'
-import seashellImg from './../assets/images/seashell.jpg'
+import Grid from 'material-ui/Grid'
+import Suggestions from './../product/Suggestions'
+import {listLatest} from './../product/api-product.js'
 
 const styles = theme => ({
-  card: {
-    maxWidth: 600,
-    margin: 'auto',
-    marginTop: theme.spacing.unit * 5
-  },
-  title: {
-    padding:`${theme.spacing.unit * 3}px ${theme.spacing.unit * 2.5}px ${theme.spacing.unit * 2}px`,
-    color: theme.palette.text.secondary
-  },
-  media: {
-    minHeight: 330
+  root: {
+    flexGrow: 1,
+    margin: 30,
   }
 })
 
 class Home extends Component {
+  state={
+    suggestionTitle: "Latest Products",
+    suggestions: []
+  }
+  componentDidMount = () => {
+    listLatest().then((data) => {
+      if (data.error) {
+        console.log(data.error)
+      } else {
+        this.setState({suggestions: data})
+      }
+    })
+  }
   render() {
     const {classes} = this.props
     return (
-        <Card className={classes.card}>
-          <Typography type="headline" component="h2" className={classes.title}>
-            Home Page
-          </Typography>
-          <CardMedia className={classes.media} image={seashellImg} title="Unicorn Shells"/>
-          <CardContent>
-            <Typography type="body1" component="p">
-              Welcome to the MERN Marketplace home page.
-            </Typography>
-          </CardContent>
-        </Card>
+      <div className={classes.root}>
+        <Grid container spacing={24}>
+          <Grid item xs={8} sm={8}>
+            Search
+          </Grid>
+          <Grid item xs={4} sm={4}>
+            <Suggestions products={this.state.suggestions} title={this.state.suggestionTitle}/>
+          </Grid>
+        </Grid>
+      </div>
     )
   }
 }
