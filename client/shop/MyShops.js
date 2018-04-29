@@ -13,6 +13,7 @@ import Divider from 'material-ui/Divider'
 import auth from './../auth/auth-helper'
 import {listByOwner} from './api-shop.js'
 import {Redirect, Link} from 'react-router-dom'
+import DeleteShop from './DeleteShop'
 
 const styles = theme => ({
   root: theme.mixins.gutters({
@@ -51,6 +52,12 @@ class MyShops extends Component {
       }
     })
   }
+  removeShop = (shop) => {
+    const updatedShops = this.state.shops
+    const index = updatedShops.indexOf(shop)
+    updatedShops.splice(index, 1)
+    this.setState({shops: updatedShops})
+  }
   componentDidMount = () => {
     this.loadShops()
   }
@@ -88,6 +95,7 @@ class MyShops extends Component {
                         <Edit/>
                       </IconButton>
                     </Link>
+                    <DeleteShop shop={shop} onRemove={this.removeShop}/>
                   </ListItemSecondaryAction>)
                 }
               </ListItem>
