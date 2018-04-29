@@ -97,6 +97,14 @@ const listByUser = (params, credentials) => {
   })
 }
 
+const read = (params, credentials) => {
+  return fetch('/api/order/' + params.orderId, {
+    method: 'GET'
+  }).then((response) => {
+    return response.json()
+  }).catch((err) => console.log(err))
+}
+
 export {
   create,
   listByShop,
@@ -104,5 +112,6 @@ export {
   cancelProduct,
   processCharge,
   getStatusValues,
-  listByUser
+  listByUser,
+  read
 }

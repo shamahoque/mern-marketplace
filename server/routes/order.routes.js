@@ -28,6 +28,9 @@ router.route('/api/order/:orderId/charge/:userId/:shopId')
 router.route('/api/order/status/:shopId')
   .put(authCtrl.requireSignin, shopCtrl.isOwner, orderCtrl.update)
 
+router.route('/api/order/:orderId')
+  .get(orderCtrl.read)
+
 router.param('userId', userCtrl.userByID)
 router.param('shopId', shopCtrl.shopByID)
 router.param('productId', productCtrl.productByID)

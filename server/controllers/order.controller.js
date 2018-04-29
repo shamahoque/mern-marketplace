@@ -70,11 +70,16 @@ const listByUser = (req, res) => {
         })
 }
 
+const read = (req, res) => {
+  return res.json(req.order)
+}
+
 export default {
   create,
   listByShop,
   update,
   getStatusValues,
   orderByID,
-  listByUser
+  listByUser,
+  read
 }
