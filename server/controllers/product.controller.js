@@ -108,6 +108,28 @@ const listByShop = (req, res) => {
   }).populate('shop', '_id name').select('-image')
 }
 
+const listLatest = (req, res) => {
+  Product.find({}).sort('-created').limit(5).populate('shop', '_id name').exec((err, products) => {
+    if (err) {
+      return res.status(400).json({
+        error: errorHandler.getErrorMessage(err)
+      })
+    }
+    res.json(products)
+  })
+}
+
+const listRelated = (req, res) => {
+  Product.find({ "_id": { "$ne": req.product }, "category": req.product.category}).limit(5).populate('shop', '_id name').exec((err, products) => {
+    if (err) {
+      return res.status(400).json({
+        error: errorHandler.getErrorMessage(err)
+      })
+    }
+    res.json(products)
+  })
+}
+
 export default {
   create,
   productByID,
@@ -116,5 +138,7 @@ export default {
   read,
   update,
   remove,
-  listByShop
+  listByShop,
+  listLatest,
+  listRelated
 }
