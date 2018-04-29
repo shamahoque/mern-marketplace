@@ -29,7 +29,38 @@ const listByShop = (req, res) => {
   })
 }
 
+const update = (req, res) => {
+  Order.update({'products._id':req.body.cartItemId}, {'$set': {
+        'products.$.status': req.body.status
+    }}, (err, order) => {
+      if (err) {
+        return res.status(400).send({
+          error: errorHandler.getErrorMessage(err)
+        })
+      }
+      res.json(order)
+    })
+}
+
+const getStatusValues = (req, res) => {
+  res.json(CartItem.schema.path('status').enumValues)
+}
+
+const orderByID = (req, res, next, id) => {
+  Order.findById(id).populate('products.product', 'name price').populate('products.shop', 'name').exec((err, order) => {
+    if (err || !order)
+      return res.status('400').json({
+        error: "Order not found"
+      })
+    req.order = order
+    next()
+  })
+}
+
 export default {
   create,
-  listByShop
+  listByShop,
+  update,
+  getStatusValues,
+  orderByID
 }

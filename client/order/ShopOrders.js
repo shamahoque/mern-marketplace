@@ -10,6 +10,7 @@ import Collapse from 'material-ui/transitions/Collapse'
 import Divider from 'material-ui/Divider'
 import auth from './../auth/auth-helper'
 import {listByShop} from './api-order.js'
+import ProductOrderEdit from './ProductOrderEdit'
 
 const styles = theme => ({
   root: theme.mixins.gutters({
@@ -86,6 +87,7 @@ class ShopOrders extends Component {
                 {this.state.open == index ? <ExpandLess /> : <ExpandMore />}
               </ListItem><Divider/>
               <Collapse component="li" in={this.state.open == index} timeout="auto" unmountOnExit>
+                <ProductOrderEdit shopId={this.match.params.shopId} order={order} orderIndex={index} updateOrders={this.updateOrders}/>
                 <div className={classes.customerDetails}>
                   <Typography type="subheading" component="h3" className={classes.subheading}>
                     Deliver to:

@@ -27,7 +27,67 @@ const listByShop = (params, credentials) => {
   })
 }
 
+const update = (params, credentials, product) => {
+  return fetch('/api/order/status/' + params.shopId, {
+    method: 'PUT',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + credentials.t
+    },
+    body: JSON.stringify(product)
+  }).then((response) => {
+    return response.json()
+  }).catch((err) => {
+    console.log(err)
+  })
+}
+
+const cancelProduct = (params, credentials, product) => {
+  return fetch('/api/order/'+params.shopId+'/cancel/'+params.productId, {
+    method: 'PUT',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + credentials.t
+    },
+    body: JSON.stringify(product)
+  }).then((response) => {
+    return response.json()
+  }).catch((err) => {
+    console.log(err)
+  })
+}
+
+const processCharge = (params, credentials, product) => {
+  return fetch('/api/order/'+params.orderId+'/charge/'+params.userId+'/'+params.shopId, {
+    method: 'PUT',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + credentials.t
+    },
+    body: JSON.stringify(product)
+  }).then((response) => {
+    return response.json()
+  }).catch((err) => {
+    console.log(err)
+  })
+}
+
+const getStatusValues = () => {
+  return fetch('/api/order/status_values', {
+    method: 'GET'
+  }).then((response) => {
+    return response.json()
+  }).catch((err) => console.log(err))
+}
+
 export {
   create,
-  listByShop
+  listByShop,
+  update,
+  cancelProduct,
+  processCharge,
+  getStatusValues
 }
