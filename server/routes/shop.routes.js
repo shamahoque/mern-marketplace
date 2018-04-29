@@ -7,9 +7,10 @@ const router = express.Router()
 
 router.route('/api/shops')
   .get(shopCtrl.list)
-  
+
 router.route('/api/shops/by/:userId')
   .post(authCtrl.requireSignin, authCtrl.hasAuthorization, userCtrl.isSeller, shopCtrl.create)
+  .get(authCtrl.requireSignin, authCtrl.hasAuthorization, shopCtrl.listByOwner)
 
 router.route('/api/shops/logo/:shopId')
   .get(shopCtrl.photo, shopCtrl.defaultPhoto)

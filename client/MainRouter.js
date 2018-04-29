@@ -10,6 +10,7 @@ import PrivateRoute from './auth/PrivateRoute'
 import Menu from './core/Menu'
 import NewShop from './shop/NewShop'
 import Shops from './shop/Shops'
+import MyShops from './shop/MyShops'
 
 class MainRouter extends Component {
   // Removes the server-side injected CSS when React component mounts
@@ -32,6 +33,7 @@ class MainRouter extends Component {
         <Route path="/user/:userId" component={Profile}/>
 
         <Route path="/shops/all" component={Shops}/>
+        <PrivateRoute path="/seller/shops" component={MyShops}/>
         <PrivateRoute path="/seller/shop/new" component={NewShop}/>
       </Switch>
     </div>)
