@@ -157,6 +157,25 @@ const list = (req, res) => {
   }).populate('shop', '_id name').select('-image')
 }
 
+const decreaseQuantity = (req, res, next) => {
+  var bulkOps = req.body.order.products.map((item) => {
+    return {
+        "updateOne": {
+            "filter": { "_id": item.product._id } ,
+            "update": { "$inc": {"quantity": -item.quantity} }
+        }
+    }
+   })
+   Product.bulkWrite(bulkOps, {}, (err, products) => {
+     if(err){
+       return res.status(400).json({
+         error: "Could not update product"
+       })
+     }
+     next()
+   })
+}
+
 export default {
   create,
   productByID,
@@ -169,5 +188,6 @@ export default {
   listLatest,
   listRelated,
   listCategories,
-  list
+  list,
+  decreaseQuantity
 }

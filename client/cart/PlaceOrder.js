@@ -7,6 +7,8 @@ import Icon from 'material-ui/Icon'
 import auth from './../auth/auth-helper'
 import cart from './cart-helper.js'
 import {CardElement, injectStripe} from 'react-stripe-elements'
+import {create} from './../order/api-order.js'
+import {Redirect} from 'react-router-dom'
 
 const styles = theme => ({
   subheading: {
@@ -37,7 +39,9 @@ const styles = theme => ({
 
 class PlaceOrder extends Component {
   state = {
-    error: ''
+    order: {},
+    error: '',
+    redirect: false
   }
 
   placeOrder = ()=>{
@@ -45,14 +49,27 @@ class PlaceOrder extends Component {
       if(payload.error){
         this.setState({error: payload.error.message})
       }else{
-        console.log(payload);
-        //checkout -> create order and redirect user
+        const jwt = auth.isAuthenticated()
+        create({userId:jwt.user._id}, {
+          t: jwt.token
+        }, this.props.checkoutDetails, payload.token.id).then((data) => {
+          if (data.error) {
+            this.setState({error: data.error})
+          } else {
+            cart.emptyCart(()=> {
+              this.setState({'orderId':data._id,'redirect': true})
+            })
+          }
+        })
       }
   })
 }
 
 render() {
     const {classes} = this.props
+    if (this.state.redirect) {
+      return (<Redirect to={'/order/' + this.state.orderId}/>)
+    }
     return (
     <span>
       <Typography type="subheading" component="h3" className={classes.subheading}>
