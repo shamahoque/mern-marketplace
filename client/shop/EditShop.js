@@ -12,6 +12,7 @@ import {withStyles} from 'material-ui/styles'
 import {read, update} from './api-shop.js'
 import {Redirect} from 'react-router-dom'
 import Grid from 'material-ui/Grid'
+import MyProducts from './../product/MyProducts'
 
 const styles = theme => ({
   root: {
@@ -156,7 +157,7 @@ class EditShop extends Component {
           </Card>
           </Grid>
           <Grid item xs={6} sm={6}>
-            Products
+            <MyProducts shopId={this.match.params.shopId}/>
           </Grid>
         </Grid>
     </div>)
