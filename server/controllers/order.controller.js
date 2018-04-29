@@ -15,6 +15,21 @@ const create = (req, res) => {
   })
 }
 
+const listByShop = (req, res) => {
+  Order.find({"products.shop": req.shop._id})
+  .populate({path: 'products.product', select: '_id name price'})
+  .sort('-created')
+  .exec((err, orders) => {
+    if (err) {
+      return res.status(400).json({
+        error: errorHandler.getErrorMessage(err)
+      })
+    }
+    res.json(orders)
+  })
+}
+
 export default {
-  create
+  create,
+  listByShop
 }
