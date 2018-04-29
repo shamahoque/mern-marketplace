@@ -1,4 +1,4 @@
 /node_modules/
-/dist/
 /data/
 npm-debug.log
+/config/local-config.js
