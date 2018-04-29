@@ -32,7 +32,7 @@ class MyOrders extends Component {
       userId: jwt.user._id
     }, {t: jwt.token}).then((data) => {
       if (data.error) {
-        console.log(data.error);
+        console.log(data.error)
       } else {
         this.setState({orders: data})
       }

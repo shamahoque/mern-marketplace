@@ -101,7 +101,6 @@ const stripe_auth = (req, res, next) => {
   }, (error, response, body) => {
     //update user
     if(body.error){
-      console.log(body);
       return res.status('400').json({
         error: body.error_description
       })
@@ -162,7 +161,7 @@ const createCharge = (req, res, next) => {
         source: token.id,
       }, {
         stripe_account: req.profile.stripe_seller.stripe_user_id,
-      }).then(function(charge) {
+      }).then((charge) => {
         next()
       })
   })
