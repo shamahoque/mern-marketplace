@@ -53,9 +53,21 @@ const defaultPhoto = (req, res) => {
   return res.sendFile(process.cwd()+profileImage)
 }
 
+const list = (req, res) => {
+  Shop.find((err, shops) => {
+    if (err) {
+      return res.status(400).json({
+        error: errorHandler.getErrorMessage(err)
+      })
+    }
+    res.json(shops)
+  })
+}
+
 export default {
   create,
   shopByID,
   photo,
-  defaultPhoto
+  defaultPhoto,
+  list
 }

@@ -32,6 +32,9 @@ const Menu = withRouter(({history}) => (
             <HomeIcon/>
           </IconButton>
         </Link>
+        <Link to="/shops/all">
+          <Button style={isActive(history, "/shops/all")}>All Shops</Button>
+        </Link>
       </div>
       <div style={{'position':'absolute', 'right': '10px'}}><span style={{'float': 'right'}}>
       {

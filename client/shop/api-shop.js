@@ -12,6 +12,15 @@ const create = (params, credentials, shop) => {
     }).catch((err) => console.log(err))
 }
 
+const list = () => {
+  return fetch('/api/shops', {
+    method: 'GET',
+  }).then(response => {
+    return response.json()
+  }).catch((err) => console.log(err))
+}
+
 export {
-  create
+  create,
+  list
 }
