@@ -8,6 +8,7 @@ import {withStyles} from 'material-ui/styles'
 import {read, listRelated} from './api-product.js'
 import {Link} from 'react-router-dom'
 import Suggestions from './../product/Suggestions'
+import AddToCart from './../cart/AddToCart'
 
 const styles = theme => ({
   root: {
@@ -44,6 +45,17 @@ const styles = theme => ({
   link:{
     color: '#3e4c54b3',
     fontSize: '0.9em'
+  },
+  addCart: {
+    width: '35px',
+    height: '35px',
+    padding: '10px 12px',
+    borderRadius: '0.25em',
+    backgroundColor: '#5f7c8b'
+  },
+  action: {
+    margin: '8px 24px',
+    display: 'inline-block'
   }
 })
 
@@ -94,6 +106,11 @@ class Product extends Component {
                 <CardHeader
                   title={this.state.product.name}
                   subheader={this.state.product.quantity > 0? 'In Stock': 'Out of Stock'}
+                  action={
+                    <span className={classes.action}>
+                      <AddToCart cartStyle={classes.addCart} item={this.state.product}/>
+                    </span>
+                  }
                 />
                 <div className={classes.flex}>
                   <CardMedia
