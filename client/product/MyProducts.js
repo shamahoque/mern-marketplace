@@ -12,6 +12,7 @@ import {Link} from 'react-router-dom'
 import Divider from 'material-ui/Divider'
 import auth from './../auth/auth-helper'
 import {listByShop} from './../product/api-product.js'
+import DeleteProduct from './../product/DeleteProduct'
 
 const styles = theme => ({
   products: {
@@ -62,6 +63,13 @@ class MyProducts extends Component {
    this.loadProducts()
   }
 
+  removeProduct = (product) => {
+    const updatedProducts = this.state.products
+    const index = updatedProducts.indexOf(product)
+    updatedProducts.splice(index, 1)
+    this.setState({shops: updatedProducts})
+  }
+
   render() {
     const {classes} = this.props
     return (
@@ -99,6 +107,10 @@ class MyProducts extends Component {
                       <Edit/>
                     </IconButton>
                   </Link>
+                  <DeleteProduct
+                    product={product}
+                    shopId={this.props.shopId}
+                    onRemove={this.removeProduct}/>
                 </ListItemSecondaryAction>
               </ListItem>
               <Divider/></span>})}
