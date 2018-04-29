@@ -16,6 +16,7 @@ import {read} from './api-user.js'
 import {Redirect, Link} from 'react-router-dom'
 import config from './../../config/config'
 import stripeButton from './../assets/images/stripeButton.png'
+import MyOrders from './../order/MyOrders'
 
 const styles = theme => ({
   root: theme.mixins.gutters({
@@ -110,6 +111,7 @@ class Profile extends Component {
               new Date(this.state.user.created)).toDateString()}/>
           </ListItem>
         </List>
+        <MyOrders/>
       </Paper>
     )
   }

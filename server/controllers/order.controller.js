@@ -57,10 +57,24 @@ const orderByID = (req, res, next, id) => {
   })
 }
 
+const listByUser = (req, res) => {
+  Order.find({ "user": req.profile._id })
+        .sort('-created')
+        .exec((err, orders) => {
+            if (err) {
+              return res.status(400).json({
+                error: errorHandler.getErrorMessage(err)
+              })
+            }
+            res.json(orders)
+        })
+}
+
 export default {
   create,
   listByShop,
   update,
   getStatusValues,
-  orderByID
+  orderByID,
+  listByUser
 }

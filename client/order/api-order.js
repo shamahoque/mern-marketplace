@@ -83,11 +83,26 @@ const getStatusValues = () => {
   }).catch((err) => console.log(err))
 }
 
+const listByUser = (params, credentials) => {
+  return fetch('/api/orders/user/'+params.userId, {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+      'Authorization': 'Bearer ' + credentials.t
+    }
+  }).then((response) => {
+    return response.json()
+  }).catch((err) => {
+    console.log(err)
+  })
+}
+
 export {
   create,
   listByShop,
   update,
   cancelProduct,
   processCharge,
-  getStatusValues
+  getStatusValues,
+  listByUser
 }
