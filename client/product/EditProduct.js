@@ -107,7 +107,7 @@ class EditProduct extends Component {
           ? `/api/product/image/${this.state.id}?${new Date().getTime()}`
           : '/api/product/defaultphoto'
     if (this.state.redirect) {
-      return (<Redirect to={'/seller/shops/edit/'+this.match.params.shopId}/>)
+      return (<Redirect to={'/seller/shop/edit/'+this.match.params.shopId}/>)
     }
     const {classes} = this.props
     return (<div>
