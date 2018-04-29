@@ -4,6 +4,8 @@ import Button from 'material-ui/Button'
 import TextField from 'material-ui/TextField'
 import Typography from 'material-ui/Typography'
 import Icon from 'material-ui/Icon'
+import { FormControlLabel } from 'material-ui/Form'
+import Switch from 'material-ui/Switch'
 import PropTypes from 'prop-types'
 import {withStyles} from 'material-ui/styles'
 import auth from './../auth/auth-helper'
@@ -33,6 +35,10 @@ const styles = theme => ({
   submit: {
     margin: 'auto',
     marginBottom: theme.spacing.unit * 2
+  },
+  subheading: {
+    marginTop: theme.spacing.unit * 2,
+    color: theme.palette.openTitle
   }
 })
 
@@ -43,6 +49,7 @@ class EditProfile extends Component {
       name: '',
       email: '',
       password: '',
+      seller: false,
       redirectToProfile: false,
       error: ''
     }
@@ -57,7 +64,7 @@ class EditProfile extends Component {
       if (data.error) {
         this.setState({error: data.error})
       } else {
-        this.setState({name: data.name, email: data.email})
+        this.setState({name: data.name, email: data.email, seller: data.seller})
       }
     })
   }
@@ -66,7 +73,8 @@ class EditProfile extends Component {
     const user = {
       name: this.state.name || undefined,
       email: this.state.email || undefined,
-      password: this.state.password || undefined
+      password: this.state.password || undefined,
+      seller: this.state.seller
     }
     update({
       userId: this.match.params.userId
@@ -76,12 +84,17 @@ class EditProfile extends Component {
       if (data.error) {
         this.setState({error: data.error})
       } else {
-        this.setState({'userId': data._id, 'redirectToProfile': true})
+        auth.updateUser(data, ()=> {
+            this.setState({'userId':data._id,'redirectToProfile': true})
+        })
       }
     })
   }
   handleChange = name => event => {
     this.setState({[name]: event.target.value})
+  }
+  handleCheck = (event, checked) => {
+    this.setState({'seller': checked})
   }
   render() {
     const {classes} = this.props
@@ -97,6 +110,20 @@ class EditProfile extends Component {
           <TextField id="name" label="Name" className={classes.textField} value={this.state.name} onChange={this.handleChange('name')} margin="normal"/><br/>
           <TextField id="email" type="email" label="Email" className={classes.textField} value={this.state.email} onChange={this.handleChange('email')} margin="normal"/><br/>
           <TextField id="password" type="password" label="Password" className={classes.textField} value={this.state.password} onChange={this.handleChange('password')} margin="normal"/>
+          <Typography type="subheading" component="h4" className={classes.subheading}>
+            Seller Account
+          </Typography>
+          <FormControlLabel
+            control={
+              <Switch classes={{
+                                checked: classes.checked,
+                                bar: classes.bar,
+                              }}
+                      checked={this.state.seller}
+                      onChange={this.handleCheck}
+              />}
+            label={this.state.seller? 'Active' : 'Inactive'}
+          />
           <br/> {
             this.state.error && (<Typography component="p" color="error">
               <Icon color="error" className={classes.error}>error</Icon>
