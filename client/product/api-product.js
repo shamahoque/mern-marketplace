@@ -1,4 +1,4 @@
-
+import queryString from 'query-string'
 const create = (params, credentials, product) => {
   return fetch('/api/products/by/'+ params.shopId, {
       method: 'POST',
@@ -85,6 +85,15 @@ const listCategories = () => {
   }).catch((err) => console.log(err))
 }
 
+const list = (params) => {
+  const query = queryString.stringify(params)
+  return fetch('/api/products?'+query, {
+    method: 'GET',
+  }).then(response => {
+    return response.json()
+  }).catch((err) => console.log(err))
+}
+
 export {
   create,
   read,
@@ -93,5 +102,6 @@ export {
   listByShop,
   listLatest,
   listRelated,
-  listCategories
+  listCategories,
+  list
 }
