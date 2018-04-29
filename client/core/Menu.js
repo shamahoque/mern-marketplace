@@ -14,17 +14,26 @@ const isActive = (history, path) => {
   else
     return {color: '#ffffff'}
 }
+const isPartActive = (history, path) => {
+  if (history.location.pathname.includes(path))
+    return {color: '#bef67a'}
+  else
+    return {color: '#ffffff'}
+}
 const Menu = withRouter(({history}) => (
   <AppBar position="static">
     <Toolbar>
       <Typography type="title" color="inherit">
         MERN Marketplace
       </Typography>
-      <Link to="/">
-        <IconButton aria-label="Home" style={isActive(history, "/")}>
-          <HomeIcon/>
-        </IconButton>
-      </Link>
+      <div>
+        <Link to="/">
+          <IconButton aria-label="Home" style={isActive(history, "/")}>
+            <HomeIcon/>
+          </IconButton>
+        </Link>
+      </div>
+      <div style={{'position':'absolute', 'right': '10px'}}><span style={{'float': 'right'}}>
       {
         !auth.isAuthenticated() && (<span>
           <Link to="/signup">
@@ -39,6 +48,7 @@ const Menu = withRouter(({history}) => (
       }
       {
         auth.isAuthenticated() && (<span>
+          {auth.isAuthenticated().user.seller && (<Link to="/seller/shops"><Button style={isPartActive(history, "/seller/")}>My Shops</Button></Link>)}
           <Link to={"/user/" + auth.isAuthenticated().user._id}>
             <Button style={isActive(history, "/user/" + auth.isAuthenticated().user._id)}>My Profile</Button>
           </Link>
@@ -47,6 +57,7 @@ const Menu = withRouter(({history}) => (
             }}>Sign out</Button>
         </span>)
       }
+      </span></div>
     </Toolbar>
   </AppBar>
 ))
