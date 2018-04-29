@@ -1,6 +1,8 @@
 import User from '../models/user.model'
 import _ from 'lodash'
 import errorHandler from './../helpers/dbErrorHandler'
+import request from 'request'
+import config from './../../config/config'
 
 const create = (req, res, next) => {
   const user = new User(req.body)
@@ -87,6 +89,26 @@ const isSeller = (req, res, next) => {
   next()
 }
 
+const stripe_auth = (req, res, next) => {
+  request({
+    url: "https://connect.stripe.com/oauth/token",
+    method: "POST",
+    json: true,
+    body: {client_secret:config.stripe_test_secret_key,code:req.body.stripe, grant_type:'authorization_code'}
+  }, (error, response, body) => {
+    //update user
+    if(body.error){
+      console.log(body);
+      return res.status('400').json({
+        error: body.error_description
+      })
+    }
+    req.body.stripe_seller = body
+    next()
+  })
+}
+
+
 export default {
   create,
   userByID,
@@ -94,5 +116,6 @@ export default {
   list,
   remove,
   update,
-  isSeller
+  isSeller,
+  stripe_auth
 }
