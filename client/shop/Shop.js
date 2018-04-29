@@ -6,6 +6,8 @@ import Grid from 'material-ui/Grid'
 import PropTypes from 'prop-types'
 import {withStyles} from 'material-ui/styles'
 import {read} from './api-shop.js'
+import Products from './../product/Products'
+import {listByShop} from './../product/api-product.js'
 
 const styles = theme => ({
   root: {
@@ -42,12 +44,26 @@ class Shop extends Component {
   constructor({match}) {
     super()
     this.state = {
-      shop: ''
+      shop: '',
+      products:[]
     }
     this.match = match
   }
 
+  loadProducts = () => {
+    listByShop({
+      shopId: this.match.params.shopId
+    }).then((data)=>{
+      if (data.error) {
+        this.setState({error: data.error})
+      } else {
+        this.setState({products: data})
+      }
+    })
+  }
+
   componentDidMount = () => {
+    this.loadProducts()
     read({
       shopId: this.match.params.shopId
     }).then((data) => {
@@ -83,6 +99,7 @@ class Shop extends Component {
         <Grid item xs={8} sm={8}>
           <Card>
             <Typography type="title" component="h2" className={classes.productTitle}>Products</Typography>
+            <Products products={this.state.products} searched={false}/>
           </Card>
         </Grid>
       </Grid>
