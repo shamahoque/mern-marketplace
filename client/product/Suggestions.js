@@ -126,7 +126,7 @@ class Suggestions extends Component {
 Suggestions.propTypes = {
   classes: PropTypes.object.isRequired,
   products: PropTypes.array.isRequired,
-  title: PropTypes.title.isRequired
+  title: PropTypes.string.isRequired
 }
 
 export default withStyles(styles)(Suggestions)
