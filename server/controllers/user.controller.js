@@ -3,6 +3,9 @@ import _ from 'lodash'
 import errorHandler from './../helpers/dbErrorHandler'
 import request from 'request'
 import config from './../../config/config'
+import stripe from 'stripe'
+
+const myStripe = stripe(config.stripe_test_secret_key)
 
 const create = (req, res, next) => {
   const user = new User(req.body)
@@ -108,6 +111,62 @@ const stripe_auth = (req, res, next) => {
   })
 }
 
+const stripeCustomer = (req, res, next) => {
+  if(req.profile.stripe_customer){
+      //update stripe customer
+      myStripe.customers.update(req.profile.stripe_customer, {
+          source: req.body.token
+      }, (err, customer) => {
+        if(err){
+          return res.status(400).send({
+            error: "Could not update charge details"
+          })
+        }
+        req.body.order.payment_id = customer.id
+        next()
+      })
+  }else{
+      myStripe.customers.create({
+            email: req.profile.email,
+            source: req.body.token
+      }).then((customer) => {
+          User.update({'_id':req.profile._id},
+            {'$set': { 'stripe_customer': customer.id }},
+            (err, order) => {
+              if (err) {
+                return res.status(400).send({
+                  error: errorHandler.getErrorMessage(err)
+                })
+              }
+              req.body.order.payment_id = customer.id
+              next()
+            })
+      })
+  }
+}
+
+const createCharge = (req, res, next) => {
+  if(!req.profile.stripe_seller){
+    return res.status('400').json({
+      error: "Please connect your Stripe account"
+    })
+  }
+  myStripe.tokens.create({
+    customer: req.order.payment_id,
+  }, {
+    stripe_account: req.profile.stripe_seller.stripe_user_id,
+  }).then((token) => {
+      myStripe.charges.create({
+        amount: req.body.amount * 100, //amount in cents
+        currency: "usd",
+        source: token.id,
+      }, {
+        stripe_account: req.profile.stripe_seller.stripe_user_id,
+      }).then(function(charge) {
+        next()
+      })
+  })
+}
 
 export default {
   create,
@@ -117,5 +176,7 @@ export default {
   remove,
   update,
   isSeller,
-  stripe_auth
+  stripe_auth,
+  stripeCustomer,
+  createCharge
 }
