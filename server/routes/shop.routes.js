@@ -15,6 +15,9 @@ router.route('/api/shops/by/:userId')
   .post(authCtrl.requireSignin, authCtrl.hasAuthorization, userCtrl.isSeller, shopCtrl.create)
   .get(authCtrl.requireSignin, authCtrl.hasAuthorization, shopCtrl.listByOwner)
 
+router.route('/api/shops/:shopId')
+  .put(authCtrl.requireSignin, shopCtrl.isOwner, shopCtrl.update)
+
 router.route('/api/shops/logo/:shopId')
   .get(shopCtrl.photo, shopCtrl.defaultPhoto)
 
