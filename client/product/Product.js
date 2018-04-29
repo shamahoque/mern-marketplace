@@ -7,6 +7,7 @@ import PropTypes from 'prop-types'
 import {withStyles} from 'material-ui/styles'
 import {read, listRelated} from './api-product.js'
 import {Link} from 'react-router-dom'
+import Suggestions from './../product/Suggestions'
 
 const styles = theme => ({
   root: {
@@ -115,7 +116,7 @@ class Product extends Component {
             </Grid>
             {this.state.suggestions.length > 0 &&
               (<Grid item xs={5} sm={5}>
-                Related Products
+                <Suggestions  products={this.state.suggestions} title='Related Products'/>
               </Grid>)}
           </Grid>
         </div>)
