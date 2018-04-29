@@ -7,6 +7,7 @@ const router = express.Router()
 
 router.route('/api/products/by/:shopId')
   .post(authCtrl.requireSignin, shopCtrl.isOwner, productCtrl.create)
+  .get(productCtrl.listByShop)
 
 router.route('/api/products/:productId')
   .get(productCtrl.read)

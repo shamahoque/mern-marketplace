@@ -51,9 +51,20 @@ const remove = (params, credentials) => {
   })
 }
 
+const listByShop = (params) => {
+  return fetch('/api/products/by/'+params.shopId, {
+    method: 'GET'
+  }).then((response) => {
+    return response.json()
+  }).catch((err) => {
+    console.log(err)
+  })
+}
+
 export {
   create,
   read,
   update,
-  remove
+  remove,
+  listByShop
 }
