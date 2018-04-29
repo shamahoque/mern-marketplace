@@ -4,6 +4,9 @@ import PropTypes from 'prop-types'
 import {withStyles} from 'material-ui/styles'
 import cart from './cart-helper.js'
 import CartItems from './CartItems'
+import {StripeProvider} from 'react-stripe-elements'
+import config from './../../config/config'
+import Checkout from './Checkout'
 
 const styles = theme => ({
   root: {
@@ -16,6 +19,17 @@ class Cart extends Component {
   state = {
     checkout: false,
     stripe: null
+  }
+
+  componentDidMount = () => {
+    if (window.Stripe) {
+      this.setState({stripe: window.Stripe(config.stripe_test_api_key)})
+    } else {
+      document.querySelector('#stripe-js').addEventListener('load', () => {
+        // Create Stripe instance once Stripe.js loads
+        this.setState({stripe: window.Stripe(config.stripe_test_api_key)})
+      })
+    }
   }
 
   setCheckout = val =>{
@@ -32,7 +46,9 @@ class Cart extends Component {
         </Grid>
         {this.state.checkout &&
           <Grid item xs={6} sm={6}>
-            Checkout
+            <StripeProvider stripe={this.state.stripe}>
+              <Checkout/>
+            </StripeProvider>
           </Grid>}
         </Grid>
       </div>)

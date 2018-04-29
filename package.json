@@ -60,6 +60,7 @@
     "react-hot-loader": "^4.1.2",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
+    "react-stripe-elements": "^1.6.0",
     "request": "^2.85.0"
   }
 }
