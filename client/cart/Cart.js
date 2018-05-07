@@ -5,7 +5,14 @@ import {withStyles} from 'material-ui/styles'
 import CartItems from './CartItems'
 import {StripeProvider} from 'react-stripe-elements'
 import config from './../../config/config'
-import Checkout from './Checkout'
+// import Checkout from './Checkout'
+
+/* Code Splitting Example with React Loadable */
+import Loadable from 'react-loadable';
+const Checkout = Loadable({
+  loader: () => import('./Checkout'),
+  loading: () => <div>Loading...</div>,
+});
 
 const styles = theme => ({
   root: {
