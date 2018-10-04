@@ -1,0 +1,23 @@
+In addition to the follow javascript files, I will look into each of the react libraries that were imported from React.
+
+DeleteUser.js
+  Relys on Component Class (React)
+  This class looks convoluted with no comments.
+
+EditProfile.js
+  This file seems interesting since the CSS portion of the code is somehow manipulated from the JS.
+
+Profile.js
+  Very difficult to read javascript file, no comments and looks to be body functions nested inside params.
+
+Signup.js
+  Prior knowledge in making signup web pages, so this file was easy for me to follow along, however i'd like to take a closer look, so I can understand how it was accomplished using node and js.
+
+StripeConnect.js
+  What looks to be a hashing and salting authentication logic page, however I am not certain since there is no comments.
+
+Users.js
+  This page looks like it obtains user data from database based on input of signup or login page.
+
+api-users.js
+  This page looks like it contains DOM requests such as get/post requests in order to make rich, responsive web.
