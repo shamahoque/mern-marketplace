@@ -3,6 +3,19 @@ import jwt from 'jsonwebtoken'
 import expressJwt from 'express-jwt'
 import config from './../../config/config'
 
+import React from 'react';
+import { shallow } from 'enzyme';
+import { shallowToJson } from 'enzyme-to-json';
+import Link from './Link';
+describe('Link', () => {
+    it('should render correctly', () => {
+        const output = shallow(
+            <Link title="mockTitle" url="mockUrl" />
+        );
+        expect(shallowToJson(output)).toMatchSnapshot();
+    });
+});
+
 const signin = (req, res) => {
   User.findOne({
     "email": req.body.email
