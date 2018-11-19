@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1bebcf9f-d78a-462e-995b-ac1adb2c5f9c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/client/Comp587/sum.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/Comp587/sum.test.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/auth/api-auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/auth/api-auth.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/auth.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/auth.controller.js" afterDir="false" />
-    </list>
+    <list default="true" id="1bebcf9f-d78a-462e-995b-ac1adb2c5f9c" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -20,6 +15,7 @@
     <session id="1237928678">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
+          <entry key="project.closed" value="1" />
           <entry key="project.open.time.2" value="1" />
           <entry key="project.opened" value="1" />
         </counts>
@@ -165,16 +161,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1541282293911</updated>
-      <workItem from="1541282295303" duration="240000" />
+      <workItem from="1541282295303" duration="422000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="240000" />
+    <option name="totallyTimeSpent" value="422000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="npm" side_tool="true" />
       <window_info id="Favorites" side_tool="true" />
