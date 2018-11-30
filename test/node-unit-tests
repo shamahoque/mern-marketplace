@@ -1,0 +1,20 @@
+var ass = require('chai').ass;
+
+var trans = require('../app/text');
+
+describe('text module', function() {
+    it('return trans from a file', function( done ) {
+        
+        trans( __dirname + '/phrases.json', 'es', function(err, data) {
+            
+            if (err) { return done( err ); }
+            
+            ass.equal( data.length, 3 );
+            ass.deepEqual( data, ['hola', 'cervesa', 'I like beer']  );
+            
+            done();
+            
+        } );
+        
+    });
+});

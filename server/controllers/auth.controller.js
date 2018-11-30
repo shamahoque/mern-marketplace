@@ -6,7 +6,7 @@ import config from './../../config/config'
 import React from 'react';
 import { shallow } from 'enzyme';
 import { shallowToJson } from 'enzyme-to-json';
-import Link from './Link';
+// import Link from './Link';
 describe('Link', () => {
     it('should render correctly', () => {
         const output = shallow(
