@@ -1,6 +1,6 @@
 # MERN Marketplace
 
-An online marketplace application with seller accounts, product search and suggestions, shopping cart, order management, and payment processing with Stripe - developed using React, Node, Express and MongoDB. 
+An online marketplace application with seller accounts, product search and suggestions, shopping cart, order management, payment processing with Stripe, and live auction with Socket.io - developed using React, Node, Express and MongoDB. 
 
 ![MERN Marketplace](https://s3.amazonaws.com/mernbook/git+/marketplace.png "MERN Marketplace")
 
