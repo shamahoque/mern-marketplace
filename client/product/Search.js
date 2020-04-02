@@ -1,16 +1,16 @@
-import React, {Component} from 'react'
+import React, {useState} from 'react'
 import PropTypes from 'prop-types'
-import {withStyles} from 'material-ui/styles'
-import Card from 'material-ui/Card'
-import Divider from 'material-ui/Divider'
-import MenuItem from 'material-ui/Menu/MenuItem'
-import TextField from 'material-ui/TextField'
-import Button from 'material-ui/Button'
-import SearchIcon from 'material-ui-icons/Search'
+import {makeStyles} from '@material-ui/core/styles'
+import Card from '@material-ui/core/Card'
+import Divider from '@material-ui/core/Divider'
+import MenuItem from '@material-ui/core/MenuItem'
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
+import SearchIcon from '@material-ui/icons/Search'
 import {list} from './api-product.js'
 import Products from './Products'
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   card: {
     margin: 'auto',
     textAlign: 'center',
@@ -21,58 +21,58 @@ const styles = theme => ({
     width: 200,
   },
   textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
     width: 130,
     verticalAlign: 'bottom',
     marginBottom: '20px'
   },
   searchField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
     width: 300,
     marginBottom: '20px'
   },
   searchButton: {
     minWidth: '20px',
     height: '30px',
-    padding: '0 8px'
+    padding: '0 8px',
+    marginBottom: '20px'
   }
-})
+}))
 
-class Search extends Component {
-  state = {
+export default function Search(props) {
+  const classes = useStyles()
+  const [values, setValues] = useState({
       category: '',
       search: '',
       results: [],
       searched: false
-  }
-  handleChange = name => event => {
-    this.setState({
-      [name]: event.target.value,
+  })
+  const handleChange = name => event => {
+    setValues({
+      ...values, [name]: event.target.value,
     })
   }
-  search = () => {
-    if(this.state.search){
+  const search = () => {
+    if(values.search){
       list({
-        search: this.state.search || undefined, category: this.state.category
+        search: values.search || undefined, category: values.category
       }).then((data) => {
         if (data.error) {
           console.log(data.error)
         } else {
-          this.setState({results: data, searched:true})
+          setValues({...values, results: data, searched:true})
         }
       })
     }
   }
-  enterKey = (event) => {
+  const enterKey = (event) => {
     if(event.keyCode == 13){
       event.preventDefault()
-      this.search()
+      search()
     }
   }
-  render() {
-    const {classes} = this.props
     return (
       <div>
         <Card className={classes.card}>
@@ -81,8 +81,8 @@ class Search extends Component {
             select
             label="Select category"
             className={classes.textField}
-            value={this.state.category}
-            onChange={this.handleChange('category')}
+            value={values.category}
+            onChange={handleChange('category')}
             SelectProps={{
               MenuProps: {
                 className: classes.menu,
@@ -92,7 +92,7 @@ class Search extends Component {
             <MenuItem value="All">
               All
             </MenuItem>
-            { this.props.categories.map(option => (
+            { props.categories.map(option => (
               <MenuItem key={option} value={option}>
                 {option}
               </MenuItem>
@@ -102,24 +102,20 @@ class Search extends Component {
             id="search"
             label="Search products"
             type="search"
-            onKeyDown={this.enterKey}
-            onChange={this.handleChange('search')}
+            onKeyDown={enterKey}
+            onChange={handleChange('search')}
             className={classes.searchField}
             margin="normal"
           />
-          <Button variant="raised" color={'primary'} className={classes.searchButton} onClick={this.search}>
+          <Button variant="contained" color={'primary'} className={classes.searchButton} onClick={search}>
             <SearchIcon/>
           </Button>
           <Divider/>
-          <Products products={this.state.results} searched={this.state.searched}/>
+          <Products products={values.results} searched={values.searched}/>
         </Card>
       </div>
     )
-  }
 }
 Search.propTypes = {
-  classes: PropTypes.object.isRequired,
   categories: PropTypes.array.isRequired
 }
-
-export default withStyles(styles)(Search)

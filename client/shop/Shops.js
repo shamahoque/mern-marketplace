@@ -1,23 +1,25 @@
-import React, {Component} from 'react'
-import PropTypes from 'prop-types'
-import {withStyles} from 'material-ui/styles'
-import Paper from 'material-ui/Paper'
-import List, {ListItem, ListItemAvatar} from 'material-ui/List'
-import Avatar from 'material-ui/Avatar'
-import Typography from 'material-ui/Typography'
-import Divider from 'material-ui/Divider'
+import React, { useState, useEffect } from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import Paper from '@material-ui/core/Paper'
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
+import ListItemAvatar from '@material-ui/core/ListItemAvatar'
+import Avatar from '@material-ui/core/Avatar'
+import Typography from '@material-ui/core/Typography'
+import Divider from '@material-ui/core/Divider'
 import {list} from './api-shop.js'
 import {Link} from 'react-router-dom'
-const styles = theme => ({
+
+const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
     maxWidth: 600,
     margin: 'auto',
-    padding: theme.spacing.unit * 3,
-    marginTop: theme.spacing.unit * 5,
-    marginBottom: theme.spacing.unit * 3
+    padding: theme.spacing(3),
+    marginTop: theme.spacing(5),
+    marginBottom: theme.spacing(3)
   }),
   title: {
-    margin: `${theme.spacing.unit * 3}px 0 ${theme.spacing.unit * 2}px`,
+    margin: `${theme.spacing(3)}px 0 ${theme.spacing(2)}px`,
     color: theme.palette.protectedTitle,
     textAlign: 'center',
     fontSize: '1.2em'
@@ -36,25 +38,27 @@ const styles = theme => ({
   details: {
     padding: '24px'
   }
-})
-class Shops extends Component {
-  state = {
-      shops:[]
-  }
-  loadShops = () => {
-    list().then((data) => {
+}))
+export default function Shops(){
+  const classes = useStyles()
+  const [shops, setShops] = useState([])
+
+  useEffect(() => {
+    const abortController = new AbortController()
+    const signal = abortController.signal
+    list(signal).then((data) => {
       if (data.error) {
         console.log(data.error)
       } else {
-        this.setState({shops: data})
+        setShops(data)
       }
     })
-  }
-  componentDidMount = () => {
-    this.loadShops()
-  }
-  render() {
-    const {classes} = this.props
+    return function cleanup(){
+      abortController.abort()
+    }
+
+  }, [])
+
     return (
     <div>
       <Paper className={classes.root} elevation={4}>
@@ -62,7 +66,7 @@ class Shops extends Component {
           All Shops
         </Typography>
         <List dense>
-          {this.state.shops.map((shop, i) => {
+          {shops.map((shop, i) => {
             return <Link to={"/shops/"+shop._id} key={i}>
               <Divider/>
               <ListItem button>
@@ -83,10 +87,4 @@ class Shops extends Component {
         </List>
       </Paper>
     </div>)
-  }
 }
-Shops.propTypes = {
-  classes: PropTypes.object.isRequired
-}
-
-export default withStyles(styles)(Shops)

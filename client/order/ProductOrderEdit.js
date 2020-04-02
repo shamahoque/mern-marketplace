@@ -1,17 +1,19 @@
-import React, {Component} from 'react'
+import React, {useState, useEffect} from 'react'
 import PropTypes from 'prop-types'
-import {withStyles} from 'material-ui/styles'
-import List, {ListItem, ListItemText} from 'material-ui/List'
-import Typography from 'material-ui/Typography'
-import MenuItem from 'material-ui/Menu/MenuItem'
-import TextField from 'material-ui/TextField'
-import Divider from 'material-ui/Divider'
+import {makeStyles} from '@material-ui/core/styles'
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
+import ListItemText from '@material-ui/core/ListItemText'
+import Typography from '@material-ui/core/Typography'
+import MenuItem from '@material-ui/core/MenuItem'
+import TextField from '@material-ui/core/TextField'
+import Divider from '@material-ui/core/Divider'
 import auth from './../auth/auth-helper'
 import {getStatusValues, update, cancelProduct, processCharge} from './api-order.js'
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   nested: {
-    paddingLeft: theme.spacing.unit * 4,
+    paddingLeft: theme.spacing(4),
     paddingBottom: 0
   },
   listImg: {
@@ -37,102 +39,120 @@ const styles = theme => ({
     right: '5px',
     padding: '5px'
   }
-})
-class ProductOrderEdit extends Component {
-
-  state = {
+}))
+export default function ProductOrderEdit (props){
+  const classes = useStyles()
+  const [values, setValues] = useState({
       open: 0,
       statusValues: [],
       error: ''
-  }
-
-  loadStatusValues = () => {
-    getStatusValues().then((data) => {
+  })
+  const jwt = auth.isAuthenticated()
+  useEffect(() => {
+    const abortController = new AbortController()
+    const signal = abortController.signal
+    getStatusValues(signal).then((data) => {
       if (data.error) {
-        this.setState({error: "Could not get status"})
+        setValues({...values, error: "Could not get status"})
       } else {
-        this.setState({statusValues: data, error: ''})
+        setValues({...values, statusValues: data, error: ''})
       }
     })
-  }
+    return function cleanup(){
+      abortController.abort()
+    }
+  }, [])
 
-  componentDidMount = () => {
-    this.loadStatusValues()
-  }
-
-  handleStatusChange = productIndex => event => {
-    let order = this.props.order
+  const handleStatusChange = productIndex => event => {
+    let order = props.order
     order.products[productIndex].status = event.target.value
     let product = order.products[productIndex]
-    const jwt = auth.isAuthenticated()
 
-    if(event.target.value == "Cancelled"){
-        cancelProduct({
-            shopId: this.props.shopId,
-            productId: product.product._id
-          },
-          {t: jwt.token},
-          { cartItemId: product._id,
-            status: event.target.value,
-            quantity: product.quantity
-          })
-          .then((data) => {
-              if (data.error) {
-                this.setState({error: "Status not updated, try again"})
-              } else {
-                this.props.updateOrders(this.props.orderIndex, order)
-                this.setState({error: ''})
-              }
-          })
-    }else if(event.target.value == "Processing"){
-        processCharge({
-            userId: jwt.user._id,
-            shopId: this.props.shopId,
-            orderId: order._id
-          },
-          {t: jwt.token},
-          { cartItemId: product._id,
-            status: event.target.value,
-            amount: (product.quantity * product.product.price)
-          })
-          .then((data) => {
-              if (data.error) {
-                this.setState({error: "Status not updated, try again"})
-              } else {
-                this.props.updateOrders(this.props.orderIndex, order)
-                this.setState({error: ''})
-              }
-          })
-    }
-    else{
-        update({
-          shopId: this.props.shopId
-        },
-        {t: jwt.token},
-        { cartItemId: product._id,
+    if (event.target.value == "Cancelled") {
+      cancelProduct({
+          shopId: props.shopId,
+          productId: product.product._id
+        }, {
+          t: jwt.token
+        }, {
+          cartItemId: product._id,
+          status: event.target.value,
+          quantity: product.quantity
+        })
+        .then((data) => {
+          if (data.error) {
+            setValues({
+              ...values,
+              error: "Status not updated, try again"
+            })
+          } else {
+            props.updateOrders(props.orderIndex, order)
+            setValues({
+              ...values,
+              error: ''
+            })
+          }
+        })
+    } else if (event.target.value == "Processing") {
+      processCharge({
+          userId: jwt.user._id,
+          shopId: props.shopId,
+          orderId: order._id
+        }, {
+          t: jwt.token
+        }, {
+          cartItemId: product._id,
+          status: event.target.value,
+          amount: (product.quantity * product.product.price)
+        })
+        .then((data) => {
+          if (data.error) {
+            setValues({
+              ...values,
+              error: "Status not updated, try again"
+            })
+          } else {
+            props.updateOrders(props.orderIndex, order)
+            setValues({
+              ...values,
+              error: ''
+            })
+          }
+        })
+    } else {
+      update({
+          shopId: props.shopId
+        }, {
+          t: jwt.token
+        }, {
+          cartItemId: product._id,
           status: event.target.value
         })
         .then((data) => {
           if (data.error) {
-            this.setState({error: "Status not updated, try again"})
+            setValues({
+              ...values,
+              error: "Status not updated, try again"
+            })
           } else {
-            this.props.updateOrders(this.props.orderIndex, order)
-            this.setState({error: ''})
+            props.updateOrders(props.orderIndex, order)
+            setValues({
+              ...values,
+              error: ''
+            })
           }
         })
     }
   }
-  render() {
-    const {classes} = this.props
     return (
     <div>
       <Typography component="span" color="error" className={classes.statusMessage}>
-        {this.state.error}
+        {values.error}
       </Typography>
       <List disablePadding style={{backgroundColor:'#f8f8f8'}}>
-        {this.props.order.products.map((item, index) => {
+        {props.order.products.map((item, index) => {
           return <span key={index}>
-                  { item.shop == this.props.shopId &&
+                  { item.shop == props.shopId &&
                     <ListItem button className={classes.nested}>
                       <ListItemText
                         primary={<div>
@@ -148,7 +168,7 @@ class ProductOrderEdit extends Component {
                         label="Update Status"
                         className={classes.textField}
                         value={item.status}
-                        onChange={this.handleStatusChange(index)}
+                        onChange={handleStatusChange(index)}
                         SelectProps={{
                           MenuProps: {
                             className: classes.menu,
@@ -156,7 +176,7 @@ class ProductOrderEdit extends Component {
                         }}
                         margin="normal"
                       >
-                        {this.state.statusValues.map(option => (
+                        {values.statusValues.map(option => (
                           <MenuItem key={option} value={option}>
                             {option}
                           </MenuItem>
@@ -169,14 +189,10 @@ class ProductOrderEdit extends Component {
               }
       </List>
     </div>)
-  }
 }
 ProductOrderEdit.propTypes = {
-  classes: PropTypes.object.isRequired,
   shopId: PropTypes.string.isRequired,
   order: PropTypes.object.isRequired,
   orderIndex: PropTypes.number.isRequired,
   updateOrders: PropTypes.func.isRequired
 }
-
-export default withStyles(styles)(ProductOrderEdit)

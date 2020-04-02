@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React from 'react'
 import {Route, Switch} from 'react-router-dom'
 import Home from './core/Home'
 import Users from './user/Users'
@@ -21,17 +21,8 @@ import StripeConnect from './user/StripeConnect'
 import ShopOrders from './order/ShopOrders'
 import Order from './order/Order'
 
-class MainRouter extends Component {
-  // Removes the server-side injected CSS when React component mounts
-  componentDidMount() {
-    const jssStyles = document.getElementById('jss-server-side')
-    if (jssStyles && jssStyles.parentNode) {
-      jssStyles.parentNode.removeChild(jssStyles)
-    }
-  }
-
-  render() {
-    return (<div>
+const MainRouter = () => {
+  return (<div>
       <Menu/>
       <Switch>
         <Route exact path="/" component={Home}/>
@@ -58,7 +49,6 @@ class MainRouter extends Component {
         <Route path="/seller/stripe/connect" component={StripeConnect}/>
       </Switch>
     </div>)
-  }
 }
 
 export default MainRouter

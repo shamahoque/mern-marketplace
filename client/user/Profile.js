@@ -1,15 +1,18 @@
-import React, {Component} from 'react'
-import PropTypes from 'prop-types'
-import {withStyles} from 'material-ui/styles'
-import Paper from 'material-ui/Paper'
-import List, {ListItem, ListItemAvatar, ListItemSecondaryAction, ListItemText} from 'material-ui/List'
-import Avatar from 'material-ui/Avatar'
-import IconButton from 'material-ui/IconButton'
-import Button from 'material-ui/Button'
-import Typography from 'material-ui/Typography'
-import Edit from 'material-ui-icons/Edit'
-import Person from 'material-ui-icons/Person'
-import Divider from 'material-ui/Divider'
+import React, { useState, useEffect } from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import Paper from '@material-ui/core/Paper'
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
+import ListItemAvatar from '@material-ui/core/ListItemAvatar'
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction'
+import ListItemText from '@material-ui/core/ListItemText'
+import Avatar from '@material-ui/core/Avatar'
+import IconButton from '@material-ui/core/IconButton'
+import Button from '@material-ui/core/Button'
+import Typography from '@material-ui/core/Typography'
+import Edit from '@material-ui/icons/Edit'
+import Person from '@material-ui/icons/Person'
+import Divider from '@material-ui/core/Divider'
 import DeleteUser from './DeleteUser'
 import auth from './../auth/auth-helper'
 import {read} from './api-user.js'
@@ -18,15 +21,15 @@ import config from './../../config/config'
 import stripeButton from './../assets/images/stripeButton.png'
 import MyOrders from './../order/MyOrders'
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
     maxWidth: 600,
     margin: 'auto',
-    padding: theme.spacing.unit * 3,
-    marginTop: theme.spacing.unit * 5
+    padding: theme.spacing(3),
+    marginTop: theme.spacing(5)
   }),
   title: {
-    margin: `${theme.spacing.unit * 3}px 0 ${theme.spacing.unit * 2}px`,
+    margin: `${theme.spacing(3)}px 0 ${theme.spacing(2)}px`,
     color: theme.palette.protectedTitle
   },
   stripe_connect: {
@@ -36,44 +39,39 @@ const styles = theme => ({
     verticalAlign: 'super',
     marginRight: '10px'
   }
-})
+}))
 
-class Profile extends Component {
-  constructor({match}) {
-    super()
-    this.state = {
-      user: '',
-      redirectToSignin: false
-    }
-    this.match = match
-  }
-  init = (userId) => {
-    const jwt = auth.isAuthenticated()
+export default function Profile({ match }) {
+  const classes = useStyles();
+  const [user, setUser] = useState({})
+  const [redirectToSignin, setRedirectToSignin] = useState(false)
+  const jwt = auth.isAuthenticated()
+
+  useEffect(() => {
+    const abortController = new AbortController()
+    const signal = abortController.signal
     read({
-      userId: userId
-    }, {t: jwt.token}).then((data) => {
-      if (data.error) {
-        this.setState({redirectToSignin: true})
+      userId: match.params.userId
+    }, {t: jwt.token}, signal).then((data) => {
+      if (data && data.error) {
+        setRedirectToSignin(true)
       } else {
-        this.setState({user: data})
+        setUser(data)
       }
     })
-  }
-  componentWillReceiveProps = (props) => {
-    this.init(props.match.params.userId)
-  }
-  componentDidMount = () => {
-    this.init(this.match.params.userId)
-  }
-  render() {
-    const {classes} = this.props
-    const redirectToSignin = this.state.redirectToSignin
-    if (redirectToSignin) {
-      return <Redirect to='/signin'/>
+
+    return function cleanup(){
+      abortController.abort()
     }
-    return (
+
+  }, [match.params.userId])
+
+  if (redirectToSignin) {
+    return <Redirect to='/signin'/>
+  }
+  return (
       <Paper className={classes.root} elevation={4}>
-        <Typography type="title" className={classes.title}>
+        <Typography variant="h6" className={classes.title}>
           Profile
         </Typography>
         <List dense>
@@ -83,12 +81,12 @@ class Profile extends Component {
                 <Person/>
               </Avatar>
             </ListItemAvatar>
-            <ListItemText primary={this.state.user.name} secondary={this.state.user.email}/> {
-             auth.isAuthenticated().user && auth.isAuthenticated().user._id == this.state.user._id &&
+            <ListItemText primary={user.name} secondary={user.email}/> {
+             auth.isAuthenticated().user && auth.isAuthenticated().user._id == user._id &&
              (<ListItemSecondaryAction>
-               {this.state.user.seller &&
-                 (this.state.user.stripe_seller
-                   ? (<Button variant="raised" disabled className={classes.stripe_connected}>
+               {user.seller &&
+                 (user.stripe_seller
+                   ? (<Button variant="contained" disabled className={classes.stripe_connected}>
                        Stripe connected
                       </Button>)
                    : (<a href={"https://connect.stripe.com/oauth/authorize?response_type=code&client_id="+config.stripe_connect_test_client_id+"&scope=read_write"} className={classes.stripe_connect}>
@@ -96,28 +94,22 @@ class Profile extends Component {
                       </a>)
                   )
                 }
-               <Link to={"/user/edit/" + this.state.user._id}>
+               <Link to={"/user/edit/" + user._id}>
                  <IconButton aria-label="Edit" color="primary">
                    <Edit/>
                  </IconButton>
                </Link>
-               <DeleteUser userId={this.state.user._id}/>
+               <DeleteUser userId={user._id}/>
              </ListItemSecondaryAction>)
             }
           </ListItem>
           <Divider/>
           <ListItem>
             <ListItemText primary={"Joined: " + (
-              new Date(this.state.user.created)).toDateString()}/>
+              new Date(user.created)).toDateString()}/>
           </ListItem>
         </List>
         <MyOrders/>
       </Paper>
     )
-  }
 }
-Profile.propTypes = {
-  classes: PropTypes.object.isRequired
-}
-
-export default withStyles(styles)(Profile)

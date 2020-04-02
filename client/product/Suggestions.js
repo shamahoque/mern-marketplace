@@ -1,25 +1,26 @@
-import React, {Component} from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
-import {withStyles} from 'material-ui/styles'
-import Paper from 'material-ui/Paper'
-import Button from 'material-ui/Button'
-import Typography from 'material-ui/Typography'
-import IconButton from 'material-ui/IconButton'
+import {makeStyles} from '@material-ui/core/styles'
+import Paper from '@material-ui/core/Paper'
+import Typography from '@material-ui/core/Typography'
+import IconButton from '@material-ui/core/IconButton'
 import {Link} from 'react-router-dom'
-import ViewIcon from 'material-ui-icons/Visibility'
-import Icon from 'material-ui/Icon'
-import Divider from 'material-ui/Divider'
-import Card, { CardContent, CardMedia } from 'material-ui/Card'
+import ViewIcon from '@material-ui/icons/Visibility'
+import Icon from '@material-ui/core/Icon'
+import Divider from '@material-ui/core/Divider'
+import Card from '@material-ui/core/Card'
+import CardContent from '@material-ui/core/CardContent'
+import CardMedia from '@material-ui/core/CardMedia'
 import AddToCart from './../cart/AddToCart'
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
-    padding: theme.spacing.unit,
+    padding: theme.spacing(1),
     paddingBottom: 24,
     backgroundColor: '#80808024'
   }),
   title: {
-    margin: `${theme.spacing.unit * 4}px 0 ${theme.spacing.unit * 2}px`,
+    margin: `${theme.spacing(4)}px 0 ${theme.spacing(2)}px`,
     color: theme.palette.openTitle,
     fontSize: '1.1em'
   },
@@ -73,17 +74,16 @@ const styles = theme => ({
     paddingLeft: '8px',
     color: theme.palette.text.secondary
   }
-})
+}))
 
-class Suggestions extends Component {
-  render() {
-    const {classes} = this.props
+export default function Suggestions (props) {
+  const classes = useStyles()
     return (<div>
       <Paper className={classes.root} elevation={4}>
         <Typography type="title" className={classes.title}>
-          {this.props.title}
+          {props.title}
         </Typography>
-        {this.props.products.map((item, i) => {
+        {props.products.map((item, i) => {
             return <span key={i}>
               <Card className={classes.card}>
                 <CardMedia
@@ -93,7 +93,7 @@ class Suggestions extends Component {
                 />
                 <div className={classes.details}>
                   <CardContent className={classes.content}>
-                    <Link to={'/product/'+item._id}><Typography type="title" component="h3" className={classes.productTitle} color="primary">{item.name}</Typography></Link>
+                    <Link to={'/product/'+item._id}><Typography variant="h3" component="h3" className={classes.productTitle} color="primary">{item.name}</Typography></Link>
                     <Link to={'/shops/'+item.shop._id}>
                       <Typography type="subheading" className={classes.subheading}>
                         <Icon className={classes.icon}>shopping_basket</Icon> {item.shop.name}
@@ -122,13 +122,9 @@ class Suggestions extends Component {
           }
       </Paper>
     </div>)
-  }
 }
 
 Suggestions.propTypes = {
-  classes: PropTypes.object.isRequired,
   products: PropTypes.array.isRequired,
   title: PropTypes.string.isRequired
 }
-
-export default withStyles(styles)(Suggestions)

@@ -1,116 +1,119 @@
-import React, {Component} from 'react'
-import Card, {CardActions, CardContent} from 'material-ui/Card'
-import Button from 'material-ui/Button'
-import TextField from 'material-ui/TextField'
-import Typography from 'material-ui/Typography'
-import Icon from 'material-ui/Icon'
-import { FormControlLabel } from 'material-ui/Form'
-import Switch from 'material-ui/Switch'
-import PropTypes from 'prop-types'
-import {withStyles} from 'material-ui/styles'
+import React, {useState, useEffect} from 'react'
+import Card from '@material-ui/core/Card'
+import CardActions from '@material-ui/core/CardActions'
+import CardContent from '@material-ui/core/CardContent'
+import Button from '@material-ui/core/Button'
+import TextField from '@material-ui/core/TextField'
+import Typography from '@material-ui/core/Typography'
+import Icon from '@material-ui/core/Icon'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
+import Switch from '@material-ui/core/Switch'
+import { makeStyles } from '@material-ui/core/styles'
 import auth from './../auth/auth-helper'
 import {read, update} from './api-user.js'
 import {Redirect} from 'react-router-dom'
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   card: {
     maxWidth: 600,
     margin: 'auto',
     textAlign: 'center',
-    marginTop: theme.spacing.unit * 5,
-    paddingBottom: theme.spacing.unit * 2
+    marginTop: theme.spacing(5),
+    paddingBottom: theme.spacing(2)
   },
   title: {
-    margin: theme.spacing.unit * 2,
+    margin: theme.spacing(2),
     color: theme.palette.protectedTitle
   },
   error: {
     verticalAlign: 'middle'
   },
   textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
     width: 300
   },
   submit: {
     margin: 'auto',
-    marginBottom: theme.spacing.unit * 2
+    marginBottom: theme.spacing(2)
   },
   subheading: {
-    marginTop: theme.spacing.unit * 2,
+    marginTop: theme.spacing(2),
     color: theme.palette.openTitle
   }
-})
+}))
 
-class EditProfile extends Component {
-  constructor({match}) {
-    super()
-    this.state = {
+export default function EditProfile({ match }) {
+  const classes = useStyles()
+  const [values, setValues] = useState({
       name: '',
       email: '',
       password: '',
       seller: false,
       redirectToProfile: false,
       error: ''
-    }
-    this.match = match
-  }
+  })
+  const jwt = auth.isAuthenticated()
+  useEffect(() => {
+    const abortController = new AbortController()
+    const signal = abortController.signal
 
-  componentDidMount = () => {
-    const jwt = auth.isAuthenticated()
     read({
-      userId: this.match.params.userId
-    }, {t: jwt.token}).then((data) => {
-      if (data.error) {
-        this.setState({error: data.error})
+      userId: match.params.userId
+    }, {t: jwt.token}, signal).then((data) => {
+      if (data && data.error) {
+        setValues({...values, error: data.error})
       } else {
-        this.setState({name: data.name, email: data.email, seller: data.seller})
+        setValues({...values, name: data.name, email: data.email, seller: data.seller})
       }
     })
-  }
-  clickSubmit = () => {
-    const jwt = auth.isAuthenticated()
+    return function cleanup(){
+      abortController.abort()
+    }
+
+  }, [match.params.userId])
+
+  const clickSubmit = () => {
     const user = {
-      name: this.state.name || undefined,
-      email: this.state.email || undefined,
-      password: this.state.password || undefined,
-      seller: this.state.seller
+      name: values.name || undefined,
+      email: values.email || undefined,
+      password: values.password || undefined,
+      seller: values.seller || undefined
     }
     update({
-      userId: this.match.params.userId
+      userId: match.params.userId
     }, {
       t: jwt.token
     }, user).then((data) => {
-      if (data.error) {
-        this.setState({error: data.error})
+      if (data && data.error) {
+        setValues({...values, error: data.error})
       } else {
-        auth.updateUser(data, ()=> {
-            this.setState({'userId':data._id,'redirectToProfile': true})
+        auth.updateUser(data, ()=>{
+          setValues({...values, userId: data._id, redirectToProfile: true})
         })
       }
     })
   }
-  handleChange = name => event => {
-    this.setState({[name]: event.target.value})
+  const handleChange = name => event => {
+    setValues({...values, [name]: event.target.value})
   }
-  handleCheck = (event, checked) => {
-    this.setState({'seller': checked})
+  const handleCheck = (event, checked) => {
+    setValues({...values, 'seller': checked})
   }
-  render() {
-    const {classes} = this.props
-    if (this.state.redirectToProfile) {
-      return (<Redirect to={'/user/' + this.state.userId}/>)
-    }
+
+  if (values.redirectToProfile) {
+    return (<Redirect to={'/user/' + values.userId}/>)
+  }
     return (
       <Card className={classes.card}>
         <CardContent>
-          <Typography type="headline" component="h2" className={classes.title}>
+          <Typography variant="h6" className={classes.title}>
             Edit Profile
           </Typography>
-          <TextField id="name" label="Name" className={classes.textField} value={this.state.name} onChange={this.handleChange('name')} margin="normal"/><br/>
-          <TextField id="email" type="email" label="Email" className={classes.textField} value={this.state.email} onChange={this.handleChange('email')} margin="normal"/><br/>
-          <TextField id="password" type="password" label="Password" className={classes.textField} value={this.state.password} onChange={this.handleChange('password')} margin="normal"/>
-          <Typography type="subheading" component="h4" className={classes.subheading}>
+          <TextField id="name" label="Name" className={classes.textField} value={values.name} onChange={handleChange('name')} margin="normal"/><br/>
+          <TextField id="email" type="email" label="Email" className={classes.textField} value={values.email} onChange={handleChange('email')} margin="normal"/><br/>
+          <TextField id="password" type="password" label="Password" className={classes.textField} value={values.password} onChange={handleChange('password')} margin="normal"/>
+          <Typography variant="subtitle1" className={classes.subheading}>
             Seller Account
           </Typography>
           <FormControlLabel
@@ -119,28 +122,21 @@ class EditProfile extends Component {
                                 checked: classes.checked,
                                 bar: classes.bar,
                               }}
-                      checked={this.state.seller}
-                      onChange={this.handleCheck}
+                      checked={values.seller}
+                      onChange={handleCheck}
               />}
-            label={this.state.seller? 'Active' : 'Inactive'}
+            label={values.seller? 'Active' : 'Inactive'}
           />
           <br/> {
-            this.state.error && (<Typography component="p" color="error">
+            values.error && (<Typography component="p" color="error">
               <Icon color="error" className={classes.error}>error</Icon>
-              {this.state.error}
+              {values.error}
             </Typography>)
           }
         </CardContent>
         <CardActions>
-          <Button color="primary" variant="raised" onClick={this.clickSubmit} className={classes.submit}>Submit</Button>
+          <Button color="primary" variant="contained" onClick={clickSubmit} className={classes.submit}>Submit</Button>
         </CardActions>
       </Card>
     )
-  }
 }
-
-EditProfile.propTypes = {
-  classes: PropTypes.object.isRequired
-}
-
-export default withStyles(styles)(EditProfile)

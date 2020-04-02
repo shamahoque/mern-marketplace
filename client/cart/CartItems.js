@@ -1,23 +1,25 @@
-import React, {Component} from 'react'
+import React, {useState} from 'react'
 import auth from './../auth/auth-helper'
-import Card, { CardContent, CardMedia } from 'material-ui/Card'
-import Button from 'material-ui/Button'
-import TextField from 'material-ui/TextField'
-import Typography from 'material-ui/Typography'
-import Divider from 'material-ui/Divider'
+import Card from '@material-ui/core/Card'
+import CardContent from '@material-ui/core/CardContent'
+import CardMedia from '@material-ui/core/CardMedia'
+import Button from '@material-ui/core/Button'
+import TextField from '@material-ui/core/TextField'
+import Typography from '@material-ui/core/Typography'
+import Divider from '@material-ui/core/Divider'
 import PropTypes from 'prop-types'
-import {withStyles} from 'material-ui/styles'
+import {makeStyles} from '@material-ui/core/styles'
 import cart from './cart-helper.js'
 import {Link} from 'react-router-dom'
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   card: {
     margin: '24px 0px',
     padding: '16px 40px 60px 40px',
     backgroundColor: '#80808017'
   },
   title: {
-    margin: theme.spacing.unit * 2,
+    margin: theme.spacing(2),
     color: theme.palette.openTitle,
     fontSize: '1.2em'
   },
@@ -26,8 +28,8 @@ const styles = theme => ({
     display: 'inline'
   },
   textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
     marginTop: 0,
     width: 50
   },
@@ -87,54 +89,47 @@ const styles = theme => ({
   removeButton: {
     fontSize: '0.8em'
   }
-})
+}))
 
-class CartItems extends Component {
-  state = {
-    cartItems: [],
-  }
+export default function CartItems (props) {
+  const classes = useStyles()
+  const [cartItems, setCartItems] = useState(cart.getCart())
 
-  componentDidMount = () => {
-    this.setState({cartItems: cart.getCart()})
-  }
-
-  handleChange = index => event => {
-    let cartItems = this.state.cartItems
+  const handleChange = index => event => {
+    let updatedCartItems = cartItems
     if(event.target.value == 0){
-      cartItems[index].quantity = 1
+      updatedCartItems[index].quantity = 1
     }else{
-      cartItems[index].quantity = event.target.value
+      updatedCartItems[index].quantity = event.target.value
     }
-    this.setState({cartItems: cartItems})
+    setCartItems([...updatedCartItems])
     cart.updateCart(index, event.target.value)
   }
 
-  getTotal(){
-    return this.state.cartItems.reduce((a, b) => {
+  const getTotal = () => {
+    return cartItems.reduce((a, b) => {
         return a + (b.quantity*b.product.price)
     }, 0)
   }
 
-  removeItem = index => event =>{
-    let cartItems = cart.removeItem(index)
-    if(cartItems.length == 0){
-      this.props.setCheckout(false)
+  const removeItem = index => event =>{
+    let updatedCartItems = cart.removeItem(index)
+    if(updatedCartItems.length == 0){
+      props.setCheckout(false)
     }
-    this.setState({cartItems: cartItems})
+    setCartItems(updatedCartItems)
   }
 
-  openCheckout = () => {
-    this.props.setCheckout(true)
+  const openCheckout = () => {
+    props.setCheckout(true)
   }
 
-  render() {
-    const {classes} = this.props
     return (<Card className={classes.card}>
       <Typography type="title" className={classes.title}>
         Shopping Cart
       </Typography>
-      {this.state.cartItems.length>0 ? (<span>
-          {this.state.cartItems.map((item, i) => {
+      {cartItems.length>0 ? (<span>
+          {cartItems.map((item, i) => {
             return <span key={i}><Card className={classes.cart}>
               <CardMedia
                 className={classes.cover}
@@ -153,7 +148,7 @@ class CartItems extends Component {
                 <div className={classes.subheading}>
                   Quantity: <TextField
                               value={item.quantity}
-                              onChange={this.handleChange(i)}
+                              onChange={handleChange(i)}
                               type="number"
                               inputProps={{
                                   min:1
@@ -163,7 +158,7 @@ class CartItems extends Component {
                                 shrink: true,
                               }}
                               margin="normal"/>
-                            <Button className={classes.removeButton} color="primary" onClick={this.removeItem(i)}>x Remove</Button>
+                            <Button className={classes.removeButton} color="primary" onClick={removeItem(i)}>x Remove</Button>
                 </div>
               </div>
             </Card>
@@ -171,28 +166,24 @@ class CartItems extends Component {
           </span>})
         }
         <div className={classes.checkout}>
-          <span className={classes.total}>Total: ${this.getTotal()}</span>
-          {!this.props.checkout && (auth.isAuthenticated()?
-            <Button color="secondary" variant="raised" onClick={this.openCheckout}>Checkout</Button>
+          <span className={classes.total}>Total: ${getTotal()}</span>
+          {!props.checkout && (auth.isAuthenticated()?
+            <Button color="secondary" variant="contained" onClick={openCheckout}>Checkout</Button>
             :
             <Link to="/signin">
-              <Button color="primary" variant="raised">Sign in to checkout</Button>
+              <Button color="primary" variant="contained">Sign in to checkout</Button>
             </Link>)}
           <Link to='/' className={classes.continueBtn}>
-            <Button variant="raised">Continue Shopping</Button>
+            <Button variant="contained">Continue Shopping</Button>
           </Link>
         </div>
       </span>) :
-      <Typography type="subheading" component="h3" color="primary">No items added to your cart.</Typography>
+      <Typography variant="subtitle1" component="h3" color="primary">No items added to your cart.</Typography>
     }
     </Card>)
-  }
 }
 
 CartItems.propTypes = {
-  classes: PropTypes.object.isRequired,
   checkout: PropTypes.bool.isRequired,
   setCheckout: PropTypes.func.isRequired
 }
-
-export default withStyles(styles)(CartItems)

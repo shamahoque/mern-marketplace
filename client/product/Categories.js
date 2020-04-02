@@ -1,15 +1,16 @@
-import React, {Component} from 'react'
+import React, {useState, useEffect} from 'react'
 import PropTypes from 'prop-types'
-import {withStyles} from 'material-ui/styles'
-import Card from 'material-ui/Card'
-import Typography from 'material-ui/Typography'
-import Divider from 'material-ui/Divider'
-import GridList, { GridListTile } from 'material-ui/GridList'
-import Icon from 'material-ui/Icon'
+import {makeStyles} from '@material-ui/core/styles'
+import Card from '@material-ui/core/Card'
+import Typography from '@material-ui/core/Typography'
+import Divider from '@material-ui/core/Divider'
+import GridList from '@material-ui/core/GridList'
+import GridListTile from '@material-ui/core/GridListTile'
+import Icon from '@material-ui/core/Icon'
 import {list} from './api-product.js'
 import Products from './Products'
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -26,7 +27,7 @@ const styles = theme => ({
     verticalAlign: 'middle',
     lineHeight: 2.5,
     textAlign: 'center',
-    fontSize: '1.5em',
+    fontSize: '1.35em',
     margin: '0 4px 0 0',
   },
   card: {
@@ -34,7 +35,7 @@ const styles = theme => ({
     marginTop: 20
   },
   title: {
-    padding:`${theme.spacing.unit * 3}px ${theme.spacing.unit * 2.5}px ${theme.spacing.unit * 2}px`,
+    padding:`${theme.spacing(3)}px ${theme.spacing(2.5)}px ${theme.spacing(2)}px`,
     color: theme.palette.openTitle,
     backgroundColor: '#80808024',
     fontSize: '1.1em'
@@ -49,41 +50,44 @@ const styles = theme => ({
     textShadow: '0px 2px 12px #ffffff',
     cursor:'pointer'
   }
-})
+}))
 
-class Categories extends Component {
-  state = {
-    products: [],
-    selected: ''
-  }
-  componentWillReceiveProps = (props) => {
-    this.setState({selected: props.categories[0]})
+export default function Categories(props){
+  const classes = useStyles()
+  const [products, setProducts] = useState([])
+  const [selected, setSelected] = useState(props.categories[0])
+
+  useEffect(() => {
+    const abortController = new AbortController()
+    const signal = abortController.signal
+
     list({
       category: props.categories[0]
     }).then((data) => {
       if (data.error) {
         console.log(data.error)
       } else {
-        this.setState({products: data})
+        setProducts(data)
       }
     })
-  }
+    return function cleanup(){
+      abortController.abort()
+    }
+  }, [])
 
-  listbyCategory = category => event => {
-    this.setState({selected: category})
+  const listbyCategory = category => event => {
+    setSelected(category)
     list({
       category: category
     }).then((data) => {
       if (data.error) {
         console.log(data.error)
       } else {
-        this.setState({products: data})
+        setProducts(data)
       }
     })
   }
 
-  render() {
-    const {classes} = this.props
     return (
       <div>
         <Card className={classes.card}>
@@ -92,23 +96,19 @@ class Categories extends Component {
           </Typography>
           <div className={classes.root}>
             <GridList className={classes.gridList} cols={4}>
-              {this.props.categories.map((tile, i) => (
-                <GridListTile key={i} className={classes.tileTitle} style={{height: '64px', backgroundColor: this.state.selected == tile? 'rgba(95, 139, 137, 0.56)':'rgba(95, 124, 139, 0.32)'}}>
-                  <span className={classes.link} onClick={this.listbyCategory(tile)}>{tile}  <Icon className={classes.icon}>{this.state.selected == tile && 'arrow_drop_down'}</Icon></span>
+              {props.categories.map((tile, i) => (
+                <GridListTile key={i} className={classes.tileTitle} style={{height: '64px', backgroundColor: selected == tile? 'rgba(95, 139, 137, 0.56)':'rgba(95, 124, 139, 0.32)'}}>
+                  <span className={classes.link} onClick={listbyCategory(tile)}>{tile}  <Icon className={classes.icon}>{selected == tile && 'arrow_drop_down'}</Icon></span>
                 </GridListTile>
               ))}
             </GridList>
           </div>
           <Divider/>
-          <Products products={this.state.products} searched={false}/>
+          <Products products={products} searched={false}/>
         </Card>
       </div>
     )
-  }
 }
 Categories.propTypes = {
-  classes: PropTypes.object.isRequired,
   categories: PropTypes.array.isRequired
 }
-
-export default withStyles(styles)(Categories)

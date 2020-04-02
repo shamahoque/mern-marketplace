@@ -1,16 +1,16 @@
-import React, {Component} from 'react'
+import React, {useState} from 'react'
 import PropTypes from 'prop-types'
-import {withStyles} from 'material-ui/styles'
-import Button from 'material-ui/Button'
-import Typography from 'material-ui/Typography'
-import Icon from 'material-ui/Icon'
+import {makeStyles} from '@material-ui/core/styles'
+import Button from '@material-ui/core/Button'
+import Typography from '@material-ui/core/Typography'
+import Icon from '@material-ui/core/Icon'
 import auth from './../auth/auth-helper'
 import cart from './cart-helper.js'
 import {CardElement, injectStripe} from 'react-stripe-elements'
 import {create} from './../order/api-order.js'
 import {Redirect} from 'react-router-dom'
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   subheading: {
     color: 'rgba(88, 114, 128, 0.87)',
     marginTop: "20px",
@@ -35,29 +35,31 @@ const styles = theme => ({
     borderRadius: '4px',
     background: 'white'
   }
-})
+}))
 
-class PlaceOrder extends Component {
-  state = {
+const PlaceOrder = (props) => {
+  const classes = useStyles()
+  const [values, setValues] = useState({
     order: {},
     error: '',
-    redirect: false
-  }
+    redirect: false,
+    orderId: ''
+  })
 
-  placeOrder = ()=>{
-    this.props.stripe.createToken().then(payload => {
+  const placeOrder = ()=>{
+    props.stripe.createToken().then(payload => {
       if(payload.error){
-        this.setState({error: payload.error.message})
+        setValues({...values, error: payload.error.message})
       }else{
         const jwt = auth.isAuthenticated()
         create({userId:jwt.user._id}, {
           t: jwt.token
-        }, this.props.checkoutDetails, payload.token.id).then((data) => {
+        }, props.checkoutDetails, payload.token.id).then((data) => {
           if (data.error) {
-            this.setState({error: data.error})
+            setValues({...values, error: data.error})
           } else {
             cart.emptyCart(()=> {
-              this.setState({'orderId':data._id,'redirect': true})
+              setValues({...values, 'orderId':data._id,'redirect': true})
             })
           }
         })
@@ -65,10 +67,9 @@ class PlaceOrder extends Component {
   })
 }
 
-render() {
-    const {classes} = this.props
-    if (this.state.redirect) {
-      return (<Redirect to={'/order/' + this.state.orderId}/>)
+
+    if (values.redirect) {
+      return (<Redirect to={'/order/' + values.orderId}/>)
     }
     return (
     <span>
@@ -93,20 +94,19 @@ render() {
           }}
       />
       <div className={classes.checkout}>
-        { this.state.error &&
+        { values.error &&
           (<Typography component="span" color="error" className={classes.error}>
             <Icon color="error" className={classes.errorIcon}>error</Icon>
-              {this.state.error}
+              {values.error}
           </Typography>)
         }
-        <Button color="secondary" variant="raised" onClick={this.placeOrder}>Place Order</Button>
+        <Button color="secondary" variant="contained" onClick={placeOrder}>Place Order</Button>
       </div>
     </span>)
-  }
+
 }
 PlaceOrder.propTypes = {
-  classes: PropTypes.object.isRequired,
   checkoutDetails: PropTypes.object.isRequired
 }
 
-export default injectStripe(withStyles(styles)(PlaceOrder))
+export default injectStripe(PlaceOrder)

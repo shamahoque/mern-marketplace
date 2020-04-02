@@ -1,14 +1,14 @@
 import Shop from '../models/shop.model'
-import _ from 'lodash'
+import extend from 'lodash/extend'
 import errorHandler from './../helpers/dbErrorHandler'
 import formidable from 'formidable'
 import fs from 'fs'
-import profileImage from './../../client/assets/images/profile-pic.png'
+import defaultImage from './../../client/assets/images/default.png'
 
-const create = (req, res, next) => {
+const create = (req, res) => {
   let form = new formidable.IncomingForm()
   form.keepExtensions = true
-  form.parse(req, (err, fields, files) => {
+  form.parse(req, async (err, fields, files) => {
     if (err) {
       res.status(400).json({
         message: "Image could not be uploaded"
@@ -20,26 +20,31 @@ const create = (req, res, next) => {
       shop.image.data = fs.readFileSync(files.image.path)
       shop.image.contentType = files.image.type
     }
-    shop.save((err, result) => {
-      if (err) {
-        return res.status(400).json({
-          error: errorHandler.getErrorMessage(err)
-        })
-      }
+    try {
+      let result = await shop.save()
       res.status(200).json(result)
-    })
+    }catch (err){
+      return res.status(400).json({
+        error: errorHandler.getErrorMessage(err)
+      })
+    }
   })
 }
 
-const shopByID = (req, res, next, id) => {
-  Shop.findById(id).populate('owner', '_id name').exec((err, shop) => {
-    if (err || !shop)
+const shopByID = async (req, res, next, id) => {
+  try {
+    let shop = await Shop.findById(id).populate('owner', '_id name').exec()
+    if (!shop)
       return res.status('400').json({
         error: "Shop not found"
       })
     req.shop = shop
     next()
-  })
+  } catch (err) {
+    return res.status('400').json({
+      error: "Could not retrieve shop"
+    })
+  }
 }
 
 const photo = (req, res, next) => {
@@ -50,60 +55,73 @@ const photo = (req, res, next) => {
   next()
 }
 const defaultPhoto = (req, res) => {
-  return res.sendFile(process.cwd()+profileImage)
-}
-
-const list = (req, res) => {
-  Shop.find((err, shops) => {
-    if (err) {
-      return res.status(400).json({
-        error: errorHandler.getErrorMessage(err)
-      })
-    }
-    res.json(shops)
-  })
-}
-
-const listByOwner = (req, res) => {
-  Shop.find({owner: req.profile._id}, (err, shops) => {
-    if (err) {
-      return res.status(400).json({
-        error: errorHandler.getErrorMessage(err)
-      })
-    }
-    res.json(shops)
-  }).populate('owner', '_id name')
+  return res.sendFile(process.cwd()+defaultImage)
 }
 
 const read = (req, res) => {
+  req.shop.image = undefined
   return res.json(req.shop)
 }
 
-const update = (req, res, next) => {
+const update = (req, res) => {
   let form = new formidable.IncomingForm()
   form.keepExtensions = true
-  form.parse(req, (err, fields, files) => {
+  form.parse(req, async (err, fields, files) => {
     if (err) {
       res.status(400).json({
         message: "Photo could not be uploaded"
       })
     }
     let shop = req.shop
-    shop = _.extend(shop, fields)
+    shop = extend(shop, fields)
     shop.updated = Date.now()
     if(files.image){
       shop.image.data = fs.readFileSync(files.image.path)
       shop.image.contentType = files.image.type
     }
-    shop.save((err) => {
-      if (err) {
-        return res.status(400).send({
-          error: errorHandler.getErrorMessage(err)
-        })
-      }
-      res.json(shop)
-    })
+    try {
+      let result = await shop.save()
+      res.json(result)
+    }catch (err){
+      return res.status(400).json({
+        error: errorHandler.getErrorMessage(err)
+      })
+    }
   })
+}
+
+const remove = async (req, res) => {
+  try {
+    let shop = req.shop
+    let deletedShop = shop.remove()
+    res.json(deletedShop)
+  } catch (err) {
+    return res.status(400).json({
+      error: errorHandler.getErrorMessage(err)
+    })
+  }  
+}
+
+const list = async (req, res) => {
+  try {
+    let shops = await Shop.find()
+    res.json(shops)
+  } catch (err){
+    return res.status(400).json({
+      error: errorHandler.getErrorMessage(err)
+    })
+  }
+}
+
+const listByOwner = async (req, res) => {
+  try {
+    let shops = await Shop.find({owner: req.profile._id}).populate('owner', '_id name')
+    res.json(shops)
+  } catch (err){
+    return res.status(400).json({
+      error: errorHandler.getErrorMessage(err)
+    })
+  }
 }
 
 const isOwner = (req, res, next) => {
@@ -114,18 +132,6 @@ const isOwner = (req, res, next) => {
     })
   }
   next()
-}
-
-const remove = (req, res, next) => {
-  let shop = req.shop
-  shop.remove((err, deletedShop) => {
-    if (err) {
-      return res.status(400).json({
-        error: errorHandler.getErrorMessage(err)
-      })
-    }
-    res.json(deletedShop)
-  })
 }
 
 export default {
