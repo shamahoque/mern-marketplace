@@ -8,7 +8,7 @@ An online marketplace application with seller accounts, product search and sugge
 
 #### What you need to run this code
 1. Node (13.12.0)
-2. NPM (6.14.4)
+2. NPM (6.14.4) or Yarn (1.22.4)
 3. MongoDB (4.2.0)
 4. Stripe account with test data
 
@@ -17,8 +17,8 @@ An online marketplace application with seller accounts, product search and sugge
 2. Clone this repository
 3. Update config/config.js with your test values for Stripe API keys and Stripe Connect Client ID 
 4. Open command line in the cloned folder,
-   - To install dependencies, run ```  yarn  ```
-   - To run the application for development, run ```  yarn development  ```
+   - To install dependencies, run ```  npm install  ``` or ``` yarn ```
+   - To run the application for development, run ```  npm run development  ``` or ``` yarn development ```
 5. Open [localhost:3000](http://localhost:3000/) in the browser
 ---- 
 ### More applications built using this stack
