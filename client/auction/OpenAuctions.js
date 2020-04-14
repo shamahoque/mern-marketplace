@@ -25,7 +25,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 export default function OpenAuctions(){
-  const classes = useStyles();
+  const classes = useStyles()
   const [auctions, setAuctions] = useState([])
 
   useEffect(() => {

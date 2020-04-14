@@ -54,7 +54,7 @@ const getDateString = (date) => {
   return dateString
 }
 export default function NewAuction() {
-  const classes = useStyles();
+  const classes = useStyles()
   const currentDate = new Date()
   const defaultStartTime = getDateString(currentDate)
   const defaultEndTime = getDateString(new Date(currentDate.setHours(currentDate.getHours()+1)))

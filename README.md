@@ -4,7 +4,7 @@ An online marketplace application with seller accounts, product search and sugge
 
 ![MERN Marketplace](https://s3.amazonaws.com/mernbook/git+/marketplace.png "MERN Marketplace")
 
-### [Live Demo](http://marketplace.mernbook.com/ "MERN Marketplace")
+### [Live Demo](http://marketplace2.mernbook.com/ "MERN Marketplace")
 
 #### What you need to run this code
 1. Node (13.12.0)

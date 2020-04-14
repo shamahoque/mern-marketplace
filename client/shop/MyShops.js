@@ -39,7 +39,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export default function MyShops(){
-  const classes = useStyles();
+  const classes = useStyles()
   const [shops, setShops] = useState([])
   const [redirectToSignin, setRedirectToSignin] = useState(false)
   const jwt = auth.isAuthenticated()

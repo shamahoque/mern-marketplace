@@ -50,7 +50,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export default function Profile({ match }) {
-  const classes = useStyles();
+  const classes = useStyles()
   const [user, setUser] = useState({})
   const [redirectToSignin, setRedirectToSignin] = useState(false)
   const jwt = auth.isAuthenticated()

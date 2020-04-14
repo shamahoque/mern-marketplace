@@ -4,11 +4,11 @@ export default (server) => {
     const io = require('socket.io').listen(server)
     io.on('connection', function(socket){
         socket.on('join auction room', data => {
-            socket.join(data.room);
+            socket.join(data.room)
         })
         socket.on('leave auction room', data => {
             socket.leave(data.room)
-        });
+        })
         socket.on('new bid', data => {
             bid(data.bidInfo, data.room)
         })

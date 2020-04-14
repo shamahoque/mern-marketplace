@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
 
 
 export default function Home(){
-  const classes = useStyles();
+  const classes = useStyles()
   const [suggestionTitle, setSuggestionTitle] = useState("Latest Products")
   const [categories, setCategories] = useState([])
   const [suggestions, setSuggestions] = useState([])

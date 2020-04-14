@@ -29,7 +29,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 export default function MyAuctions(){
-  const classes = useStyles();
+  const classes = useStyles()
   const [auctions, setAuctions] = useState([])
   const [redirectToSignin, setRedirectToSignin] = useState(false)
   const jwt = auth.isAuthenticated()
