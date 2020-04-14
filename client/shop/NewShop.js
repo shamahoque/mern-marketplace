@@ -46,7 +46,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export default function NewShop() {
-  const classes = useStyles();
+  const classes = useStyles()
   const [values, setValues] = useState({
       name: '',
       description: '',
