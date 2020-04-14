@@ -1,4 +1,4 @@
-import {Order, CartItem} from '../models/Order.model'
+import {Order, CartItem} from '../models/order.model'
 import errorHandler from './../helpers/dbErrorHandler'
 
 const create = async (req, res) => {
