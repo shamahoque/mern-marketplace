@@ -63,7 +63,7 @@ export default function Categories(props){
 
     list({
       category: props.categories[0]
-    }).then((data) => {
+    }, signal).then((data) => {
       if (data.error) {
         console.log(data.error)
       } else {
@@ -73,7 +73,7 @@ export default function Categories(props){
     return function cleanup(){
       abortController.abort()
     }
-  }, [])
+  }, [props.categories])
 
   const listbyCategory = category => event => {
     setSelected(category)
