@@ -1,4 +1,5 @@
-# MERN Marketplace
+# MERN Marketplace 2.0
+- *Looking for the first edition code? [Check here](https://github.com/shamahoque/mern-marketplace/tree/master)*
 
 An online marketplace application with seller accounts, product search and suggestions, shopping cart, order management, payment processing with Stripe, and live auction with Socket.io - developed using React, Node, Express and MongoDB. 
 
@@ -32,7 +33,7 @@ An online marketplace application with seller accounts, product search and sugge
 ----
 ## Get the book
 #### [Full-Stack React Projects - Second Edition](https://www.packtpub.com/web-development/full-stack-react-projects-second-edition)
-*Build real-world modern web apps with the MERN stack from scratch*
+*Learn MERN stack development by building modern web apps using MongoDB, Express, React, and Node.js*
 
 <a href="https://www.packtpub.com/web-development/full-stack-react-projects-second-edition"><img src="https://mernbook.s3.amazonaws.com/git+/Book_2ndEd.jpg" align="center" width="400" alt="Full-Stack React Projects"></a>
 
