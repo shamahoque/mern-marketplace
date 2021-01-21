@@ -62,7 +62,7 @@
     "react-router-dom": "5.1.2",
     "react-stripe-elements": "6.1.1",
     "request": "2.88.2",
-    "socket.io": "2.3.0",
+    "socket.io": "2.4.0",
     "socket.io-client": "2.3.0",
     "stripe": "8.38.0"
   }
