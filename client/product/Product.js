@@ -5,6 +5,8 @@ import CardMedia from '@material-ui/core/CardMedia'
 import Typography from '@material-ui/core/Typography'
 import Icon from '@material-ui/core/Icon'
 import Grid from '@material-ui/core/Grid'
+import Button from '@material-ui/core/Button'
+import Snackbar from '@material-ui/core/Snackbar'
 import {makeStyles} from '@material-ui/core/styles'
 import {read, listRelated} from './api-product.js'
 import {Link} from 'react-router-dom'
@@ -57,6 +59,17 @@ const useStyles = makeStyles(theme => ({
   action: {
     margin: '8px 24px',
     display: 'inline-block'
+  },
+  shareButton: {
+    marginLeft: '16px',
+    backgroundColor: '#4CAF50',
+    color: 'white',
+    '&:hover': {
+      backgroundColor: '#45a049',
+    },
+  },
+  snackbar: {
+    backgroundColor: '#4CAF50',
   }
 }))
 
@@ -65,17 +78,19 @@ export default function Product ({match}) {
   const [product, setProduct] = useState({shop:{}})
   const [suggestions, setSuggestions] = useState([])
   const [error, setError] = useState('')
-    useEffect(() => {
-      const abortController = new AbortController()
-      const signal = abortController.signal
-  
-      read({productId: match.params.productId}, signal).then((data) => {
-        if (data.error) {
-          setError(data.error)
-        } else {
-          setProduct(data)
-        }
-      })
+  const [openSnackbar, setOpenSnackbar] = useState(false)
+
+  useEffect(() => {
+    const abortController = new AbortController()
+    const signal = abortController.signal
+
+    read({productId: match.params.productId}, signal).then((data) => {
+      if (data.error) {
+        setError(data.error)
+      } else {
+        setProduct(data)
+      }
+    })
     return function cleanup(){
       abortController.abort()
     }
@@ -85,59 +100,95 @@ export default function Product ({match}) {
     const abortController = new AbortController()
     const signal = abortController.signal
 
-        listRelated({
-          productId: match.params.productId}, signal).then((data) => {
-          if (data.error) {
-            setError(data.error)
-          } else {
-            setSuggestions(data)
-          }
-        })
-  return function cleanup(){
-    abortController.abort()
-  }
-}, [match.params.productId])
+    listRelated({
+      productId: match.params.productId}, signal).then((data) => {
+      if (data.error) {
+        setError(data.error)
+      } else {
+        setSuggestions(data)
+      }
+    })
+    return function cleanup(){
+      abortController.abort()
+    }
+  }, [match.params.productId])
 
-    const imageUrl = product._id
-          ? `/api/product/image/${product._id}?${new Date().getTime()}`
-          : '/api/product/defaultphoto'
-    return (
-        <div className={classes.root}>
-          <Grid container spacing={10}>
-            <Grid item xs={7} sm={7}>
-              <Card className={classes.card}>
-                <CardHeader
-                  title={product.name}
-                  subheader={product.quantity > 0? 'In Stock': 'Out of Stock'}
-                  action={
-                    <span className={classes.action}>
-                      <AddToCart cartStyle={classes.addCart} item={product}/>
-                    </span>
-                  }
-                />
-                <div className={classes.flex}>
-                  <CardMedia
-                    className={classes.media}
-                    image={imageUrl}
-                    title={product.name}
-                  />
-                  <Typography component="p" variant="subtitle1" className={classes.subheading}>
-                    {product.description}<br/>
-                    <span className={classes.price}>$ {product.price}</span>
-                    <Link to={'/shops/'+product.shop._id} className={classes.link}>
-                      <span>
-                        <Icon className={classes.icon}>shopping_basket</Icon> {product.shop.name}
-                      </span>
-                    </Link>
-                  </Typography>
+  const imageUrl = product._id
+    ? `/api/product/image/${product._id}?${new Date().getTime()}`
+    : '/api/product/defaultphoto'
 
-                </div>
-              </Card>
-            </Grid>
-            {suggestions.length > 0 &&
-              (<Grid item xs={5} sm={5}>
-                <Suggestions  products={suggestions} title='Related Products'/>
-              </Grid>)}
-          </Grid>
-        </div>)
+  const handleShare = () => {
+    if (navigator.share) {
+      navigator.share({
+        title: product.name,
+        text: `Check out this ${product.name} on our marketplace!`,
+        url: window.location.href,
+      })
+      .catch((error) => console.log('Error sharing:', error));
+    } else {
+      // Fallback for browsers that don't support Web Share API
+      navigator.clipboard.writeText(window.location.href);
+      setOpenSnackbar(true);
+    }
+  };
+
+  const handleCloseSnackbar = () => {
+    setOpenSnackbar(false);
+  };
+
+  return (
+    <div className={classes.root}>
+      <Grid container spacing={10}>
+        <Grid item xs={7} sm={7}>
+          <Card className={classes.card}>
+            <CardHeader
+              title={product.name}
+              subheader={product.quantity > 0? 'In Stock': 'Out of Stock'}
+              action={
+                <span className={classes.action}>
+                  <AddToCart cartStyle={classes.addCart} item={product}/>
+                  <Button
+                    variant="contained"
+                    className={classes.shareButton}
+                    onClick={handleShare}
+                    startIcon={<Icon>share</Icon>}
+                  >
+                    Share
+                  </Button>
+                </span>
+              }
+            />
+            <div className={classes.flex}>
+              <CardMedia
+                className={classes.media}
+                image={imageUrl}
+                title={product.name}
+              />
+              <Typography component="p" variant="subtitle1" className={classes.subheading}>
+                {product.description}<br/>
+                <span className={classes.price}>$ {product.price}</span>
+                <Link to={'/shops/'+product.shop._id} className={classes.link}>
+                  <span>
+                    <Icon className={classes.icon}>shopping_basket</Icon> {product.shop.name}
+                  </span>
+                </Link>
+              </Typography>
+            </div>
+          </Card>
+        </Grid>
+        {suggestions.length > 0 &&
+          (<Grid item xs={5} sm={5}>
+            <Suggestions  products={suggestions} title='Related Products'/>
+          </Grid>)}
+      </Grid>
+      <Snackbar
+        open={openSnackbar}
+        autoHideDuration={3000}
+        onClose={handleCloseSnackbar}
+        message="Link copied to clipboard!"
+        ContentProps={{
+          className: classes.snackbar
+        }}
+      />
+    </div>)
 }
