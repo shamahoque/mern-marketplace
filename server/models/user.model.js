@@ -1,5 +1,6 @@
 import mongoose from 'mongoose'
 import crypto from 'crypto'
+
 const UserSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -15,7 +16,7 @@ const UserSchema = new mongoose.Schema({
   },
   hashed_password: {
     type: String,
-    required: "Password is required"
+    required: 'Password is required'
   },
   salt: String,
   updated: Date,
@@ -28,9 +29,19 @@ const UserSchema = new mongoose.Schema({
     default: false
   },
   stripe_seller: {},
-  stripe_customer: {}
+  stripe_customer: {},
+
+  watchlist: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Product'
+    }
+  ]
 })
 
+/**
+ * Virtual field for password
+ */
 UserSchema
   .virtual('password')
   .set(function(password) {
@@ -42,6 +53,9 @@ UserSchema
     return this._password
   })
 
+/**
+ * Password validation
+ */
 UserSchema.path('hashed_password').validate(function(v) {
   if (this._password && this._password.length < 6) {
     this.invalidate('password', 'Password must be at least 6 characters.')
@@ -51,6 +65,9 @@ UserSchema.path('hashed_password').validate(function(v) {
   }
 }, null)
 
+/**
+ * Schema methods
+ */
 UserSchema.methods = {
   authenticate: function(plainText) {
     return this.encryptPassword(plainText) === this.hashed_password
@@ -67,7 +84,7 @@ UserSchema.methods = {
     }
   },
   makeSalt: function() {
-    return Math.round((new Date().valueOf() * Math.random())) + ''
+    return Math.round(new Date().valueOf() * Math.random()) + ''
   }
 }
 
