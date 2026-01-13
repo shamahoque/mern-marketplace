@@ -58,3 +58,6 @@ Things you'll learn in this book:
 If you feel this book is for you, get your [copy](https://www.amazon.com/dp/1839215410) today!
 
 ---
+
+## Contributed by
+This contribution and feature addition was implemented by **[Kashvi Yadav](https://github.com/KashviYadav09)**, who added new features and enhancements to improve the MERN Marketplace 2.0 project.
