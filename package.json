@@ -22,24 +22,20 @@
     "build": "webpack --config webpack.config.client.production.js && webpack --mode=production --config webpack.config.server.js",
     "start": "NODE_ENV=production node ./dist/server.generated.js"
   },
-  "engines": {
-    "node": "13.12.0",
-    "npm": "6.14.4"
-  },
   "devDependencies": {
+    "nodemon": "2.0.2"
+  },
+  "dependencies": {
     "@babel/core": "7.9.0",
     "@babel/preset-env": "7.9.0",
     "@babel/preset-react": "7.9.4",
     "babel-loader": "8.1.0",
     "file-loader": "6.0.0",
-    "nodemon": "2.0.2",
     "webpack": "4.42.1",
-    "webpack-cli": "3.3.11",
+    "webpack-cli": "^3.3.12",
     "webpack-dev-middleware": "3.7.2",
     "webpack-hot-middleware": "2.25.0",
-    "webpack-node-externals": "1.7.2"
-  },
-  "dependencies": {
+    "webpack-node-externals": "1.7.2",
     "@hot-loader/react-dom": "16.13.0",
     "@material-ui/core": "4.9.8",
     "@material-ui/icons": "4.9.1",
