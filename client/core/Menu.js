@@ -10,6 +10,9 @@ import {Link, withRouter} from 'react-router-dom'
 import CartIcon from '@material-ui/icons/ShoppingCart'
 import Badge from '@material-ui/core/Badge'
 import cart from './../cart/cart-helper'
+import IconButton from '@material-ui/core/IconButton'
+import Brightness4Icon from '@material-ui/icons/Brightness4'
+import Brightness7Icon from '@material-ui/icons/Brightness7'
 
 const isActive = (history, path) => {
   if (history.location.pathname == path)
@@ -23,9 +26,15 @@ const isPartActive = (history, path) => {
   else
     return {color: '#ffffff'}
 }
-const Menu = withRouter(({history}) => (
+const Menu = withRouter(({ history, darkMode, setDarkMode }) => (
   <AppBar position="static">
     <Toolbar>
+      <IconButton
+        color="inherit"
+        onClick={() => setDarkMode(!darkMode)}
+      >
+  {darkMode ? <Brightness7Icon /> : <Brightness4Icon />}
+</IconButton>
       <Typography variant="h6" color="inherit">
         MERN Marketplace
       </Typography>
