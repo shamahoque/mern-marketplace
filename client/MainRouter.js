@@ -26,9 +26,12 @@ import NewAuction from './auction/NewAuction'
 import EditAuction from './auction/EditAuction'
 import Auction from './auction/Auction'
 
-const MainRouter = () => {
+const MainRouter = ({ darkMode, setDarkMode }) => {
   return (<div>
-      <Menu/>
+      <Menu
+        darkMode={darkMode}
+        setDarkMode={setDarkMode}
+      />
       <Switch>
         <Route exact path="/" component={Home}/>
         <Route path="/users" component={Users}/>
@@ -61,4 +64,4 @@ const MainRouter = () => {
     </div>)
 }
 
-export default MainRouter
+export default 

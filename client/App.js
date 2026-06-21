@@ -2,7 +2,7 @@ import React from 'react'
 import MainRouter from './MainRouter'
 import {BrowserRouter} from 'react-router-dom'
 import { ThemeProvider } from '@material-ui/styles'
-import theme from './theme'
+import getTheme from './theme'
 import { hot } from 'react-hot-loader'
 
 const App = () => {
@@ -12,10 +12,17 @@ const App = () => {
       jssStyles.parentNode.removeChild(jssStyles)
     }
   }, [])
+
+  const [darkMode, setDarkMode] = React.useState(false)
+  const theme = getTheme(darkMode)
+
   return (
   <BrowserRouter>
       <ThemeProvider theme={theme}>
-        <MainRouter/>
+        <MainRouter
+          darkMode={darkMode}
+          setDarkMode={setDarkMode}
+        />
       </ThemeProvider>
   </BrowserRouter>
 )}
