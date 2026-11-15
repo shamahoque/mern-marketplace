@@ -51,23 +51,34 @@ UserSchema.path('hashed_password').validate(function(v) {
   }
 }, null)
 
+// D-08: scrypt with a random salt. Hashes are stored as "scrypt$<hex>"; older unprefixed values are
+// HMAC-SHA1 from the original code, still accepted at sign-in and upgraded (see auth.controller signin).
+const HASH_PREFIX = 'scrypt$'
+
 UserSchema.methods = {
   authenticate: function(plainText) {
-    return this.encryptPassword(plainText) === this.hashed_password
+    const expected = Buffer.from(this.isLegacyHash() ? this.legacyEncrypt(plainText) : this.encryptPassword(plainText))
+    const actual = Buffer.from(this.hashed_password || '')
+    return expected.length > 0 && expected.length === actual.length && crypto.timingSafeEqual(expected, actual)
   },
   encryptPassword: function(password) {
     if (!password) return ''
+    // ponytail: sync scrypt (~50ms) blocks the event loop per sign-in; the mongoose virtual setter must be sync.
+    return HASH_PREFIX + crypto.scryptSync(password, this.salt, 64).toString('hex')
+  },
+  isLegacyHash: function() {
+    return !!this.hashed_password && !this.hashed_password.startsWith(HASH_PREFIX)
+  },
+  legacyEncrypt: function(password) {
+    if (!password) return ''
     try {
-      return crypto
-        .createHmac('sha1', this.salt)
-        .update(password)
-        .digest('hex')
+      return crypto.createHmac('sha1', this.salt).update(password).digest('hex')
     } catch (err) {
       return ''
     }
   },
   makeSalt: function() {
-    return Math.round((new Date().valueOf() * Math.random())) + ''
+    return crypto.randomBytes(16).toString('hex')
   }
 }
 

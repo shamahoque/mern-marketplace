@@ -7,6 +7,7 @@ import Grid from '@material-ui/core/Grid'
 import Divider from '@material-ui/core/Divider'
 import {makeStyles} from '@material-ui/core/styles'
 import {read} from './api-order.js'
+import auth from './../auth/auth-helper'
 import {Link} from 'react-router-dom'
 
 const useStyles = makeStyles(theme => ({
@@ -103,9 +104,10 @@ export default function Order({match}) {
   useEffect(() => {
     const abortController = new AbortController()
     const signal = abortController.signal
+    const jwt = auth.isAuthenticated()
     read({
       orderId: match.params.orderId
-    }).then((data) => {
+    }, {t: jwt.token}, signal).then((data) => {
       if (data.error) {
         console.log(data.error)
       } else {
