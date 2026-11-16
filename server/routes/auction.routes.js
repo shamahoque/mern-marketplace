@@ -2,6 +2,7 @@ import express from 'express'
 import userCtrl from '../controllers/user.controller'
 import authCtrl from '../controllers/auth.controller'
 import auctionCtrl from '../controllers/auction.controller'
+import { parseMultipart } from '../middleware/upload'
 
 const router = express.Router()
 
@@ -15,11 +16,11 @@ router.route('/api/auction/:auctionId')
   .get(auctionCtrl.read)
 
 router.route('/api/auctions/by/:userId')
-  .post(authCtrl.requireSignin, authCtrl.hasAuthorization, userCtrl.isSeller, auctionCtrl.create)
+  .post(authCtrl.requireSignin, authCtrl.hasAuthorization, userCtrl.isSeller, parseMultipart('Image could not be uploaded'), auctionCtrl.create)
   .get(authCtrl.requireSignin, authCtrl.hasAuthorization, auctionCtrl.listBySeller)
 
 router.route('/api/auctions/:auctionId')
-  .put(authCtrl.requireSignin, auctionCtrl.isSeller, auctionCtrl.update)
+  .put(authCtrl.requireSignin, auctionCtrl.isSeller, parseMultipart('Photo could not be uploaded'), auctionCtrl.update)
   .delete(authCtrl.requireSignin, auctionCtrl.isSeller, auctionCtrl.remove)
 
 router.route('/api/auctions/image/:auctionId')

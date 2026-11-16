@@ -1,34 +1,21 @@
 import Auction from '../models/auction.model'
 import extend from 'lodash/extend'
 import errorHandler from '../helpers/dbErrorHandler'
-import formidable from 'formidable'
-import fs from 'fs'
+import { applyImage } from '../helpers/image'
 import defaultImage from './../../client/assets/images/default.png'
 
-const create = (req, res) => {
-  let form = new formidable.IncomingForm()
-  form.keepExtensions = true
-  form.parse(req, async (err, fields, files) => {
-    if (err) {
-      return res.status(400).json({
-        message: "Image could not be uploaded"
-      })
-    }
-    let auction = new Auction(fields)
-    auction.seller= req.profile
-    if(files.image){
-      auction.image.data = fs.readFileSync(files.image.path)
-      auction.image.contentType = files.image.type
-    }
-    try {
-      let result = await auction.save()
-      res.status(200).json(result)
-    }catch (err){
-      return res.status(400).json({
-        error: errorHandler.getErrorMessage(err)
-      })
-    }
-  })
+const create = async (req, res) => {
+  let auction = new Auction(req.fields)
+  auction.seller= req.profile
+  applyImage(auction, req.files)
+  try {
+    let result = await auction.save()
+    res.status(200).json(result)
+  }catch (err){
+    return res.status(400).json({
+      error: errorHandler.getErrorMessage(err)
+    })
+  }
 }
 
 const auctionByID = async (req, res, next, id) => {
@@ -63,31 +50,19 @@ const read = (req, res) => {
   return res.json(req.auction)
 }
 
-const update = (req, res) => {
-  let form = new formidable.IncomingForm()
-  form.keepExtensions = true
-  form.parse(req, async (err, fields, files) => {
-    if (err) {
-      return res.status(400).json({
-        message: "Photo could not be uploaded"
-      })
-    }
-    let auction = req.auction
-    auction = extend(auction, fields)
-    auction.updated = Date.now()
-    if(files.image){
-      auction.image.data = fs.readFileSync(files.image.path)
-      auction.image.contentType = files.image.type
-    }
-    try {
-      let result = await auction.save()
-      res.json(result)
-    }catch (err){
-      return res.status(400).json({
-        error: errorHandler.getErrorMessage(err)
-      })
-    }
-  })
+const update = async (req, res) => {
+  let auction = req.auction
+  auction = extend(auction, req.fields)
+  auction.updated = Date.now()
+  applyImage(auction, req.files)
+  try {
+    let result = await auction.save()
+    res.json(result)
+  }catch (err){
+    return res.status(400).json({
+      error: errorHandler.getErrorMessage(err)
+    })
+  }
 }
 
 const remove = async (req, res) => {
