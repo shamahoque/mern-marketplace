@@ -1,4 +1,5 @@
 import fs from 'fs'
+import formidable from 'formidable'
 import path from 'path'
 import Auction from '../server/models/auction.model'
 import { api, signedInUser, bearer } from './helpers'
@@ -65,5 +66,37 @@ describe('auction APIs', () => {
   test('default photo is available', async () => {
     const res = await api().get('/api/auctions/defaultphoto').expect(200)
     expect(res.headers['content-type']).toMatch(/image\//)
+  })
+})
+
+describe('auction upload parse failures', () => {
+  beforeEach(() => {
+    jest.spyOn(formidable.IncomingForm.prototype, 'parse').mockImplementation(function (req, cb) {
+      // Drain the multipart stream before responding so the request finishes cleanly.
+      req.on('end', () => cb(new Error('boom'), {}, {}))
+      req.resume()
+    })
+  })
+
+  afterEach(() => jest.restoreAllMocks())
+
+  test('create returns the upload error without saving an auction', async () => {
+    const seller = await signedInUser({ seller: true })
+    const save = jest.spyOn(Auction.prototype, 'save')
+    await upload(api().post(`/api/auctions/by/${seller.user._id}`).set(bearer(seller.token)), fields())
+      .expect(400, { message: 'Image could not be uploaded' })
+    expect(save).not.toHaveBeenCalled()
+    expect(await Auction.countDocuments()).toBe(0)
+  })
+
+  test('update returns the upload error without modifying an auction', async () => {
+    const seller = await signedInUser({ seller: true })
+    const auction = await Auction.create({ ...fields(), seller: seller.user._id })
+    const before = auction.toObject()
+    const save = jest.spyOn(Auction.prototype, 'save')
+    await api().put(`/api/auctions/${auction._id}`).set(bearer(seller.token))
+      .field('itemName', 'Not saved').expect(400, { message: 'Photo could not be uploaded' })
+    expect(save).not.toHaveBeenCalled()
+    expect((await Auction.findById(auction._id)).toObject()).toEqual(before)
   })
 })

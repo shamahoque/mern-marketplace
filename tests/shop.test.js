@@ -1,4 +1,5 @@
 import fs from 'fs'
+import formidable from 'formidable'
 import mongoose from 'mongoose'
 import Shop from '../server/models/shop.model'
 import { api, signedInUser, bearer } from './helpers'
@@ -68,5 +69,37 @@ describe('shop API characterization', () => {
   test('missing and malformed shop ids preserve their distinct errors', async () => {
     await api().get(`/api/shop/${new mongoose.Types.ObjectId()}`).expect(400, { error: 'Shop not found' })
     await api().get('/api/shop/not-an-id').expect(400, { error: 'Could not retrieve shop' })
+  })
+})
+
+describe('shop upload parse failures', () => {
+  beforeEach(() => {
+    jest.spyOn(formidable.IncomingForm.prototype, 'parse').mockImplementation(function (req, cb) {
+      // Drain the multipart stream before responding so the request finishes cleanly.
+      req.on('end', () => cb(new Error('boom'), {}, {}))
+      req.resume()
+    })
+  })
+
+  afterEach(() => jest.restoreAllMocks())
+
+  test('create returns the upload error without saving a shop', async () => {
+    const seller = await signedInUser({ seller: true })
+    const save = jest.spyOn(Shop.prototype, 'save')
+    await api().post(`/api/shops/by/${seller.user._id}`).set(bearer(seller.token))
+      .field('name', 'Not saved').expect(400, { message: 'Image could not be uploaded' })
+    expect(save).not.toHaveBeenCalled()
+    expect(await Shop.countDocuments()).toBe(0)
+  })
+
+  test('update returns the upload error without modifying a shop', async () => {
+    const seller = await signedInUser({ seller: true })
+    const shop = await Shop.create({ name: 'Unchanged', owner: seller.user._id })
+    const before = shop.toObject()
+    const save = jest.spyOn(Shop.prototype, 'save')
+    await api().put(`/api/shops/${shop._id}`).set(bearer(seller.token))
+      .field('name', 'Not saved').expect(400, { message: 'Photo could not be uploaded' })
+    expect(save).not.toHaveBeenCalled()
+    expect((await Shop.findById(shop._id)).toObject()).toEqual(before)
   })
 })

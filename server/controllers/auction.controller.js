@@ -10,7 +10,7 @@ const create = (req, res) => {
   form.keepExtensions = true
   form.parse(req, async (err, fields, files) => {
     if (err) {
-      res.status(400).json({
+      return res.status(400).json({
         message: "Image could not be uploaded"
       })
     }
@@ -68,7 +68,7 @@ const update = (req, res) => {
   form.keepExtensions = true
   form.parse(req, async (err, fields, files) => {
     if (err) {
-      res.status(400).json({
+      return res.status(400).json({
         message: "Photo could not be uploaded"
       })
     }
