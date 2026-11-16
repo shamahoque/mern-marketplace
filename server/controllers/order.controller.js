@@ -24,9 +24,10 @@ const listByShop = async (req, res) => {
   }
 }
 
-const update = async (req, res) => {
+const update = async (req, res, next) => {
   try {
-    let order = await orderService.updateItemStatus(req.body.cartItemId, req.body.status)
+    let order = await orderService.updateItemStatus(req.body.cartItemId, req.body.status, req.shop._id)
+    if (order.n === 0) return next(new HttpError(404, 'Order item not found'))
       res.json(order)
   } catch (err){
     return res.status(400).json({

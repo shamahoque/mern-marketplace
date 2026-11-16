@@ -12,7 +12,9 @@ const listByShop = shopId => Order.find({"products.shop": shopId})
   .sort('-created')
   .exec()
 
-const updateItemStatus = (cartItemId, status) => Order.updateOne({'products._id': cartItemId}, {
+const updateItemStatus = (cartItemId, status, shopId) => Order.updateOne({
+  products: { $elemMatch: { _id: cartItemId, shop: shopId } }
+}, {
   'products.$.status': status
 })
 

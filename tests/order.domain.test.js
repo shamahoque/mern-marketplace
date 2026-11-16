@@ -112,15 +112,15 @@ describe('domain order operations', () => {
     expect((await Order.findById(order._id)).products[0].status).toBe('Cancelled')
   })
 
-  test('owner of another shop can update an unrelated cart item', async () => {
+  test('owner of another shop cannot update an unrelated cart item', async () => {
     const { order } = await fixture()
     const seller = await signedInUser({ seller: true })
     const shop = await Shop.create({ name: 'Other shop', owner: seller.user._id })
     const res = await api().put(`/api/order/status/${shop._id}`).set(bearer(seller.token))
       .send({ cartItemId: order.products[0]._id, status: 'Delivered' })
-    // characterization: D-15
-    expect(res.status).toBe(200)
-    expect(res.body.n).toBe(1)
-    expect((await Order.findById(order._id)).products[0].status).toBe('Delivered')
+    // D-15 fixed: item status updates are scoped to the owning shop
+    expect(res.status).toBe(404)
+    expect(res.body).toEqual({ error: 'Order item not found' })
+    expect((await Order.findById(order._id)).products[0].status).toBe('Not processed')
   })
 })
