@@ -1,15 +1,11 @@
 import { requireOwner } from '../middleware/ownership'
-import Auction from '../models/auction.model'
-import extend from 'lodash/extend'
+import auctionService from '../services/auction.service'
 import errorHandler from '../helpers/dbErrorHandler'
-import { applyImage, photoHandler, defaultPhoto, readWithoutImage } from '../helpers/image'
+import { photoHandler, defaultPhoto, readWithoutImage } from '../helpers/image'
 
 const create = async (req, res) => {
-  let auction = new Auction(req.fields)
-  auction.seller= req.profile
-  applyImage(auction, req.files)
   try {
-    let result = await auction.save()
+    let result = await auctionService.create(req.fields, req.profile, req.files)
     res.status(200).json(result)
   }catch (err){
     return res.status(400).json({
@@ -20,7 +16,7 @@ const create = async (req, res) => {
 
 const auctionByID = async (req, res, next, id) => {
   try {
-    let auction = await Auction.findById(id).populate('seller', '_id name').populate('bids.bidder', '_id name').exec()
+    let auction = await auctionService.getById(id)
     if (!auction)
       return res.status('400').json({
         error: "Auction not found"
@@ -35,12 +31,8 @@ const auctionByID = async (req, res, next, id) => {
 }
 
 const update = async (req, res) => {
-  let auction = req.auction
-  auction = extend(auction, req.fields)
-  auction.updated = Date.now()
-  applyImage(auction, req.files)
   try {
-    let result = await auction.save()
+    let result = await auctionService.update(req.auction, req.fields, req.files)
     res.json(result)
   }catch (err){
     return res.status(400).json({
@@ -51,8 +43,7 @@ const update = async (req, res) => {
 
 const remove = async (req, res) => {
   try {
-    let auction = req.auction
-    let deletedAuction = await auction.remove()
+    let deletedAuction = await auctionService.remove(req.auction)
     res.json(deletedAuction)
   } catch (err) {
     return res.status(400).json({
@@ -63,7 +54,7 @@ const remove = async (req, res) => {
 
 const listOpen = async (req, res) => {
   try {
-    let auctions = await Auction.find({ 'bidEnd': { $gt: new Date() }}).sort('bidStart').populate('seller', '_id name').populate('bids.bidder', '_id name')
+    let auctions = await auctionService.listOpen()
     res.json(auctions)
   } catch (err){
     return res.status(400).json({
@@ -75,7 +66,7 @@ const listOpen = async (req, res) => {
 
 const listBySeller = async (req, res) => {
   try {
-    let auctions = await Auction.find({seller: req.profile._id}).populate('seller', '_id name').populate('bids.bidder', '_id name')
+    let auctions = await auctionService.listBySeller(req.profile._id)
     res.json(auctions)
   } catch (err){
     return res.status(400).json({
@@ -85,7 +76,7 @@ const listBySeller = async (req, res) => {
 }
 const listByBidder = async (req, res) => {
   try {
-    let auctions = await Auction.find({'bids.bidder': req.profile._id}).populate('seller', '_id name').populate('bids.bidder', '_id name')
+    let auctions = await auctionService.listByBidder(req.profile._id)
     res.json(auctions)
   } catch (err){
     return res.status(400).json({
