@@ -1,8 +1,7 @@
 import Shop from '../models/shop.model'
 import extend from 'lodash/extend'
 import errorHandler from './../helpers/dbErrorHandler'
-import { applyImage } from '../helpers/image'
-import defaultImage from './../../client/assets/images/default.png'
+import { applyImage, photoHandler, defaultPhoto, readWithoutImage } from '../helpers/image'
 
 const create = async (req, res) => {
   let shop = new Shop(req.fields)
@@ -32,22 +31,6 @@ const shopByID = async (req, res, next, id) => {
       error: "Could not retrieve shop"
     })
   }
-}
-
-const photo = (req, res, next) => {
-  if(req.shop.image.data){
-    res.set("Content-Type", req.shop.image.contentType)
-    return res.send(req.shop.image.data)
-  }
-  next()
-}
-const defaultPhoto = (req, res) => {
-  return res.sendFile(process.cwd()+defaultImage)
-}
-
-const read = (req, res) => {
-  req.shop.image = undefined
-  return res.json(req.shop)
 }
 
 const update = async (req, res) => {
@@ -112,11 +95,11 @@ const isOwner = (req, res, next) => {
 export default {
   create,
   shopByID,
-  photo,
+  photo: photoHandler('shop'),
   defaultPhoto,
   list,
   listByOwner,
-  read,
+  read: readWithoutImage('shop'),
   update,
   isOwner,
   remove

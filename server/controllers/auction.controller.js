@@ -1,8 +1,7 @@
 import Auction from '../models/auction.model'
 import extend from 'lodash/extend'
 import errorHandler from '../helpers/dbErrorHandler'
-import { applyImage } from '../helpers/image'
-import defaultImage from './../../client/assets/images/default.png'
+import { applyImage, photoHandler, defaultPhoto, readWithoutImage } from '../helpers/image'
 
 const create = async (req, res) => {
   let auction = new Auction(req.fields)
@@ -32,22 +31,6 @@ const auctionByID = async (req, res, next, id) => {
       error: "Could not retrieve auction"
     })
   }
-}
-
-const photo = (req, res, next) => {
-  if(req.auction.image.data){
-    res.set("Content-Type", req.auction.image.contentType)
-    return res.send(req.auction.image.data)
-  }
-  next()
-}
-const defaultPhoto = (req, res) => {
-  return res.sendFile(process.cwd()+defaultImage)
-}
-
-const read = (req, res) => {
-  req.auction.image = undefined
-  return res.json(req.auction)
 }
 
 const update = async (req, res) => {
@@ -123,12 +106,12 @@ const isSeller = (req, res, next) => {
 export default {
   create,
   auctionByID,
-  photo,
+  photo: photoHandler('auction'),
   defaultPhoto,
   listOpen,
   listBySeller,
   listByBidder,
-  read,
+  read: readWithoutImage('auction'),
   update,
   isSeller,
   remove

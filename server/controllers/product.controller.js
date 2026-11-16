@@ -1,8 +1,7 @@
 import Product from '../models/product.model'
 import extend from 'lodash/extend'
 import errorHandler from './../helpers/dbErrorHandler'
-import { applyImage } from '../helpers/image'
-import defaultImage from './../../client/assets/images/default.png'
+import { applyImage, photoHandler, defaultPhoto, readWithoutImage } from '../helpers/image'
 
 const create = async (req, res) => {
   let product = new Product(req.fields)
@@ -32,22 +31,6 @@ const productByID = async (req, res, next, id) => {
       error: "Could not retrieve product"
     })
   }
-}
-
-const photo = (req, res, next) => {
-  if(req.product.image.data){
-    res.set("Content-Type", req.product.image.contentType)
-    return res.send(req.product.image.data)
-  }
-  next()
-}
-const defaultPhoto = (req, res) => {
-  return res.sendFile(process.cwd()+defaultImage)
-}
-
-const read = (req, res) => {
-  req.product.image = undefined
-  return res.json(req.product)
 }
 
 const update = async (req, res) => {
@@ -172,9 +155,9 @@ const increaseQuantity = async (req, res, next) => {
 export default {
   create,
   productByID,
-  photo,
+  photo: photoHandler('product'),
   defaultPhoto,
-  read,
+  read: readWithoutImage('product'),
   update,
   remove,
   listByShop,
