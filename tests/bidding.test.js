@@ -1,6 +1,6 @@
 import http from 'http'
 import Auction from '../server/models/auction.model'
-import bidding from '../server/controllers/bidding.controller'
+import bidding from '../server/sockets/bidding.socket'
 import { signedInUser } from './helpers'
 
 const ioClient = jest.requireActual('socket.io-client')

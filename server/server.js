@@ -1,7 +1,7 @@
 import config from './../config/config'
 import app from './express'
 import mongoose from 'mongoose'
-import bidding from './controllers/bidding.controller'
+import bidding from './sockets/bidding.socket'
 
 // Connection URL
 mongoose.Promise = global.Promise
