@@ -1,14 +1,10 @@
-import Product from '../models/product.model'
-import extend from 'lodash/extend'
+import productService from '../services/product.service'
 import errorHandler from './../helpers/dbErrorHandler'
-import { applyImage, photoHandler, defaultPhoto, readWithoutImage } from '../helpers/image'
+import { photoHandler, defaultPhoto, readWithoutImage } from '../helpers/image'
 
 const create = async (req, res) => {
-  let product = new Product(req.fields)
-  product.shop= req.shop
-  applyImage(product, req.files)
   try {
-    let result = await product.save()
+    let result = await productService.create(req.fields, req.shop, req.files)
     res.json(result)
   } catch (err){
     return res.status(400).json({
@@ -19,7 +15,7 @@ const create = async (req, res) => {
 
 const productByID = async (req, res, next, id) => {
   try {
-    let product = await Product.findById(id).populate('shop', '_id name').exec()
+    let product = await productService.getById(id)
     if (!product)
       return res.status('400').json({
         error: "Product not found"
@@ -34,12 +30,8 @@ const productByID = async (req, res, next, id) => {
 }
 
 const update = async (req, res) => {
-  let product = req.product
-  product = extend(product, req.fields)
-  product.updated = Date.now()
-  applyImage(product, req.files)
   try {
-    let result = await product.save()
+    let result = await productService.update(req.product, req.fields, req.files)
     res.json(result)
   }catch (err){
     return res.status(400).json({
@@ -50,8 +42,7 @@ const update = async (req, res) => {
 
 const remove = async (req, res) => {
   try{
-    let product = req.product
-    let deletedProduct = await product.remove()
+    let deletedProduct = await productService.remove(req.product)
     res.json(deletedProduct)
   
   } catch (err) {
@@ -63,7 +54,7 @@ const remove = async (req, res) => {
 
 const listByShop = async (req, res) => {
   try {
-    let products = await Product.find({shop: req.shop._id}).populate('shop', '_id name').select('-image')
+    let products = await productService.listByShop(req.shop._id)
     res.json(products)
   } catch (err) {
     return res.status(400).json({
@@ -74,7 +65,7 @@ const listByShop = async (req, res) => {
 
 const listLatest = async (req, res) => {
   try {
-    let products = await Product.find({}).sort('-created').limit(5).populate('shop', '_id name').exec()
+    let products = await productService.listLatest()
     res.json(products)
   } catch (err){
     return res.status(400).json({
@@ -85,7 +76,7 @@ const listLatest = async (req, res) => {
 
 const listRelated = async (req, res) => {
   try{
-    let products = await Product.find({ "_id": { "$ne": req.product }, "category": req.product.category}).limit(5).populate('shop', '_id name').exec()
+    let products = await productService.listRelated(req.product)
     res.json(products)
   } catch (err){
     return res.status(400).json({
@@ -96,7 +87,7 @@ const listRelated = async (req, res) => {
 
 const listCategories = async (req, res) => {
   try {
-    let products = await Product.distinct('category',{})
+    let products = await productService.listCategories()
     res.json(products)
   } catch (err){
     return res.status(400).json({
@@ -106,13 +97,8 @@ const listCategories = async (req, res) => {
 }
 
 const list = async (req, res) => {
-  const query = {}
-  if(req.query.search)
-    query.name = {'$regex': req.query.search, '$options': "i"}
-  if(req.query.category && req.query.category != 'All')
-    query.category =  req.query.category
   try {
-    let products = await Product.find(query).populate('shop', '_id name').select('-image').exec()
+    let products = await productService.search(req.query)
     res.json(products)
   } catch (err){
     return res.status(400).json({
@@ -122,16 +108,8 @@ const list = async (req, res) => {
 }
 
 const decreaseQuantity = async (req, res, next) => {
-  let bulkOps = req.body.order.products.map((item) => {
-    return {
-        "updateOne": {
-            "filter": { "_id": item.product._id } ,
-            "update": { "$inc": {"quantity": -item.quantity} }
-        }
-    }
-   })
    try {
-     await Product.bulkWrite(bulkOps, {})
+     await productService.decreaseStock(req.body.order.products)
      next()
    } catch (err){
       return res.status(400).json({
@@ -142,8 +120,7 @@ const decreaseQuantity = async (req, res, next) => {
 
 const increaseQuantity = async (req, res, next) => {
   try {
-    await Product.findByIdAndUpdate(req.product._id, {$inc: {"quantity": req.body.quantity}}, {new: true})
-    .exec()
+    await productService.increaseStock(req.product._id, req.body.quantity)
       next()
   } catch (err){
     return res.status(400).json({
