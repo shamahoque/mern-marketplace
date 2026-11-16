@@ -1,3 +1,4 @@
+import { requireOwner } from '../middleware/ownership'
 import Auction from '../models/auction.model'
 import extend from 'lodash/extend'
 import errorHandler from '../helpers/dbErrorHandler'
@@ -93,15 +94,6 @@ const listByBidder = async (req, res) => {
   }
 }
 
-const isSeller = (req, res, next) => {
-  const isSeller = req.auction && req.auth && req.auction.seller._id == req.auth._id
-  if(!isSeller){
-    return res.status('403').json({
-      error: "User is not authorized"
-    })
-  }
-  next()
-}
 
 export default {
   create,
@@ -113,6 +105,6 @@ export default {
   listByBidder,
   read: readWithoutImage('auction'),
   update,
-  isSeller,
+  isSeller: requireOwner('auction', 'seller'),
   remove
 }

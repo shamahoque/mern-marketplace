@@ -1,3 +1,4 @@
+import { requireOwner } from '../middleware/ownership'
 import Shop from '../models/shop.model'
 import extend from 'lodash/extend'
 import errorHandler from './../helpers/dbErrorHandler'
@@ -82,15 +83,6 @@ const listByOwner = async (req, res) => {
   }
 }
 
-const isOwner = (req, res, next) => {
-  const isOwner = req.shop && req.auth && req.shop.owner._id == req.auth._id
-  if(!isOwner){
-    return res.status('403').json({
-      error: "User is not authorized"
-    })
-  }
-  next()
-}
 
 export default {
   create,
@@ -101,6 +93,6 @@ export default {
   listByOwner,
   read: readWithoutImage('shop'),
   update,
-  isOwner,
+  isOwner: requireOwner('shop', 'owner'),
   remove
 }
