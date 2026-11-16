@@ -17,11 +17,12 @@ const noEvent = (socket, name) => new Promise((resolve, reject) => {
 })
 
 let server
+let io
 let clients
 beforeEach(async () => {
   clients = []
   server = http.createServer()
-  bidding(server)
+  io = bidding(server)
   await new Promise(resolve => server.listen(0, '127.0.0.1', resolve))
 })
 afterEach(async () => {
@@ -34,9 +35,21 @@ const connect = async () => {
   await event(socket, 'connect')
   return socket
 }
+// Wait until the server has actually processed a join/leave, instead of sleeping a fixed time.
+const inRoom = (socket, room) => {
+  const members = io.sockets.adapter.rooms[room]
+  return Boolean(members && members.sockets[socket.id])
+}
+const waitFor = async (check, timeout = 2000) => {
+  const end = Date.now() + timeout
+  while (!check()) {
+    if (Date.now() > end) throw new Error('Timed out waiting for room membership')
+    await new Promise(resolve => setTimeout(resolve, 5))
+  }
+}
 const join = async (socket, room) => {
   socket.emit('join auction room', { room })
-  await new Promise(resolve => setTimeout(resolve, 40))
+  await waitFor(() => inRoom(socket, room))
 }
 
 test('room subscribers receive increasing populated bids, while a departed client receives none', async () => {
@@ -62,7 +75,7 @@ test('room subscribers receive increasing populated bids, while a departed clien
   const higher = await send(12)
   higher.forEach(result => expect(result.bids.map(bid => bid.bid)).toEqual([12, 11]))
   second.emit('leave auction room', { room })
-  await new Promise(resolve => setTimeout(resolve, 40))
+  await waitFor(() => !inRoom(second, room))
   const silent = noEvent(second, 'new bid')
   const received = event(first, 'new bid')
   first.emit('new bid', { room, bidInfo: { bid: 13, time: new Date().toISOString(), bidder: bidder.user._id } })
