@@ -79,15 +79,27 @@ describe('product API characterization', () => {
     }
   })
 
-  test('shop ownership alone permits updating another shop product', async () => {
+  test.each(['update', 'delete', 'cancel'])('shop owner cannot %s another shop product', async operation => {
     const sellerA = await signedInUser({ seller: true })
     const sellerB = await signedInUser({ seller: true })
     const shopA = await Shop.create({ name: 'A', owner: sellerA.user._id })
     const shopB = await Shop.create({ name: 'B', owner: sellerB.user._id })
     const product = await fixture(shopB._id)
-    // characterization: D-14, product ownership is not checked against :shopId
-    await api().put(`/api/product/${shopA._id}/${product._id}`).set(bearer(sellerA.token))
-      .field('name', 'Changed across shops').expect(200)
-    expect((await Product.findById(product._id)).name).toBe('Changed across shops')
+    // D-14 fixed: each mutation binds the product to the authorized shop.
+    let request
+    if (operation === 'update') {
+      request = api().put(`/api/product/${shopA._id}/${product._id}`).set(bearer(sellerA.token))
+        .field('name', 'Changed across shops')
+    } else if (operation === 'delete') {
+      request = api().delete(`/api/product/${shopA._id}/${product._id}`).set(bearer(sellerA.token))
+    } else {
+      request = api().put(`/api/order/${shopA._id}/cancel/${product._id}`).set(bearer(sellerA.token))
+        .send({ cartItemId: product._id, status: 'Cancelled', quantity: 2 })
+    }
+    await request.expect(403, { error: 'User is not authorized' })
+    const unchanged = await Product.findById(product._id)
+    expect(unchanged).not.toBeNull()
+    expect(unchanged.name).toBe(product.name)
+    expect(unchanged.quantity).toBe(product.quantity)
   })
 })

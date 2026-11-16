@@ -21,6 +21,13 @@ const productByID = asyncHandler(async (req, res, next, id) => {
   next()
 }, new HttpError(400, 'Could not retrieve product'))
 
+const productBelongsToShop = (req, res, next) => {
+  if (String(req.product.shop._id) !== String(req.shop._id)) {
+    return next(new HttpError(403, 'User is not authorized'))
+  }
+  next()
+}
+
 const update = async (req, res) => {
   try {
     let result = await productService.update(req.product, req.fields, req.files)
@@ -118,6 +125,7 @@ const increaseQuantity = async (req, res, next) => {
 export default {
   create,
   productByID,
+  productBelongsToShop,
   photo: photoHandler('product'),
   defaultPhoto,
   read: readWithoutImage('product'),

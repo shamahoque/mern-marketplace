@@ -31,8 +31,8 @@ router.route('/api/product/defaultphoto')
   .get(productCtrl.defaultPhoto)
 
 router.route('/api/product/:shopId/:productId')
-  .put(authCtrl.requireSignin, shopCtrl.isOwner, parseMultipart('Photo could not be uploaded'), productCtrl.update)
-  .delete(authCtrl.requireSignin, shopCtrl.isOwner, productCtrl.remove)
+  .put(authCtrl.requireSignin, shopCtrl.isOwner, productCtrl.productBelongsToShop, parseMultipart('Photo could not be uploaded'), productCtrl.update)
+  .delete(authCtrl.requireSignin, shopCtrl.isOwner, productCtrl.productBelongsToShop, productCtrl.remove)
 
 router.param('shopId', shopCtrl.shopByID)
 router.param('productId', productCtrl.productByID)
