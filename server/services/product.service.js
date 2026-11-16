@@ -20,6 +20,8 @@ const update = async (product, fields, files) => {
 
 const remove = async product => await product.remove()
 
+const removeByShop = shopId => Product.deleteMany({ shop: shopId })
+
 const listByShop = shopId => Product.find({shop: shopId}).populate('shop', '_id name').select('-image')
 
 const listLatest = () => Product.find({}).sort('-created').limit(5).populate('shop', '_id name').exec()
@@ -56,6 +58,7 @@ export default {
   getById,
   update,
   remove,
+  removeByShop,
   listByShop,
   listLatest,
   listRelated,

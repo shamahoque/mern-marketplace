@@ -2,6 +2,7 @@ import fs from 'fs'
 import formidable from 'formidable'
 import mongoose from 'mongoose'
 import Shop from '../server/models/shop.model'
+import Product from '../server/models/product.model'
 import { api, signedInUser, bearer } from './helpers'
 
 // Resolve the real fixture for sendFile instead of the global image-import stub.
@@ -64,6 +65,25 @@ describe('shop API characterization', () => {
       const res = await api().get(path).expect(200).expect('Content-Type', /image\/png/)
       expect(res.body).toEqual(fs.readFileSync(image))
     }
+  })
+
+  test('deleting a shop removes only its products from the catalogue', async () => {
+    const owner = await signedInUser({ seller: true })
+    const first = await Shop.create({ name: 'First', owner: owner.user._id })
+    const other = await Shop.create({ name: 'Other', owner: owner.user._id })
+    const products = await Product.create([
+      { name: 'First product', quantity: 3, price: 5, shop: first._id },
+      { name: 'Second product', quantity: 4, price: 6, shop: first._id },
+      { name: 'Other product', quantity: 5, price: 7, shop: other._id }
+    ])
+    const deleted = await api().delete(`/api/shops/${first._id}`).set(bearer(owner.token)).expect(200)
+    expect(deleted.body).toMatchObject({ _id: String(first._id), name: first.name })
+    expect(await Shop.findById(first._id)).toBeNull()
+    expect(await Shop.findById(other._id)).not.toBeNull()
+    expect(await Product.countDocuments({ shop: first._id })).toBe(0)
+    expect(await Product.countDocuments()).toBe(1)
+    const catalogue = await api().get('/api/products').expect(200)
+    expect(catalogue.body.map(product => product._id)).toEqual([String(products[2]._id)])
   })
 
   test('missing and malformed shop ids preserve their distinct errors', async () => {

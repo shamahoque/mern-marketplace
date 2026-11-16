@@ -1,6 +1,7 @@
 import Shop from '../models/shop.model'
 import extend from 'lodash/extend'
 import { applyImage } from '../helpers/image'
+import productService from './product.service'
 
 const create = async (fields, owner, files) => {
   let shop = new Shop(fields)
@@ -18,7 +19,11 @@ const update = async (shop, fields, files) => {
   return await shop.save()
 }
 
-const remove = async shop => await shop.remove()
+const remove = async shop => {
+  const deletedShop = await shop.remove()
+  await productService.removeByShop(shop._id)
+  return deletedShop
+}
 
 const list = () => Shop.find()
 
