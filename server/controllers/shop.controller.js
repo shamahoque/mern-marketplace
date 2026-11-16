@@ -1,15 +1,11 @@
 import { requireOwner } from '../middleware/ownership'
-import Shop from '../models/shop.model'
-import extend from 'lodash/extend'
+import shopService from '../services/shop.service'
 import errorHandler from './../helpers/dbErrorHandler'
-import { applyImage, photoHandler, defaultPhoto, readWithoutImage } from '../helpers/image'
+import { photoHandler, defaultPhoto, readWithoutImage } from '../helpers/image'
 
 const create = async (req, res) => {
-  let shop = new Shop(req.fields)
-  shop.owner= req.profile
-  applyImage(shop, req.files)
   try {
-    let result = await shop.save()
+    let result = await shopService.create(req.fields, req.profile, req.files)
     res.status(200).json(result)
   }catch (err){
     return res.status(400).json({
@@ -20,7 +16,7 @@ const create = async (req, res) => {
 
 const shopByID = async (req, res, next, id) => {
   try {
-    let shop = await Shop.findById(id).populate('owner', '_id name').exec()
+    let shop = await shopService.getById(id)
     if (!shop)
       return res.status('400').json({
         error: "Shop not found"
@@ -35,12 +31,8 @@ const shopByID = async (req, res, next, id) => {
 }
 
 const update = async (req, res) => {
-  let shop = req.shop
-  shop = extend(shop, req.fields)
-  shop.updated = Date.now()
-  applyImage(shop, req.files)
   try {
-    let result = await shop.save()
+    let result = await shopService.update(req.shop, req.fields, req.files)
     res.json(result)
   }catch (err){
     return res.status(400).json({
@@ -51,8 +43,7 @@ const update = async (req, res) => {
 
 const remove = async (req, res) => {
   try {
-    let shop = req.shop
-    let deletedShop = await shop.remove()
+    let deletedShop = await shopService.remove(req.shop)
     res.json(deletedShop)
   } catch (err) {
     return res.status(400).json({
@@ -63,7 +54,7 @@ const remove = async (req, res) => {
 
 const list = async (req, res) => {
   try {
-    let shops = await Shop.find()
+    let shops = await shopService.list()
     res.json(shops)
   } catch (err){
     return res.status(400).json({
@@ -74,7 +65,7 @@ const list = async (req, res) => {
 
 const listByOwner = async (req, res) => {
   try {
-    let shops = await Shop.find({owner: req.profile._id}).populate('owner', '_id name')
+    let shops = await shopService.listByOwner(req.profile._id)
     res.json(shops)
   } catch (err){
     return res.status(400).json({
