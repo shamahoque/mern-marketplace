@@ -15,11 +15,15 @@ const create = async (user) => {
   }
 }
 
-const list = async (signal) => {
+const list = async (credentials, signal) => {
   try {
     let response = await fetch('/api/users/', {
       method: 'GET',
       signal: signal,
+      headers: {
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ' + credentials.t
+      }
     })
     return await response.json()
   } catch(err) {

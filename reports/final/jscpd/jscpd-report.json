@@ -1,0 +1,3457 @@
+{
+  "statistics": {
+    "detectionDate": "2026-11-16T07:44:57.518Z",
+    "formats": {
+      "javascript": {
+        "sources": {
+          "client/user/api-user.js": {
+            "lines": 108,
+            "tokens": 827,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "client/user/Users.js": {
+            "lines": 78,
+            "tokens": 653,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "client/user/StripeConnect.js": {
+            "lines": 82,
+            "tokens": 803,
+            "sources": 1,
+            "clones": 5,
+            "duplicatedLines": 46,
+            "duplicatedTokens": 484,
+            "percentage": 56.1,
+            "percentageTokens": 60.27,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "client/user/Signup.js": {
+            "lines": 108,
+            "tokens": 1053,
+            "sources": 1,
+            "clones": 9,
+            "duplicatedLines": 111,
+            "duplicatedTokens": 1201,
+            "percentage": 102.78,
+            "percentageTokens": 114.06,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "client/user/Profile.js": {
+            "lines": 155,
+            "tokens": 1364,
+            "sources": 1,
+            "clones": 4,
+            "duplicatedLines": 53,
+            "duplicatedTokens": 485,
+            "percentage": 34.19,
+            "percentageTokens": 35.56,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "client/user/EditProfile.js": {
+            "lines": 142,
+            "tokens": 1402,
+            "sources": 1,
+            "clones": 2,
+            "duplicatedLines": 20,
+            "duplicatedTokens": 218,
+            "percentage": 14.08,
+            "percentageTokens": 15.55,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "client/user/DeleteUser.js": {
+            "lines": 68,
+            "tokens": 567,
+            "sources": 1,
+            "clones": 2,
+            "duplicatedLines": 22,
+            "duplicatedTokens": 202,
+            "percentage": 32.35,
+            "percentageTokens": 35.63,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "client/shop/api-shop.js": {
+            "lines": 96,
+            "tokens": 714,
+            "sources": 1,
+            "clones": 4,
+            "duplicatedLines": 60,
+            "duplicatedTokens": 397,
+            "percentage": 62.5,
+            "percentageTokens": 55.6,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "client/shop/Shops.js": {
+            "lines": 90,
+            "tokens": 792,
+            "sources": 1,
+            "clones": 1,
+            "duplicatedLines": 10,
+            "duplicatedTokens": 76,
+            "percentage": 11.11,
+            "percentageTokens": 9.6,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "client/shop/Shop.js": {
+            "lines": 124,
+            "tokens": 1092,
+            "sources": 1,
+            "clones": 4,
+            "duplicatedLines": 90,
+            "duplicatedTokens": 653,
+            "percentage": 72.58,
+            "percentageTokens": 59.8,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "client/shop/NewShop.js": {
+            "lines": 122,
+            "tokens": 1187,
+            "sources": 1,
+            "clones": 15,
+            "duplicatedLines": 195,
+            "duplicatedTokens": 1842,
+            "percentage": 159.84,
+            "percentageTokens": 155.18,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "client/shop/MyShops.js": {
+            "lines": 116,
+            "tokens": 1088,
+            "sources": 1,
+            "clones": 2,
+            "duplicatedLines": 18,
+            "duplicatedTokens": 173,
+            "percentage": 15.52,
+            "percentageTokens": 15.9,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "client/shop/EditShop.js": {
+            "lines": 167,
+            "tokens": 1625,
+            "sources": 1,
+            "clones": 9,
+            "duplicatedLines": 104,
+            "duplicatedTokens": 1019,
+            "percentage": 62.28,
+            "percentageTokens": 62.71,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "client/shop/DeleteShop.js": {
+            "lines": 62,
+            "tokens": 528,
+            "sources": 1,
+            "clones": 3,
+            "duplicatedLines": 36,
+            "duplicatedTokens": 306,
+            "percentage": 58.06,
+            "percentageTokens": 57.95,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "client/product/api-product.js": {
+            "lines": 133,
+            "tokens": 1003,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "client/product/Suggestions.js": {
+            "lines": 130,
+            "tokens": 1101,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "client/product/Search.js": {
+            "lines": 121,
+            "tokens": 929,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "client/product/Products.js": {
+            "lines": 78,
+            "tokens": 739,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "client/product/Product.js": {
+            "lines": 143,
+            "tokens": 1214,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "client/product/NewProduct.js": {
+            "lines": 131,
+            "tokens": 1429,
+            "sources": 1,
+            "clones": 10,
+            "duplicatedLines": 125,
+            "duplicatedTokens": 1380,
+            "percentage": 95.42,
+            "percentageTokens": 96.57,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "client/product/MyProducts.js": {
+            "lines": 124,
+            "tokens": 1051,
+            "sources": 1,
+            "clones": 1,
+            "duplicatedLines": 10,
+            "duplicatedTokens": 82,
+            "percentage": 8.06,
+            "percentageTokens": 7.8,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "client/product/EditProduct.js": {
+            "lines": 160,
+            "tokens": 1758,
+            "sources": 1,
+            "clones": 8,
+            "duplicatedLines": 112,
+            "duplicatedTokens": 1210,
+            "percentage": 70,
+            "percentageTokens": 68.83,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "client/product/DeleteProduct.js": {
+            "lines": 64,
+            "tokens": 548,
+            "sources": 1,
+            "clones": 2,
+            "duplicatedLines": 23,
+            "duplicatedTokens": 203,
+            "percentage": 35.94,
+            "percentageTokens": 37.04,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "client/product/Categories.js": {
+            "lines": 114,
+            "tokens": 980,
+            "sources": 1,
+            "clones": 1,
+            "duplicatedLines": 10,
+            "duplicatedTokens": 82,
+            "percentage": 8.77,
+            "percentageTokens": 8.37,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "client/order/api-order.js": {
+            "lines": 138,
+            "tokens": 1080,
+            "sources": 1,
+            "clones": 5,
+            "duplicatedLines": 74,
+            "duplicatedTokens": 490,
+            "percentage": 53.62,
+            "percentageTokens": 45.37,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "client/order/ShopOrders.js": {
+            "lines": 103,
+            "tokens": 1108,
+            "sources": 1,
+            "clones": 1,
+            "duplicatedLines": 12,
+            "duplicatedTokens": 132,
+            "percentage": 11.65,
+            "percentageTokens": 11.91,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "client/order/ProductOrderEdit.js": {
+            "lines": 198,
+            "tokens": 1595,
+            "sources": 1,
+            "clones": 4,
+            "duplicatedLines": 62,
+            "duplicatedTokens": 390,
+            "percentage": 31.31,
+            "percentageTokens": 24.45,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "client/order/Order.js": {
+            "lines": 185,
+            "tokens": 1938,
+            "sources": 1,
+            "clones": 3,
+            "duplicatedLines": 35,
+            "duplicatedTokens": 333,
+            "percentage": 18.92,
+            "percentageTokens": 17.18,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "client/order/MyOrders.js": {
+            "lines": 66,
+            "tokens": 612,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "client/core/Menu.js": {
+            "lines": 86,
+            "tokens": 915,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "client/core/Home.js": {
+            "lines": 66,
+            "tokens": 573,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "client/cart/cart-helper.js": {
+            "lines": 62,
+            "tokens": 536,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "client/cart/PlaceOrder.js": {
+            "lines": 112,
+            "tokens": 885,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "client/cart/Checkout.js": {
+            "lines": 96,
+            "tokens": 1127,
+            "sources": 1,
+            "clones": 1,
+            "duplicatedLines": 6,
+            "duplicatedTokens": 76,
+            "percentage": 6.25,
+            "percentageTokens": 6.74,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "client/cart/CartItems.js": {
+            "lines": 189,
+            "tokens": 1664,
+            "sources": 1,
+            "clones": 3,
+            "duplicatedLines": 35,
+            "duplicatedTokens": 333,
+            "percentage": 18.52,
+            "percentageTokens": 20.01,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "client/cart/Cart.js": {
+            "lines": 38,
+            "tokens": 320,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "client/cart/AddToCart.js": {
+            "lines": 48,
+            "tokens": 418,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "client/auth/auth-helper.js": {
+            "lines": 39,
+            "tokens": 305,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "client/auth/api-auth.js": {
+            "lines": 30,
+            "tokens": 214,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "client/auth/Signin.js": {
+            "lines": 100,
+            "tokens": 921,
+            "sources": 1,
+            "clones": 2,
+            "duplicatedLines": 41,
+            "duplicatedTokens": 420,
+            "percentage": 41,
+            "percentageTokens": 45.6,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "client/auth/PrivateRoute.js": {
+            "lines": 18,
+            "tokens": 164,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "client/auction/api-auction.js": {
+            "lines": 113,
+            "tokens": 842,
+            "sources": 1,
+            "clones": 3,
+            "duplicatedLines": 46,
+            "duplicatedTokens": 299,
+            "percentage": 40.71,
+            "percentageTokens": 35.51,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "client/auction/Timer.js": {
+            "lines": 60,
+            "tokens": 679,
+            "sources": 1,
+            "clones": 2,
+            "duplicatedLines": 23,
+            "duplicatedTokens": 310,
+            "percentage": 38.33,
+            "percentageTokens": 45.66,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "client/auction/OpenAuctions.js": {
+            "lines": 61,
+            "tokens": 524,
+            "sources": 1,
+            "clones": 3,
+            "duplicatedLines": 47,
+            "duplicatedTokens": 405,
+            "percentage": 77.05,
+            "percentageTokens": 77.29,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "client/auction/NewAuction.js": {
+            "lines": 172,
+            "tokens": 1809,
+            "sources": 1,
+            "clones": 6,
+            "duplicatedLines": 81,
+            "duplicatedTokens": 715,
+            "percentage": 47.09,
+            "percentageTokens": 39.52,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "client/auction/MyAuctions.js": {
+            "lines": 80,
+            "tokens": 726,
+            "sources": 1,
+            "clones": 3,
+            "duplicatedLines": 50,
+            "duplicatedTokens": 413,
+            "percentage": 62.5,
+            "percentageTokens": 56.89,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "client/auction/EditAuction.js": {
+            "lines": 201,
+            "tokens": 2027,
+            "sources": 1,
+            "clones": 4,
+            "duplicatedLines": 69,
+            "duplicatedTokens": 582,
+            "percentage": 34.33,
+            "percentageTokens": 28.71,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "client/auction/DeleteAuction.js": {
+            "lines": 62,
+            "tokens": 528,
+            "sources": 1,
+            "clones": 1,
+            "duplicatedLines": 13,
+            "duplicatedTokens": 103,
+            "percentage": 20.97,
+            "percentageTokens": 19.51,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "client/auction/Bidding.js": {
+            "lines": 103,
+            "tokens": 1123,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "client/auction/Auctions.js": {
+            "lines": 92,
+            "tokens": 1061,
+            "sources": 1,
+            "clones": 2,
+            "duplicatedLines": 23,
+            "duplicatedTokens": 310,
+            "percentage": 25,
+            "percentageTokens": 29.22,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "client/auction/Auction.js": {
+            "lines": 143,
+            "tokens": 1297,
+            "sources": 1,
+            "clones": 1,
+            "duplicatedLines": 10,
+            "duplicatedTokens": 94,
+            "percentage": 6.99,
+            "percentageTokens": 7.25,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "client/theme.js": {
+            "lines": 24,
+            "tokens": 159,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "client/main.js": {
+            "lines": 5,
+            "tokens": 43,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "client/MainRouter.js": {
+            "lines": 64,
+            "tokens": 648,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "client/App.js": {
+            "lines": 23,
+            "tokens": 181,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "server/sockets/bidding.socket.js": {
+            "lines": 34,
+            "tokens": 289,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "server/services/shop.service.js": {
+            "lines": 32,
+            "tokens": 327,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "server/services/product.service.js": {
+            "lines": 69,
+            "tokens": 719,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "server/services/payment.service.js": {
+            "lines": 35,
+            "tokens": 383,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "server/services/order.service.js": {
+            "lines": 35,
+            "tokens": 430,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "server/services/auction.service.js": {
+            "lines": 46,
+            "tokens": 645,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "server/routes/user.routes.js": {
+            "lines": 21,
+            "tokens": 185,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "server/routes/shop.routes.js": {
+            "lines": 32,
+            "tokens": 269,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "server/routes/product.routes.js": {
+            "lines": 40,
+            "tokens": 314,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "server/routes/order.routes.js": {
+            "lines": 40,
+            "tokens": 354,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "server/routes/auth.routes.js": {
+            "lines": 11,
+            "tokens": 67,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "server/routes/auction.routes.js": {
+            "lines": 35,
+            "tokens": 286,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "server/models/user.model.js": {
+            "lines": 85,
+            "tokens": 725,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "server/models/shop.model.js": {
+            "lines": 24,
+            "tokens": 167,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "server/models/product.model.js": {
+            "lines": 35,
+            "tokens": 229,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "server/models/order.model.js": {
+            "lines": 42,
+            "tokens": 409,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "server/models/auction.model.js": {
+            "lines": 41,
+            "tokens": 288,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "server/middleware/upload.js": {
+            "lines": 13,
+            "tokens": 142,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "server/middleware/ownership.js": {
+            "lines": 5,
+            "tokens": 103,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "server/helpers/image.js": {
+            "lines": 24,
+            "tokens": 261,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "server/helpers/errors.js": {
+            "lines": 34,
+            "tokens": 392,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "server/helpers/dbErrorHandler.js": {
+            "lines": 42,
+            "tokens": 284,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "server/controllers/user.controller.js": {
+            "lines": 65,
+            "tokens": 577,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "server/controllers/shop.controller.js": {
+            "lines": 81,
+            "tokens": 720,
+            "sources": 1,
+            "clones": 3,
+            "duplicatedLines": 31,
+            "duplicatedTokens": 258,
+            "percentage": 38.27,
+            "percentageTokens": 35.83,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "server/controllers/product.controller.js": {
+            "lines": 141,
+            "tokens": 1230,
+            "sources": 1,
+            "clones": 1,
+            "duplicatedLines": 11,
+            "duplicatedTokens": 90,
+            "percentage": 7.8,
+            "percentageTokens": 7.32,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "server/controllers/payment.controller.js": {
+            "lines": 32,
+            "tokens": 409,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "server/controllers/order.controller.js": {
+            "lines": 80,
+            "tokens": 728,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "server/controllers/auth.controller.js": {
+            "lines": 47,
+            "tokens": 515,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "server/controllers/auction.controller.js": {
+            "lines": 93,
+            "tokens": 821,
+            "sources": 1,
+            "clones": 2,
+            "duplicatedLines": 20,
+            "duplicatedTokens": 168,
+            "percentage": 21.51,
+            "percentageTokens": 20.46,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "server/server.js": {
+            "lines": 20,
+            "tokens": 181,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "server/express.js": {
+            "lines": 80,
+            "tokens": 597,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "server/devBundle.js": {
+            "lines": 20,
+            "tokens": 142,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "total": {
+          "lines": 6927,
+          "tokens": 63657,
+          "sources": 87,
+          "clones": 66,
+          "duplicatedLines": 867,
+          "duplicatedTokens": 7967,
+          "percentage": 12.52,
+          "percentageTokens": 12.52,
+          "newDuplicatedLines": 0,
+          "newClones": 0
+        }
+      }
+    },
+    "total": {
+      "lines": 6927,
+      "tokens": 63657,
+      "sources": 87,
+      "clones": 66,
+      "duplicatedLines": 867,
+      "duplicatedTokens": 7967,
+      "percentage": 12.52,
+      "percentageTokens": 12.52,
+      "newDuplicatedLines": 0,
+      "newClones": 0
+    }
+  },
+  "duplicates": [
+    {
+      "format": "javascript",
+      "lines": 9,
+      "fragment": "const useStyles = makeStyles(theme => ({\n  root: theme.mixins.gutters({\n    maxWidth: 600,\n    margin: 'auto',\n    padding: theme.spacing(3),\n    marginTop: theme.spacing(5)\n  }),\n  title: {\n    margin: `${theme.spacing(3)}px 0 ${theme.spacing(2)}px`",
+      "tokens": 97,
+      "firstFile": {
+        "name": "client/user/Profile.js",
+        "start": 26,
+        "end": 34,
+        "startLoc": {
+          "line": 26,
+          "column": 1,
+          "position": 216
+        },
+        "endLoc": {
+          "line": 34,
+          "column": 60,
+          "position": 313
+        }
+      },
+      "secondFile": {
+        "name": "client/user/StripeConnect.js",
+        "start": 9,
+        "end": 17,
+        "startLoc": {
+          "line": 9,
+          "column": 1,
+          "position": 71
+        },
+        "endLoc": {
+          "line": 17,
+          "column": 60,
+          "position": 168
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 9,
+      "fragment": "useEffect(() => {\n    const abortController = new AbortController()\n    const signal = abortController.signal\n\n    read({\n      userId: match.params.userId\n    }, {t: jwt.token}, signal).then((data) => {\n      if (data && data.error) {\n        setValues",
+      "tokens": 92,
+      "firstFile": {
+        "name": "client/user/EditProfile.js",
+        "start": 57,
+        "end": 65,
+        "startLoc": {
+          "line": 57,
+          "column": 3,
+          "position": 456
+        },
+        "endLoc": {
+          "line": 65,
+          "column": 18,
+          "position": 548
+        }
+      },
+      "secondFile": {
+        "name": "client/user/Profile.js",
+        "start": 84,
+        "end": 91,
+        "startLoc": {
+          "line": 84,
+          "column": 3,
+          "position": 717
+        },
+        "endLoc": {
+          "line": 91,
+          "column": 28,
+          "position": 808
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 13,
+      "fragment": "/>\n          <br/> {\n            values.error && (<Typography component=\"p\" color=\"error\">\n              <Icon color=\"error\" className={classes.error}>error</Icon>\n              {values.error}\n            </Typography>)\n          }\n        </CardContent>\n        <CardActions>\n          <Button color=\"primary\" variant=\"contained\" onClick={clickSubmit} className={classes.submit}>Submit</Button>\n        </CardActions>\n      </Card>\n    )",
+      "tokens": 126,
+      "firstFile": {
+        "name": "client/user/EditProfile.js",
+        "start": 129,
+        "end": 141,
+        "startLoc": {
+          "line": 129,
+          "column": 11,
+          "position": 1274
+        },
+        "endLoc": {
+          "line": 141,
+          "column": 6,
+          "position": 1400
+        }
+      },
+      "secondFile": {
+        "name": "client/user/Signup.js",
+        "start": 80,
+        "end": 91,
+        "startLoc": {
+          "line": 80,
+          "column": 174,
+          "position": 798
+        },
+        "endLoc": {
+          "line": 91,
+          "column": 8,
+          "position": 922
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 11,
+      "fragment": "return function cleanup(){\n      abortController.abort()\n    }\n\n  }, [])\n\n    return (\n    <div>\n      <Paper className={classes.root} elevation={4}>\n        <Typography type=\"title\" className={classes.title}>\n          All",
+      "tokens": 76,
+      "firstFile": {
+        "name": "client/shop/Shops.js",
+        "start": 56,
+        "end": 66,
+        "startLoc": {
+          "line": 56,
+          "column": 5,
+          "position": 466
+        },
+        "endLoc": {
+          "line": 66,
+          "column": 14,
+          "position": 542
+        }
+      },
+      "secondFile": {
+        "name": "client/user/StripeConnect.js",
+        "start": 58,
+        "end": 68,
+        "startLoc": {
+          "line": 58,
+          "column": 5,
+          "position": 555
+        },
+        "endLoc": {
+          "line": 68,
+          "column": 20,
+          "position": 631
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 16,
+      "fragment": ")\n  useEffect(() => {\n    const abortController = new AbortController()\n    const signal = abortController.signal\n\n    listByShop({\n      shopId: match.params.shopId\n    }, signal).then((data)=>{\n      if (data.error) {\n        setError(data.error)\n      } else {\n        setProducts(data)\n      }\n    })\n\n    return",
+      "tokens": 108,
+      "firstFile": {
+        "name": "client/shop/Shop.js",
+        "start": 76,
+        "end": 91,
+        "startLoc": {
+          "line": 76,
+          "column": 27,
+          "position": 632
+        },
+        "endLoc": {
+          "line": 91,
+          "column": 11,
+          "position": 740
+        }
+      },
+      "secondFile": {
+        "name": "client/shop/Shop.js",
+        "start": 47,
+        "end": 62,
+        "startLoc": {
+          "line": 47,
+          "column": 40,
+          "position": 421
+        },
+        "endLoc": {
+          "line": 62,
+          "column": 9,
+          "position": 529
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 16,
+      "fragment": "} from 'react-router-dom'\n\nconst useStyles = makeStyles(theme => ({\n  card: {\n    maxWidth: 600,\n    margin: 'auto',\n    textAlign: 'center',\n    marginTop: theme.spacing(5),\n    paddingBottom: theme.spacing(2)\n  },\n  error: {\n    verticalAlign: 'middle'\n  },\n  title: {\n    marginTop: theme.spacing(2),\n    color: theme.palette.openTitle,",
+      "tokens": 119,
+      "firstFile": {
+        "name": "client/shop/NewShop.js",
+        "start": 13,
+        "end": 28,
+        "startLoc": {
+          "line": 13,
+          "column": 23,
+          "position": 114
+        },
+        "endLoc": {
+          "line": 28,
+          "column": 36,
+          "position": 233
+        }
+      },
+      "secondFile": {
+        "name": "client/user/Signup.js",
+        "start": 16,
+        "end": 32,
+        "startLoc": {
+          "line": 16,
+          "column": 13,
+          "position": 135
+        },
+        "endLoc": {
+          "line": 32,
+          "column": 4,
+          "position": 256
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 11,
+      "fragment": "}\n            margin=\"normal\"\n          /><br/> {\n            values.error && (<Typography component=\"p\" color=\"error\">\n              <Icon color=\"error\" className={classes.error}>error</Icon>\n              {values.error}</Typography>)\n          }\n        </CardContent>\n        <CardActions>\n          <Button color=\"primary\" variant=\"contained\" onClick={clickSubmit} className={classes.submit}>Submit</Button>\n          <Link",
+      "tokens": 119,
+      "firstFile": {
+        "name": "client/shop/NewShop.js",
+        "start": 108,
+        "end": 118,
+        "startLoc": {
+          "line": 108,
+          "column": 41,
+          "position": 1018
+        },
+        "endLoc": {
+          "line": 118,
+          "column": 16,
+          "position": 1137
+        }
+      },
+      "secondFile": {
+        "name": "client/user/Signup.js",
+        "start": 80,
+        "end": 89,
+        "startLoc": {
+          "line": 80,
+          "column": 157,
+          "position": 793
+        },
+        "endLoc": {
+          "line": 89,
+          "column": 11,
+          "position": 911
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 9,
+      "fragment": "const useStyles = makeStyles(theme => ({\n  root: theme.mixins.gutters({\n    maxWidth: 600,\n    margin: 'auto',\n    padding: theme.spacing(3),\n    marginTop: theme.spacing(5)\n  }),\n  title: {\n    margin: `${theme.spacing(3)}px 0 ${theme.spacing(3",
+      "tokens": 94,
+      "firstFile": {
+        "name": "client/shop/MyShops.js",
+        "start": 21,
+        "end": 29,
+        "startLoc": {
+          "line": 21,
+          "column": 1,
+          "position": 172
+        },
+        "endLoc": {
+          "line": 29,
+          "column": 55,
+          "position": 266
+        }
+      },
+      "secondFile": {
+        "name": "client/user/StripeConnect.js",
+        "start": 9,
+        "end": 17,
+        "startLoc": {
+          "line": 9,
+          "column": 1,
+          "position": 71
+        },
+        "endLoc": {
+          "line": 17,
+          "column": 55,
+          "position": 165
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 16,
+      "fragment": "const useStyles = makeStyles(theme => ({\n  root: {\n    flexGrow: 1,\n    margin: 30,\n  },\n  card: {\n    textAlign: 'center',\n    paddingBottom: theme.spacing(2)\n  },\n  title: {\n    margin: theme.spacing(2),\n    color: theme.palette.protectedTitle,\n    fontSize: '1.2em'\n  },\n  subheading: {\n    marginTop: theme.spacing(2",
+      "tokens": 120,
+      "firstFile": {
+        "name": "client/shop/EditShop.js",
+        "start": 18,
+        "end": 33,
+        "startLoc": {
+          "line": 18,
+          "column": 1,
+          "position": 148
+        },
+        "endLoc": {
+          "line": 33,
+          "column": 31,
+          "position": 268
+        }
+      },
+      "secondFile": {
+        "name": "client/shop/Shop.js",
+        "start": 12,
+        "end": 27,
+        "startLoc": {
+          "line": 12,
+          "column": 1,
+          "position": 97
+        },
+        "endLoc": {
+          "line": 27,
+          "column": 31,
+          "position": 217
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 6,
+      "fragment": "const clickSubmit = () => {\n    let shopData = new FormData()\n    values.name && shopData.append('name', values.name)\n    values.description && shopData.append('description', values.description)\n    values.image && shopData.append('image', values.image)\n    update",
+      "tokens": 84,
+      "firstFile": {
+        "name": "client/shop/EditShop.js",
+        "start": 89,
+        "end": 94,
+        "startLoc": {
+          "line": 89,
+          "column": 3,
+          "position": 716
+        },
+        "endLoc": {
+          "line": 94,
+          "column": 11,
+          "position": 800
+        }
+      },
+      "secondFile": {
+        "name": "client/shop/NewShop.js",
+        "start": 65,
+        "end": 70,
+        "startLoc": {
+          "line": 65,
+          "column": 3,
+          "position": 511
+        },
+        "endLoc": {
+          "line": 70,
+          "column": 11,
+          "position": 595
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 10,
+      "fragment": "Logo\n                  <FileUpload/>\n                </Button>\n              </label> <span className={classes.filename}>{values.image ? values.image.name : ''}</span><br/>\n              <TextField id=\"name\" label=\"Name\" className={classes.textField} value={values.name} onChange={handleChange('name')} margin=\"normal\"/><br/>\n              <TextField\n                id=\"multiline-flexible\"\n                label=\"Description\"\n                multiline\n                rows=\"3\"",
+      "tokens": 124,
+      "firstFile": {
+        "name": "client/shop/EditShop.js",
+        "start": 132,
+        "end": 141,
+        "startLoc": {
+          "line": 132,
+          "column": 26,
+          "position": 1240
+        },
+        "endLoc": {
+          "line": 141,
+          "column": 25,
+          "position": 1364
+        }
+      },
+      "secondFile": {
+        "name": "client/shop/NewShop.js",
+        "start": 96,
+        "end": 105,
+        "startLoc": {
+          "line": 96,
+          "column": 22,
+          "position": 866
+        },
+        "endLoc": {
+          "line": 105,
+          "column": 21,
+          "position": 990
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 10,
+      "fragment": "><br/>\n              {\n                values.error && (<Typography component=\"p\" color=\"error\">\n                    <Icon color=\"error\" className={classes.error}>error</Icon>\n                    {values.error}\n                  </Typography>)\n              }\n            </CardContent>\n            <CardActions>\n              <Button color=\"primary\" variant=\"contained\" onClick={clickSubmit} className={classes.submit}>Update",
+      "tokens": 105,
+      "firstFile": {
+        "name": "client/shop/EditShop.js",
+        "start": 149,
+        "end": 158,
+        "startLoc": {
+          "line": 149,
+          "column": 27,
+          "position": 1442
+        },
+        "endLoc": {
+          "line": 158,
+          "column": 114,
+          "position": 1547
+        }
+      },
+      "secondFile": {
+        "name": "client/user/Signup.js",
+        "start": 80,
+        "end": 88,
+        "startLoc": {
+          "line": 80,
+          "column": 175,
+          "position": 799
+        },
+        "endLoc": {
+          "line": 88,
+          "column": 110,
+          "position": 903
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 12,
+      "fragment": "import React, {useState} from 'react'\nimport PropTypes from 'prop-types'\nimport IconButton from '@material-ui/core/IconButton'\nimport Button from '@material-ui/core/Button'\nimport DeleteIcon from '@material-ui/icons/Delete'\nimport Dialog from '@material-ui/core/Dialog'\nimport DialogActions from '@material-ui/core/DialogActions'\nimport DialogContent from '@material-ui/core/DialogContent'\nimport DialogContentText from '@material-ui/core/DialogContentText'\nimport DialogTitle from '@material-ui/core/DialogTitle'\nimport auth from './../auth/auth-helper'\nimport {remove} from './api-shop.js'",
+      "tokens": 101,
+      "firstFile": {
+        "name": "client/shop/DeleteShop.js",
+        "start": 1,
+        "end": 12,
+        "startLoc": {
+          "line": 1,
+          "column": 1,
+          "position": 0
+        },
+        "endLoc": {
+          "line": 12,
+          "column": 37,
+          "position": 101
+        }
+      },
+      "secondFile": {
+        "name": "client/user/DeleteUser.js",
+        "start": 1,
+        "end": 12,
+        "startLoc": {
+          "line": 1,
+          "column": 1,
+          "position": 0
+        },
+        "endLoc": {
+          "line": 12,
+          "column": 37,
+          "position": 101
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 17,
+      "fragment": "import {Link, Redirect} from 'react-router-dom'\n\nconst useStyles = makeStyles(theme => ({\n  card: {\n    maxWidth: 600,\n    margin: 'auto',\n    textAlign: 'center',\n    marginTop: theme.spacing(5),\n    paddingBottom: theme.spacing(2)\n  },\n  error: {\n    verticalAlign: 'middle'\n  },\n  title: {\n    marginTop: theme.spacing(2),\n    color: theme.palette.openTitle,\n    fontSize: '1.2em'",
+      "tokens": 132,
+      "firstFile": {
+        "name": "client/product/NewProduct.js",
+        "start": 13,
+        "end": 29,
+        "startLoc": {
+          "line": 13,
+          "column": 1,
+          "position": 107
+        },
+        "endLoc": {
+          "line": 29,
+          "column": 22,
+          "position": 239
+        }
+      },
+      "secondFile": {
+        "name": "client/shop/NewShop.js",
+        "start": 13,
+        "end": 29,
+        "startLoc": {
+          "line": 13,
+          "column": 1,
+          "position": 107
+        },
+        "endLoc": {
+          "line": 29,
+          "column": 20,
+          "position": 239
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 19,
+      "fragment": "},\n  textField: {\n    marginLeft: theme.spacing(1),\n    marginRight: theme.spacing(1),\n    width: 300\n  },\n  submit: {\n    margin: 'auto',\n    marginBottom: theme.spacing(2)\n  },\n  input: {\n    display: 'none'\n  },\n  filename:{\n    marginLeft:'10px'\n  }\n}))\n\nexport default function NewProduct",
+      "tokens": 111,
+      "firstFile": {
+        "name": "client/product/NewProduct.js",
+        "start": 30,
+        "end": 48,
+        "startLoc": {
+          "line": 30,
+          "column": 3,
+          "position": 242
+        },
+        "endLoc": {
+          "line": 48,
+          "column": 35,
+          "position": 353
+        }
+      },
+      "secondFile": {
+        "name": "client/shop/NewShop.js",
+        "start": 30,
+        "end": 48,
+        "startLoc": {
+          "line": 30,
+          "column": 3,
+          "position": 242
+        },
+        "endLoc": {
+          "line": 48,
+          "column": 32,
+          "position": 353
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 13,
+      "fragment": ": '',\n      redirect: false,\n      error: ''\n  })\n  const jwt = auth.isAuthenticated()\n  const handleChange = name => event => {\n    const value = name === 'image'\n      ? event.target.files[0]\n      : event.target.value\n    setValues({...values,  [name]: value })\n  }\n  const clickSubmit = () => {\n    let productData",
+      "tokens": 124,
+      "firstFile": {
+        "name": "client/product/NewProduct.js",
+        "start": 56,
+        "end": 68,
+        "startLoc": {
+          "line": 56,
+          "column": 12,
+          "position": 426
+        },
+        "endLoc": {
+          "line": 68,
+          "column": 20,
+          "position": 550
+        }
+      },
+      "secondFile": {
+        "name": "client/shop/NewShop.js",
+        "start": 53,
+        "end": 66,
+        "startLoc": {
+          "line": 53,
+          "column": 12,
+          "position": 402
+        },
+        "endLoc": {
+          "line": 66,
+          "column": 17,
+          "position": 527
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 11,
+      "fragment": ").then((data) => {\n      if (data.error) {\n        setValues({...values, error: data.error})\n      } else {\n        setValues({...values, error: '', redirect: true})\n      }\n    })\n  }\n\n    if (values.redirect) {\n      return (<Redirect to={'/seller/shop/edit/'",
+      "tokens": 100,
+      "firstFile": {
+        "name": "client/product/NewProduct.js",
+        "start": 80,
+        "end": 90,
+        "startLoc": {
+          "line": 80,
+          "column": 19,
+          "position": 709
+        },
+        "endLoc": {
+          "line": 90,
+          "column": 49,
+          "position": 809
+        }
+      },
+      "secondFile": {
+        "name": "client/shop/NewShop.js",
+        "start": 74,
+        "end": 84,
+        "startLoc": {
+          "line": 74,
+          "column": 16,
+          "position": 628
+        },
+        "endLoc": {
+          "line": 84,
+          "column": 44,
+          "position": 728
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 15,
+      "fragment": "<FileUpload/>\n            </Button>\n          </label> <span className={classes.filename}>{values.image ? values.image.name : ''}</span><br/>\n          <TextField id=\"name\" label=\"Name\" className={classes.textField} value={values.name} onChange={handleChange('name')} margin=\"normal\"/><br/>\n          <TextField\n            id=\"multiline-flexible\"\n            label=\"Description\"\n            multiline\n            rows=\"2\"\n            value={values.description}\n            onChange={handleChange('description')}\n            className={classes.textField}\n            margin=\"normal\"\n          /><br/>\n          <",
+      "tokens": 165,
+      "firstFile": {
+        "name": "client/product/NewProduct.js",
+        "start": 102,
+        "end": 116,
+        "startLoc": {
+          "line": 102,
+          "column": 15,
+          "position": 953
+        },
+        "endLoc": {
+          "line": 116,
+          "column": 12,
+          "position": 1118
+        }
+      },
+      "secondFile": {
+        "name": "client/shop/NewShop.js",
+        "start": 97,
+        "end": 110,
+        "startLoc": {
+          "line": 97,
+          "column": 15,
+          "position": 869
+        },
+        "endLoc": {
+          "line": 110,
+          "column": 20,
+          "position": 1033
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 10,
+      "fragment": "margin=\"normal\"/><br/>\n          {\n            values.error && (<Typography component=\"p\" color=\"error\">\n              <Icon color=\"error\" className={classes.error}>error</Icon>\n              {values.error}</Typography>)\n          }\n        </CardContent>\n        <CardActions>\n          <Button color=\"primary\" variant=\"contained\" onClick={clickSubmit} className={classes.submit}>Submit</Button>\n          <Link to={",
+      "tokens": 119,
+      "firstFile": {
+        "name": "client/product/NewProduct.js",
+        "start": 118,
+        "end": 127,
+        "startLoc": {
+          "line": 118,
+          "column": 145,
+          "position": 1256
+        },
+        "endLoc": {
+          "line": 127,
+          "column": 21,
+          "position": 1375
+        }
+      },
+      "secondFile": {
+        "name": "client/user/Signup.js",
+        "start": 80,
+        "end": 118,
+        "startLoc": {
+          "line": 80,
+          "column": 159,
+          "position": 795
+        },
+        "endLoc": {
+          "line": 118,
+          "column": 35,
+          "position": 1141
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 13,
+      "fragment": "import React, {useEffect, useState} from 'react'\nimport Card from '@material-ui/core/Card'\nimport CardActions from '@material-ui/core/CardActions'\nimport CardContent from '@material-ui/core/CardContent'\nimport Button from '@material-ui/core/Button'\nimport TextField from '@material-ui/core/TextField'\nimport Typography from '@material-ui/core/Typography'\nimport Icon from '@material-ui/core/Icon'\nimport Avatar from '@material-ui/core/Avatar'\nimport auth from './../auth/auth-helper'\nimport FileUpload from '@material-ui/icons/AddPhotoAlternate'\nimport { makeStyles } from '@material-ui/core/styles'\nimport {withStyles",
+      "tokens": 111,
+      "firstFile": {
+        "name": "client/product/EditProduct.js",
+        "start": 1,
+        "end": 13,
+        "startLoc": {
+          "line": 1,
+          "column": 1,
+          "position": 0
+        },
+        "endLoc": {
+          "line": 13,
+          "column": 19,
+          "position": 111
+        }
+      },
+      "secondFile": {
+        "name": "client/shop/EditShop.js",
+        "start": 1,
+        "end": 13,
+        "startLoc": {
+          "line": 1,
+          "column": 1,
+          "position": 0
+        },
+        "endLoc": {
+          "line": 13,
+          "column": 13,
+          "position": 111
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 27,
+      "fragment": "},\n  error: {\n    verticalAlign: 'middle'\n  },\n  textField: {\n    marginLeft: theme.spacing(1),\n    marginRight: theme.spacing(1),\n    width: 400\n  },\n  submit: {\n    margin: 'auto',\n    marginBottom: theme.spacing(2)\n  },\n  bigAvatar: {\n    width: 60,\n    height: 60,\n    margin: 'auto'\n  },\n  input: {\n    display: 'none'\n  },\n  filename:{\n    marginLeft:'10px'\n  }\n}))\n\nexport default function EditProduct",
+      "tokens": 157,
+      "firstFile": {
+        "name": "client/product/EditProduct.js",
+        "start": 30,
+        "end": 56,
+        "startLoc": {
+          "line": 30,
+          "column": 3,
+          "position": 262
+        },
+        "endLoc": {
+          "line": 56,
+          "column": 36,
+          "position": 419
+        }
+      },
+      "secondFile": {
+        "name": "client/shop/EditShop.js",
+        "start": 35,
+        "end": 61,
+        "startLoc": {
+          "line": 35,
+          "column": 3,
+          "position": 283
+        },
+        "endLoc": {
+          "line": 61,
+          "column": 33,
+          "position": 440
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 15,
+      "fragment": "({match}) {\n  const classes = useStyles()\n  const [values, setValues] = useState({\n      name: '',\n      description: '',\n      image: '',\n      category: '',\n      quantity: '',\n      price: '',\n      redirect: false,\n      error: ''\n    })\n\n    const jwt = auth.isAuthenticated()\n    useEffect",
+      "tokens": 109,
+      "firstFile": {
+        "name": "client/product/EditProduct.js",
+        "start": 56,
+        "end": 70,
+        "startLoc": {
+          "line": 56,
+          "column": 37,
+          "position": 421
+        },
+        "endLoc": {
+          "line": 70,
+          "column": 14,
+          "position": 530
+        }
+      },
+      "secondFile": {
+        "name": "client/product/NewProduct.js",
+        "start": 48,
+        "end": 61,
+        "startLoc": {
+          "line": 48,
+          "column": 35,
+          "position": 354
+        },
+        "endLoc": {
+          "line": 61,
+          "column": 8,
+          "position": 462
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 10,
+      "fragment": "const clickSubmit = () => {\n    let productData = new FormData()\n    values.name && productData.append('name', values.name)\n    values.description && productData.append('description', values.description)\n    values.image && productData.append('image', values.image)\n    values.category && productData.append('category', values.category)\n    values.quantity && productData.append('quantity', values.quantity)\n    values.price && productData.append('price', values.price)\n  \n    update",
+      "tokens": 143,
+      "firstFile": {
+        "name": "client/product/EditProduct.js",
+        "start": 86,
+        "end": 95,
+        "startLoc": {
+          "line": 86,
+          "column": 3,
+          "position": 722
+        },
+        "endLoc": {
+          "line": 95,
+          "column": 11,
+          "position": 865
+        }
+      },
+      "secondFile": {
+        "name": "client/product/NewProduct.js",
+        "start": 67,
+        "end": 76,
+        "startLoc": {
+          "line": 67,
+          "column": 3,
+          "position": 534
+        },
+        "endLoc": {
+          "line": 76,
+          "column": 11,
+          "position": 676
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 15,
+      "fragment": ").then((data) => {\n      if (data.error) {\n        setValues({...values, error: data.error})\n      } else {\n        setValues({...values, 'redirect': true})\n      }\n    })\n  }\n  const handleChange = name => event => {\n    const value = name === 'image'\n      ? event.target.files[0]\n      : event.target.value\n    setValues({...values,  [name]: value })\n  }\n    const imageUrl",
+      "tokens": 147,
+      "firstFile": {
+        "name": "client/product/EditProduct.js",
+        "start": 100,
+        "end": 114,
+        "startLoc": {
+          "line": 100,
+          "column": 19,
+          "position": 909
+        },
+        "endLoc": {
+          "line": 114,
+          "column": 19,
+          "position": 1056
+        }
+      },
+      "secondFile": {
+        "name": "client/shop/EditShop.js",
+        "start": 98,
+        "end": 113,
+        "startLoc": {
+          "line": 98,
+          "column": 16,
+          "position": 833
+        },
+        "endLoc": {
+          "line": 113,
+          "column": 18,
+          "position": 981
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 8,
+      "fragment": "if (values.redirect) {\n      return (<Redirect to={'/seller/shop/edit/'+match.params.shopId}/>)\n    }\n    return (<div>\n      <Card className={classes.card}>\n        <CardContent>\n          <Typography type=\"headline\" component=\"h2\" className={classes.title}>\n            Edit",
+      "tokens": 83,
+      "firstFile": {
+        "name": "client/product/EditProduct.js",
+        "start": 117,
+        "end": 124,
+        "startLoc": {
+          "line": 117,
+          "column": 5,
+          "position": 1093
+        },
+        "endLoc": {
+          "line": 124,
+          "column": 17,
+          "position": 1176
+        }
+      },
+      "secondFile": {
+        "name": "client/product/NewProduct.js",
+        "start": 89,
+        "end": 96,
+        "startLoc": {
+          "line": 89,
+          "column": 5,
+          "position": 789
+        },
+        "endLoc": {
+          "line": 96,
+          "column": 16,
+          "position": 872
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 15,
+      "fragment": "<FileUpload/>\n            </Button>\n          </label> <span className={classes.filename}>{values.image ? values.image.name : ''}</span><br/>\n          <TextField id=\"name\" label=\"Name\" className={classes.textField} value={values.name} onChange={handleChange('name')} margin=\"normal\"/><br/>\n          <TextField\n            id=\"multiline-flexible\"\n            label=\"Description\"\n            multiline\n            rows=\"3\"\n            value={values.description}\n            onChange={handleChange('description')}\n            className={classes.textField}\n            margin=\"normal\"\n          /><br/>\n          <TextField",
+      "tokens": 166,
+      "firstFile": {
+        "name": "client/product/EditProduct.js",
+        "start": 131,
+        "end": 145,
+        "startLoc": {
+          "line": 131,
+          "column": 15,
+          "position": 1282
+        },
+        "endLoc": {
+          "line": 145,
+          "column": 21,
+          "position": 1448
+        }
+      },
+      "secondFile": {
+        "name": "client/shop/NewShop.js",
+        "start": 97,
+        "end": 147,
+        "startLoc": {
+          "line": 97,
+          "column": 15,
+          "position": 869
+        },
+        "endLoc": {
+          "line": 147,
+          "column": 26,
+          "position": 1409
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 17,
+      "fragment": "value={values.description}\n            onChange={handleChange('description')}\n            className={classes.textField}\n            margin=\"normal\"\n          /><br/>\n          <TextField id=\"category\" label=\"Category\" className={classes.textField} value={values.category} onChange={handleChange('category')} margin=\"normal\"/><br/>\n          <TextField id=\"quantity\" label=\"Quantity\" className={classes.textField} value={values.quantity} onChange={handleChange('quantity')} type=\"number\" margin=\"normal\"/><br/>\n          <TextField id=\"price\" label=\"Price\" className={classes.textField} value={values.price} onChange={handleChange('price')} type=\"number\" margin=\"normal\"/><br/>\n          {\n            values.error && (<Typography component=\"p\" color=\"error\">\n              <Icon color=\"error\" className={classes.error}>error</Icon>\n              {values.error}</Typography>)\n          }\n        </CardContent>\n        <CardActions>\n          <Button color=\"primary\" variant=\"contained\" onClick={clickSubmit} className={classes.submit}>Update</Button>\n          <Link",
+      "tokens": 294,
+      "firstFile": {
+        "name": "client/product/EditProduct.js",
+        "start": 140,
+        "end": 156,
+        "startLoc": {
+          "line": 140,
+          "column": 13,
+          "position": 1406
+        },
+        "endLoc": {
+          "line": 156,
+          "column": 16,
+          "position": 1700
+        }
+      },
+      "secondFile": {
+        "name": "client/product/NewProduct.js",
+        "start": 111,
+        "end": 159,
+        "startLoc": {
+          "line": 111,
+          "column": 13,
+          "position": 1077
+        },
+        "endLoc": {
+          "line": 159,
+          "column": 15,
+          "position": 1555
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 12,
+      "fragment": "import React, {useState} from 'react'\nimport PropTypes from 'prop-types'\nimport IconButton from '@material-ui/core/IconButton'\nimport Button from '@material-ui/core/Button'\nimport DeleteIcon from '@material-ui/icons/Delete'\nimport Dialog from '@material-ui/core/Dialog'\nimport DialogActions from '@material-ui/core/DialogActions'\nimport DialogContent from '@material-ui/core/DialogContent'\nimport DialogContentText from '@material-ui/core/DialogContentText'\nimport DialogTitle from '@material-ui/core/DialogTitle'\nimport auth from './../auth/auth-helper'\nimport {remove} from './api-product.js'",
+      "tokens": 101,
+      "firstFile": {
+        "name": "client/product/DeleteProduct.js",
+        "start": 1,
+        "end": 12,
+        "startLoc": {
+          "line": 1,
+          "column": 1,
+          "position": 0
+        },
+        "endLoc": {
+          "line": 12,
+          "column": 40,
+          "position": 101
+        }
+      },
+      "secondFile": {
+        "name": "client/user/DeleteUser.js",
+        "start": 1,
+        "end": 12,
+        "startLoc": {
+          "line": 1,
+          "column": 1,
+          "position": 0
+        },
+        "endLoc": {
+          "line": 12,
+          "column": 37,
+          "position": 101
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 13,
+      "fragment": ")\n      }\n    })\n  }\n  const handleRequestClose = () => {\n    setOpen(false)\n  }\n    return (<span>\n      <IconButton aria-label=\"Delete\" onClick={clickButton} color=\"secondary\">\n        <DeleteIcon/>\n      </IconButton>\n      <Dialog open={open} onClose={handleRequestClose}>\n        <DialogTitle>{\"Delete \"+props.product",
+      "tokens": 102,
+      "firstFile": {
+        "name": "client/product/DeleteProduct.js",
+        "start": 30,
+        "end": 42,
+        "startLoc": {
+          "line": 30,
+          "column": 37,
+          "position": 276
+        },
+        "endLoc": {
+          "line": 42,
+          "column": 46,
+          "position": 378
+        }
+      },
+      "secondFile": {
+        "name": "client/shop/DeleteShop.js",
+        "start": 29,
+        "end": 42,
+        "startLoc": {
+          "line": 29,
+          "column": 34,
+          "position": 267
+        },
+        "endLoc": {
+          "line": 42,
+          "column": 43,
+          "position": 370
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 11,
+      "fragment": "}, signal).then((data) => {\n      if (data.error) {\n        console.log(data.error)\n      } else {\n        setProducts(data)\n      }\n    })\n    return function cleanup(){\n      abortController.abort()\n    }\n  }, [props",
+      "tokens": 82,
+      "firstFile": {
+        "name": "client/product/Categories.js",
+        "start": 66,
+        "end": 76,
+        "startLoc": {
+          "line": 66,
+          "column": 5,
+          "position": 511
+        },
+        "endLoc": {
+          "line": 76,
+          "column": 12,
+          "position": 593
+        }
+      },
+      "secondFile": {
+        "name": "client/product/MyProducts.js",
+        "start": 58,
+        "end": 68,
+        "startLoc": {
+          "line": 58,
+          "column": 5,
+          "position": 429
+        },
+        "endLoc": {
+          "line": 68,
+          "column": 8,
+          "position": 509
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 16,
+      "fragment": ", {\n      method: 'PUT',\n      headers: {\n        'Accept': 'application/json',\n        'Content-Type': 'application/json',\n        'Authorization': 'Bearer ' + credentials.t\n      },\n      body: JSON.stringify(product)\n    })\n    return response.json()\n  }catch(err){\n    console.log(err)\n  }\n}\n\nconst processCharge",
+      "tokens": 95,
+      "firstFile": {
+        "name": "client/order/api-order.js",
+        "start": 53,
+        "end": 68,
+        "startLoc": {
+          "line": 53,
+          "column": 87,
+          "position": 462
+        },
+        "endLoc": {
+          "line": 68,
+          "column": 20,
+          "position": 557
+        }
+      },
+      "secondFile": {
+        "name": "client/order/api-order.js",
+        "start": 36,
+        "end": 51,
+        "startLoc": {
+          "line": 36,
+          "column": 68,
+          "position": 319
+        },
+        "endLoc": {
+          "line": 51,
+          "column": 20,
+          "position": 415
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 16,
+      "fragment": "+params.shopId, {\n      method: 'PUT',\n      headers: {\n        'Accept': 'application/json',\n        'Content-Type': 'application/json',\n        'Authorization': 'Bearer ' + credentials.t\n      },\n      body: JSON.stringify(product)\n    })\n    return response.json()\n  } catch(err) {\n    console.log(err)\n  }\n}\n\nconst getStatusValues",
+      "tokens": 101,
+      "firstFile": {
+        "name": "client/order/api-order.js",
+        "start": 70,
+        "end": 85,
+        "startLoc": {
+          "line": 70,
+          "column": 89,
+          "position": 606
+        },
+        "endLoc": {
+          "line": 85,
+          "column": 22,
+          "position": 707
+        }
+      },
+      "secondFile": {
+        "name": "client/order/api-order.js",
+        "start": 36,
+        "end": 51,
+        "startLoc": {
+          "line": 36,
+          "column": 53,
+          "position": 314
+        },
+        "endLoc": {
+          "line": 51,
+          "column": 20,
+          "position": 415
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 15,
+      "fragment": "+params.userId, {\n      method: 'GET',\n      signal: signal,\n      headers: {\n        'Accept': 'application/json',\n        'Authorization': 'Bearer ' + credentials.t\n      }\n    })\n    return response.json()\n  }catch(err) {\n    console.log(err)\n  }\n}\n\nconst read = async (params, credentials",
+      "tokens": 98,
+      "firstFile": {
+        "name": "client/order/api-order.js",
+        "start": 99,
+        "end": 113,
+        "startLoc": {
+          "line": 99,
+          "column": 51,
+          "position": 831
+        },
+        "endLoc": {
+          "line": 113,
+          "column": 40,
+          "position": 929
+        }
+      },
+      "secondFile": {
+        "name": "client/shop/api-shop.js",
+        "start": 31,
+        "end": 45,
+        "startLoc": {
+          "line": 31,
+          "column": 48,
+          "position": 253
+        },
+        "endLoc": {
+          "line": 45,
+          "column": 35,
+          "position": 350
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 13,
+      "fragment": "const useStyles = makeStyles(theme => ({\n  root: theme.mixins.gutters({\n    maxWidth: 600,\n    margin: 'auto',\n    padding: theme.spacing(3),\n    marginTop: theme.spacing(5)\n  }),\n  title: {\n    margin: `${theme.spacing(3)}px 0 ${theme.spacing(3)}px ${theme.spacing(1)}px` ,\n    color: theme.palette.protectedTitle,\n    fontSize: '1.2em'\n  },\n  subheading",
+      "tokens": 132,
+      "firstFile": {
+        "name": "client/order/ShopOrders.js",
+        "start": 16,
+        "end": 28,
+        "startLoc": {
+          "line": 16,
+          "column": 1,
+          "position": 127
+        },
+        "endLoc": {
+          "line": 28,
+          "column": 13,
+          "position": 259
+        }
+      },
+      "secondFile": {
+        "name": "client/user/StripeConnect.js",
+        "start": 9,
+        "end": 33,
+        "startLoc": {
+          "line": 9,
+          "column": 1,
+          "position": 71
+        },
+        "endLoc": {
+          "line": 33,
+          "column": 12,
+          "position": 304
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 16,
+      "fragment": "})\n        .then((data) => {\n          if (data.error) {\n            setValues({\n              ...values,\n              error: \"Status not updated, try again\"\n            })\n          } else {\n            props.updateOrders(props.orderIndex, order)\n            setValues({\n              ...values,\n              error: ''\n            })\n          }\n        })\n    } else {",
+      "tokens": 98,
+      "firstFile": {
+        "name": "client/order/ProductOrderEdit.js",
+        "start": 107,
+        "end": 122,
+        "startLoc": {
+          "line": 107,
+          "column": 9,
+          "position": 875
+        },
+        "endLoc": {
+          "line": 122,
+          "column": 13,
+          "position": 973
+        }
+      },
+      "secondFile": {
+        "name": "client/order/ProductOrderEdit.js",
+        "start": 81,
+        "end": 96,
+        "startLoc": {
+          "line": 81,
+          "column": 9,
+          "position": 669
+        },
+        "endLoc": {
+          "line": 96,
+          "column": 14,
+          "position": 767
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 17,
+      "fragment": "})\n        .then((data) => {\n          if (data.error) {\n            setValues({\n              ...values,\n              error: \"Status not updated, try again\"\n            })\n          } else {\n            props.updateOrders(props.orderIndex, order)\n            setValues({\n              ...values,\n              error: ''\n            })\n          }\n        })\n    }\n  }",
+      "tokens": 97,
+      "firstFile": {
+        "name": "client/order/ProductOrderEdit.js",
+        "start": 130,
+        "end": 146,
+        "startLoc": {
+          "line": 130,
+          "column": 9,
+          "position": 1028
+        },
+        "endLoc": {
+          "line": 146,
+          "column": 4,
+          "position": 1125
+        }
+      },
+      "secondFile": {
+        "name": "client/order/ProductOrderEdit.js",
+        "start": 81,
+        "end": 96,
+        "startLoc": {
+          "line": 81,
+          "column": 9,
+          "position": 669
+        },
+        "endLoc": {
+          "line": 96,
+          "column": 11,
+          "position": 765
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 7,
+      "fragment": ")} margin=\"normal\"/>\n        <br/> {\n            values.error && (<Typography component=\"p\" color=\"error\">\n                <Icon color=\"error\" className={classes.error}>error</Icon>\n                {values.error}</Typography>)\n          }\n        <div",
+      "tokens": 76,
+      "firstFile": {
+        "name": "client/cart/Checkout.js",
+        "start": 84,
+        "end": 90,
+        "startLoc": {
+          "line": 84,
+          "column": 177,
+          "position": 1009
+        },
+        "endLoc": {
+          "line": 90,
+          "column": 13,
+          "position": 1085
+        }
+      },
+      "secondFile": {
+        "name": "client/user/Signup.js",
+        "start": 80,
+        "end": 86,
+        "startLoc": {
+          "line": 80,
+          "column": 156,
+          "position": 792
+        },
+        "endLoc": {
+          "line": 86,
+          "column": 11,
+          "position": 868
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 18,
+      "fragment": "width: '100%',\n    display: 'inline-flex'\n  },\n  details: {\n    display: 'inline-block',\n    width: \"100%\",\n    padding: \"4px\"\n  },\n  content: {\n    flex: '1 0 auto',\n    padding: '16px 8px 0px'\n  },\n  cover: {\n    width: 160,\n    height: 125,\n    margin: '8px'\n  },\n  itemTotal",
+      "tokens": 100,
+      "firstFile": {
+        "name": "client/cart/CartItems.js",
+        "start": 47,
+        "end": 64,
+        "startLoc": {
+          "line": 47,
+          "column": 5,
+          "position": 341
+        },
+        "endLoc": {
+          "line": 64,
+          "column": 12,
+          "position": 441
+        }
+      },
+      "secondFile": {
+        "name": "client/order/Order.js",
+        "start": 23,
+        "end": 40,
+        "startLoc": {
+          "line": 23,
+          "column": 5,
+          "position": 187
+        },
+        "endLoc": {
+          "line": 40,
+          "column": 7,
+          "position": 287
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 11,
+      "fragment": ".map((item, i) => {\n            return <span key={i}><Card className={classes.cart}>\n              <CardMedia\n                className={classes.cover}\n                image={'/api/product/image/'+item.product._id}\n                title={item.product.name}\n              />\n              <div className={classes.details}>\n                <CardContent className={classes.content}>\n                  <Link to={'/product/'+item.product._id}><Typography type=\"title\" component=\"h3\" className={classes.productTitle} color=\"primary\">{item.product.name}</Typography></Link>\n                  <div",
+      "tokens": 162,
+      "firstFile": {
+        "name": "client/cart/CartItems.js",
+        "start": 132,
+        "end": 142,
+        "startLoc": {
+          "line": 132,
+          "column": 21,
+          "position": 976
+        },
+        "endLoc": {
+          "line": 142,
+          "column": 23,
+          "position": 1138
+        }
+      },
+      "secondFile": {
+        "name": "client/order/Order.js",
+        "start": 140,
+        "end": 151,
+        "startLoc": {
+          "line": 140,
+          "column": 34,
+          "position": 1140
+        },
+        "endLoc": {
+          "line": 151,
+          "column": 40,
+          "position": 1305
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 9,
+      "fragment": ">\n              </div>\n            </Card>\n            <Divider/>\n          </span>})\n        }\n        <div className={classes.checkout}>\n          <span className={classes.total}>Total: ${getTotal()}</span>\n          {",
+      "tokens": 71,
+      "firstFile": {
+        "name": "client/cart/CartItems.js",
+        "start": 162,
+        "end": 170,
+        "startLoc": {
+          "line": 162,
+          "column": 22,
+          "position": 1380
+        },
+        "endLoc": {
+          "line": 170,
+          "column": 12,
+          "position": 1451
+        }
+      },
+      "secondFile": {
+        "name": "client/order/Order.js",
+        "start": 155,
+        "end": 163,
+        "startLoc": {
+          "line": 155,
+          "column": 40,
+          "position": 1454
+        },
+        "endLoc": {
+          "line": 163,
+          "column": 20,
+          "position": 1525
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 27,
+      "fragment": "const useStyles = makeStyles(theme => ({\n  card: {\n    maxWidth: 600,\n    margin: 'auto',\n    textAlign: 'center',\n    marginTop: theme.spacing(5),\n    paddingBottom: theme.spacing(2)\n  },\n  error: {\n    verticalAlign: 'middle'\n  },\n  title: {\n    marginTop: theme.spacing(2),\n    color: theme.palette.openTitle\n  },\n  textField: {\n    marginLeft: theme.spacing(1),\n    marginRight: theme.spacing(1),\n    width: 300\n  },\n  submit: {\n    margin: 'auto',\n    marginBottom: theme.spacing(2)\n  }\n}))\n\nexport default function Signin",
+      "tokens": 195,
+      "firstFile": {
+        "name": "client/auth/Signin.js",
+        "start": 14,
+        "end": 40,
+        "startLoc": {
+          "line": 14,
+          "column": 1,
+          "position": 110
+        },
+        "endLoc": {
+          "line": 40,
+          "column": 31,
+          "position": 305
+        }
+      },
+      "secondFile": {
+        "name": "client/user/Signup.js",
+        "start": 18,
+        "end": 44,
+        "startLoc": {
+          "line": 18,
+          "column": 1,
+          "position": 142
+        },
+        "endLoc": {
+          "line": 44,
+          "column": 31,
+          "position": 337
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 16,
+      "fragment": ">\n          <TextField id=\"email\" type=\"email\" label=\"Email\" className={classes.textField} value={values.email} onChange={handleChange('email')} margin=\"normal\"/><br/>\n          <TextField id=\"password\" type=\"password\" label=\"Password\" className={classes.textField} value={values.password} onChange={handleChange('password')} margin=\"normal\"/>\n          <br/> {\n            values.error && (<Typography component=\"p\" color=\"error\">\n              <Icon color=\"error\" className={classes.error}>error</Icon>\n              {values.error}\n            </Typography>)\n          }\n        </CardContent>\n        <CardActions>\n        <Button color=\"primary\" variant=\"contained\" onClick={clickSubmit} className={classes.submit}>Submit</Button>\n        </CardActions>\n      </Card>\n    )\n}",
+      "tokens": 225,
+      "firstFile": {
+        "name": "client/auth/Signin.js",
+        "start": 85,
+        "end": 100,
+        "startLoc": {
+          "line": 85,
+          "column": 23,
+          "position": 696
+        },
+        "endLoc": {
+          "line": 100,
+          "column": 2,
+          "position": 921
+        }
+      },
+      "secondFile": {
+        "name": "client/user/Signup.js",
+        "start": 78,
+        "end": 142,
+        "startLoc": {
+          "line": 78,
+          "column": 148,
+          "position": 701
+        },
+        "endLoc": {
+          "line": 142,
+          "column": 2,
+          "position": 1402
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 15,
+      "fragment": "+params.userId, {\n      method: 'GET',\n      signal: signal,\n      headers: {\n        'Accept': 'application/json',\n        'Authorization': 'Bearer ' + credentials.t\n      }\n    })\n    return response.json()\n  }catch(err){\n    console.log(err)\n  }\n}\n\nconst listByBidder",
+      "tokens": 87,
+      "firstFile": {
+        "name": "client/auction/api-auction.js",
+        "start": 31,
+        "end": 45,
+        "startLoc": {
+          "line": 31,
+          "column": 51,
+          "position": 253
+        },
+        "endLoc": {
+          "line": 45,
+          "column": 19,
+          "position": 340
+        }
+      },
+      "secondFile": {
+        "name": "client/shop/api-shop.js",
+        "start": 31,
+        "end": 45,
+        "startLoc": {
+          "line": 31,
+          "column": 48,
+          "position": 253
+        },
+        "endLoc": {
+          "line": 45,
+          "column": 11,
+          "position": 340
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 17,
+      "fragment": "+params.userId, {\n      method: 'GET',\n      signal: signal,\n      headers: {\n        'Accept': 'application/json',\n        'Authorization': 'Bearer ' + credentials.t\n      }\n    })\n    return response.json()\n  }catch(err){\n    console.log(err)\n  }\n}\n\nconst read = async (params, signal) => {\n  try {\n    let response = await fetch('/api/auction/'",
+      "tokens": 120,
+      "firstFile": {
+        "name": "client/auction/api-auction.js",
+        "start": 47,
+        "end": 63,
+        "startLoc": {
+          "line": 47,
+          "column": 52,
+          "position": 377
+        },
+        "endLoc": {
+          "line": 63,
+          "column": 47,
+          "position": 497
+        }
+      },
+      "secondFile": {
+        "name": "client/shop/api-shop.js",
+        "start": 31,
+        "end": 47,
+        "startLoc": {
+          "line": 31,
+          "column": 48,
+          "position": 253
+        },
+        "endLoc": {
+          "line": 47,
+          "column": 44,
+          "position": 373
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 17,
+      "fragment": ", {\n      method: 'DELETE',\n      headers: {\n        'Accept': 'application/json',\n        'Content-Type': 'application/json',\n        'Authorization': 'Bearer ' + credentials.t\n      }\n    })\n    return response.json()\n  } catch(err) {\n    console.log(err)\n  }\n}\n\nexport {\n  create,\n  listOpen",
+      "tokens": 92,
+      "firstFile": {
+        "name": "client/auction/api-auction.js",
+        "start": 91,
+        "end": 107,
+        "startLoc": {
+          "line": 91,
+          "column": 67,
+          "position": 728
+        },
+        "endLoc": {
+          "line": 107,
+          "column": 11,
+          "position": 820
+        }
+      },
+      "secondFile": {
+        "name": "client/shop/api-shop.js",
+        "start": 75,
+        "end": 91,
+        "startLoc": {
+          "line": 75,
+          "column": 61,
+          "position": 604
+        },
+        "endLoc": {
+          "line": 91,
+          "column": 7,
+          "position": 696
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 9,
+      "fragment": "const useStyles = makeStyles(theme => ({\n  root: theme.mixins.gutters({\n    maxWidth: 600,\n    margin: 'auto',\n    padding: theme.spacing(3),\n    marginTop: theme.spacing(5)\n  }),\n  title: {\n    margin: `${theme.spacing(1",
+      "tokens": 85,
+      "firstFile": {
+        "name": "client/auction/OpenAuctions.js",
+        "start": 8,
+        "end": 16,
+        "startLoc": {
+          "line": 8,
+          "column": 1,
+          "position": 63
+        },
+        "endLoc": {
+          "line": 16,
+          "column": 31,
+          "position": 148
+        }
+      },
+      "secondFile": {
+        "name": "client/user/StripeConnect.js",
+        "start": 9,
+        "end": 17,
+        "startLoc": {
+          "line": 9,
+          "column": 1,
+          "position": 71
+        },
+        "endLoc": {
+          "line": 17,
+          "column": 31,
+          "position": 156
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 19,
+      "fragment": "signal).then((data) => {\n      if (data.error) {\n        setRedirectToSignin(true)\n      } else {\n        setAuctions(data)\n      }\n    })\n    return function cleanup(){\n      abortController.abort()\n    }\n  }, [])\n\n  const removeAuction = (auction) => {\n    const updatedAuctions = [...auctions]\n    const index = updatedAuctions.indexOf(auction)\n    updatedAuctions.splice(index, 1)\n    setAuctions(updatedAuctions)\n  }\n    return",
+      "tokens": 141,
+      "firstFile": {
+        "name": "client/auction/OpenAuctions.js",
+        "start": 34,
+        "end": 52,
+        "startLoc": {
+          "line": 34,
+          "column": 14,
+          "position": 296
+        },
+        "endLoc": {
+          "line": 52,
+          "column": 11,
+          "position": 437
+        }
+      },
+      "secondFile": {
+        "name": "client/user/Profile.js",
+        "start": 65,
+        "end": 84,
+        "startLoc": {
+          "line": 65,
+          "column": 24,
+          "position": 575
+        },
+        "endLoc": {
+          "line": 84,
+          "column": 12,
+          "position": 717
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 35,
+      "fragment": "import {Link, Redirect} from 'react-router-dom'\n\nconst useStyles = makeStyles(theme => ({\n  card: {\n    maxWidth: 600,\n    margin: 'auto',\n    textAlign: 'center',\n    marginTop: theme.spacing(5),\n    paddingBottom: theme.spacing(2)\n  },\n  error: {\n    verticalAlign: 'middle'\n  },\n  title: {\n    marginTop: theme.spacing(2),\n    color: theme.palette.openTitle,\n    fontSize: '1em'\n  },\n  textField: {\n    marginLeft: theme.spacing(1),\n    marginRight: theme.spacing(1),\n    width: 300\n  },\n  submit: {\n    margin: 'auto',\n    marginBottom: theme.spacing(2)\n  },\n  input: {\n    display: 'none'\n  },\n  filename:{\n    marginLeft:'10px'\n  }\n}))\nconst",
+      "tokens": 239,
+      "firstFile": {
+        "name": "client/auction/NewAuction.js",
+        "start": 13,
+        "end": 47,
+        "startLoc": {
+          "line": 13,
+          "column": 1,
+          "position": 107
+        },
+        "endLoc": {
+          "line": 47,
+          "column": 6,
+          "position": 346
+        }
+      },
+      "secondFile": {
+        "name": "client/shop/NewShop.js",
+        "start": 13,
+        "end": 48,
+        "startLoc": {
+          "line": 13,
+          "column": 1,
+          "position": 107
+        },
+        "endLoc": {
+          "line": 48,
+          "column": 7,
+          "position": 347
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 15,
+      "fragment": ",\n      redirect: false,\n      error: ''\n  })\n  const jwt = auth.isAuthenticated()\n  \n  const handleChange = name => event => {\n    const value = name === 'image'\n      ? event.target.files[0]\n      : event.target.value\n    setValues({...values, [name]: value })\n  }\n\n  const clickSubmit = () => {\n    if",
+      "tokens": 122,
+      "firstFile": {
+        "name": "client/auction/NewAuction.js",
+        "start": 68,
+        "end": 82,
+        "startLoc": {
+          "line": 68,
+          "column": 21,
+          "position": 723
+        },
+        "endLoc": {
+          "line": 82,
+          "column": 7,
+          "position": 845
+        }
+      },
+      "secondFile": {
+        "name": "client/shop/NewShop.js",
+        "start": 53,
+        "end": 66,
+        "startLoc": {
+          "line": 53,
+          "column": 16,
+          "position": 405
+        },
+        "endLoc": {
+          "line": 66,
+          "column": 8,
+          "position": 525
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 9,
+      "fragment": ").then((data) => {\n        if (data.error) {\n          setValues({...values, error: data.error})\n        } else {\n          setValues({...values, error: '', redirect: true})\n        }\n      })\n    }\n  }",
+      "tokens": 79,
+      "firstFile": {
+        "name": "client/auction/NewAuction.js",
+        "start": 97,
+        "end": 105,
+        "startLoc": {
+          "line": 97,
+          "column": 21,
+          "position": 1042
+        },
+        "endLoc": {
+          "line": 105,
+          "column": 4,
+          "position": 1121
+        }
+      },
+      "secondFile": {
+        "name": "client/shop/NewShop.js",
+        "start": 74,
+        "end": 83,
+        "startLoc": {
+          "line": 74,
+          "column": 16,
+          "position": 628
+        },
+        "endLoc": {
+          "line": 83,
+          "column": 7,
+          "position": 708
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 6,
+      "fragment": "</Typography>\n          <br/>\n          <input accept=\"image/*\" onChange={handleChange('image')} className={classes.input} id=\"icon-button-file\" type=\"file\" />\n          <label htmlFor=\"icon-button-file\">\n            <Button variant=\"contained\" color=\"secondary\" component=\"span\">\n              Upload Image",
+      "tokens": 76,
+      "firstFile": {
+        "name": "client/auction/NewAuction.js",
+        "start": 115,
+        "end": 120,
+        "startLoc": {
+          "line": 115,
+          "column": 11,
+          "position": 1207
+        },
+        "endLoc": {
+          "line": 120,
+          "column": 27,
+          "position": 1283
+        }
+      },
+      "secondFile": {
+        "name": "client/shop/NewShop.js",
+        "start": 91,
+        "end": 96,
+        "startLoc": {
+          "line": 91,
+          "column": 11,
+          "position": 790
+        },
+        "endLoc": {
+          "line": 96,
+          "column": 26,
+          "position": 866
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 12,
+      "fragment": ")} margin=\"normal\"/><br/>\n          <TextField\n            id=\"multiline-flexible\"\n            label=\"Description\"\n            multiline\n            rows=\"2\"\n            value={values.description}\n            onChange={handleChange('description')}\n            className={classes.textField}\n            margin=\"normal\"\n          /><br/>\n          <TextField id=\"startingBid\"",
+      "tokens": 82,
+      "firstFile": {
+        "name": "client/auction/NewAuction.js",
+        "start": 124,
+        "end": 135,
+        "startLoc": {
+          "line": 124,
+          "column": 137,
+          "position": 1374
+        },
+        "endLoc": {
+          "line": 135,
+          "column": 38,
+          "position": 1456
+        }
+      },
+      "secondFile": {
+        "name": "client/shop/NewShop.js",
+        "start": 100,
+        "end": 116,
+        "startLoc": {
+          "line": 100,
+          "column": 124,
+          "position": 957
+        },
+        "endLoc": {
+          "line": 116,
+          "column": 35,
+          "position": 1123
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 10,
+      "fragment": "/> <br/>\n           {\n            values.error && (<Typography component=\"p\" color=\"error\">\n              <Icon color=\"error\" className={classes.error}>error</Icon>\n              {values.error}</Typography>)\n          }\n        </CardContent>\n        <CardActions>\n          <Button color=\"primary\" variant=\"contained\" onClick={clickSubmit} className={classes.submit}>Submit</Button>\n          <Link to='/myauctions'",
+      "tokens": 117,
+      "firstFile": {
+        "name": "client/auction/NewAuction.js",
+        "start": 159,
+        "end": 168,
+        "startLoc": {
+          "line": 159,
+          "column": 16,
+          "position": 1646
+        },
+        "endLoc": {
+          "line": 168,
+          "column": 33,
+          "position": 1763
+        }
+      },
+      "secondFile": {
+        "name": "client/user/Signup.js",
+        "start": 80,
+        "end": 118,
+        "startLoc": {
+          "line": 80,
+          "column": 174,
+          "position": 798
+        },
+        "endLoc": {
+          "line": 118,
+          "column": 35,
+          "position": 1141
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 22,
+      "fragment": "import Auctions from './Auctions'\n\nconst useStyles = makeStyles(theme => ({\n  root: theme.mixins.gutters({\n    maxWidth: 600,\n    margin: 'auto',\n    padding: theme.spacing(3),\n    marginTop: theme.spacing(5)\n  }),\n  title: {\n    margin: `${theme.spacing(3)}px 0 ${theme.spacing(3)}px ${theme.spacing(1)}px` ,\n    color: theme.palette.protectedTitle,\n    fontSize: '1.2em'\n  },\n  addButton:{\n    float:'right'\n  },\n  leftIcon: {\n    marginRight: \"8px\"\n  }\n}))\nexport default function MyAuctions",
+      "tokens": 179,
+      "firstFile": {
+        "name": "client/auction/MyAuctions.js",
+        "start": 10,
+        "end": 31,
+        "startLoc": {
+          "line": 10,
+          "column": 1,
+          "position": 91
+        },
+        "endLoc": {
+          "line": 31,
+          "column": 35,
+          "position": 270
+        }
+      },
+      "secondFile": {
+        "name": "client/auction/OpenAuctions.js",
+        "start": 6,
+        "end": 41,
+        "startLoc": {
+          "line": 6,
+          "column": 1,
+          "position": 54
+        },
+        "endLoc": {
+          "line": 41,
+          "column": 32,
+          "position": 343
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 20,
+      "fragment": "}, {t: jwt.token}, signal).then((data) => {\n      if (data.error) {\n        setRedirectToSignin(true)\n      } else {\n        setAuctions(data)\n      }\n    })\n    return function cleanup(){\n      abortController.abort()\n    }\n  }, [])\n\n  const removeAuction = (auction) => {\n    const updatedAuctions = [...auctions]\n    const index = updatedAuctions.indexOf(auction)\n    updatedAuctions.splice(index, 1)\n    setAuctions(updatedAuctions)\n  }\n\n    if",
+      "tokens": 155,
+      "firstFile": {
+        "name": "client/auction/MyAuctions.js",
+        "start": 42,
+        "end": 61,
+        "startLoc": {
+          "line": 42,
+          "column": 5,
+          "position": 385
+        },
+        "endLoc": {
+          "line": 61,
+          "column": 7,
+          "position": 540
+        }
+      },
+      "secondFile": {
+        "name": "client/user/Profile.js",
+        "start": 65,
+        "end": 84,
+        "startLoc": {
+          "line": 65,
+          "column": 5,
+          "position": 562
+        },
+        "endLoc": {
+          "line": 84,
+          "column": 12,
+          "position": 717
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 11,
+      "fragment": ")\n  }\n\n    if (redirectToSignin) {\n      return <Redirect to='/signin'/>\n    }\n    return (\n    <div>\n      <Paper className={classes.root} elevation={4}>\n        <Typography type=\"title\" className={classes.title}>\n          Your Auctions",
+      "tokens": 79,
+      "firstFile": {
+        "name": "client/auction/MyAuctions.js",
+        "start": 58,
+        "end": 68,
+        "startLoc": {
+          "line": 58,
+          "column": 32,
+          "position": 533
+        },
+        "endLoc": {
+          "line": 68,
+          "column": 24,
+          "position": 612
+        }
+      },
+      "secondFile": {
+        "name": "client/shop/MyShops.js",
+        "start": 68,
+        "end": 78,
+        "startLoc": {
+          "line": 68,
+          "column": 26,
+          "position": 606
+        },
+        "endLoc": {
+          "line": 78,
+          "column": 21,
+          "position": 685
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 46,
+      "fragment": "const useStyles = makeStyles(theme => ({\n  root: {\n    flexGrow: 1,\n    margin: 30,\n  },\n  card: {\n    textAlign: 'center',\n    paddingBottom: theme.spacing(2)\n  },\n  title: {\n    margin: theme.spacing(2),\n    color: theme.palette.protectedTitle,\n    fontSize: '1.2em'\n  },\n  subheading: {\n    marginTop: theme.spacing(2),\n    color: theme.palette.openTitle\n  },\n  error: {\n    verticalAlign: 'middle'\n  },\n  textField: {\n    marginLeft: theme.spacing(1),\n    marginRight: theme.spacing(1),\n    width: 400\n  },\n  submit: {\n    margin: 'auto',\n    marginBottom: theme.spacing(2)\n  },\n  bigAvatar: {\n    width: 60,\n    height: 60,\n    margin: 'auto'\n  },\n  input: {\n    display: 'none'\n  },\n  filename:{\n    marginLeft:'10px'\n  }\n}))\n\nexport default function EditShop ({match}) {\n  const classes = useStyles()\n  const [auction",
+      "tokens": 317,
+      "firstFile": {
+        "name": "client/auction/EditAuction.js",
+        "start": 16,
+        "end": 61,
+        "startLoc": {
+          "line": 16,
+          "column": 1,
+          "position": 132
+        },
+        "endLoc": {
+          "line": 61,
+          "column": 17,
+          "position": 449
+        }
+      },
+      "secondFile": {
+        "name": "client/shop/Shop.js",
+        "start": 12,
+        "end": 63,
+        "startLoc": {
+          "line": 12,
+          "column": 1,
+          "position": 97
+        },
+        "endLoc": {
+          "line": 63,
+          "column": 16,
+          "position": 465
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 7,
+      "fragment": "</Typography>\n              <br/>\n              <Avatar src={logoUrl} className={classes.bigAvatar}/><br/>\n              <input accept=\"image/*\" onChange={handleChange('image')} className={classes.input} id=\"icon-button-file\" type=\"file\" />\n              <label htmlFor=\"icon-button-file\">\n                <Button variant=\"contained\" color=\"default\" component=\"span\">\n                  Change Image",
+      "tokens": 100,
+      "firstFile": {
+        "name": "client/auction/EditAuction.js",
+        "start": 143,
+        "end": 149,
+        "startLoc": {
+          "line": 143,
+          "column": 15,
+          "position": 1432
+        },
+        "endLoc": {
+          "line": 149,
+          "column": 31,
+          "position": 1532
+        }
+      },
+      "secondFile": {
+        "name": "client/shop/EditShop.js",
+        "start": 126,
+        "end": 132,
+        "startLoc": {
+          "line": 126,
+          "column": 15,
+          "position": 1140
+        },
+        "endLoc": {
+          "line": 132,
+          "column": 30,
+          "position": 1240
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 9,
+      "fragment": "error}\n                  </Typography>)\n              }\n            </CardContent>\n            <CardActions>\n              <Button color=\"primary\" variant=\"contained\" onClick={clickSubmit} className={classes.submit}>Update</Button>\n            </CardActions>\n          </Card>\n    </div",
+      "tokens": 71,
+      "firstFile": {
+        "name": "client/auction/EditAuction.js",
+        "start": 192,
+        "end": 200,
+        "startLoc": {
+          "line": 192,
+          "column": 22,
+          "position": 1952
+        },
+        "endLoc": {
+          "line": 200,
+          "column": 10,
+          "position": 2023
+        }
+      },
+      "secondFile": {
+        "name": "client/shop/EditShop.js",
+        "start": 153,
+        "end": 161,
+        "startLoc": {
+          "line": 153,
+          "column": 29,
+          "position": 1497
+        },
+        "endLoc": {
+          "line": 161,
+          "column": 17,
+          "position": 1568
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 14,
+      "fragment": ")\n      }\n    })\n  }\n  const handleRequestClose = () => {\n    setOpen(false)\n  }\n    return (<span>\n      <IconButton aria-label=\"Delete\" onClick={clickButton} color=\"secondary\">\n        <DeleteIcon/>\n      </IconButton>\n\n      <Dialog open={open} onClose={handleRequestClose}>\n        <DialogTitle>{\"Delete \"+props.auction",
+      "tokens": 103,
+      "firstFile": {
+        "name": "client/auction/DeleteAuction.js",
+        "start": 29,
+        "end": 42,
+        "startLoc": {
+          "line": 29,
+          "column": 37,
+          "position": 267
+        },
+        "endLoc": {
+          "line": 42,
+          "column": 46,
+          "position": 370
+        }
+      },
+      "secondFile": {
+        "name": "client/shop/DeleteShop.js",
+        "start": 29,
+        "end": 42,
+        "startLoc": {
+          "line": 29,
+          "column": 34,
+          "position": 267
+        },
+        "endLoc": {
+          "line": 42,
+          "column": 43,
+          "position": 370
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 19,
+      "fragment": "const calculateTimeLeft = (date) => {\n  const difference = date - new Date()\n  let timeLeft = {}\n\n  if (difference > 0) {\n    timeLeft = {\n      days: Math.floor(difference / (1000 * 60 * 60 * 24)),\n      hours: Math.floor((difference / (1000 * 60 * 60)) % 24),\n      minutes: Math.floor((difference / 1000 / 60) % 60),\n      seconds: Math.floor((difference / 1000) % 60),\n      timeEnd: false\n    }\n  } else {\n      timeLeft = {timeEnd: true}\n  }\n  return timeLeft\n}\n\nexport default function Auctions",
+      "tokens": 217,
+      "firstFile": {
+        "name": "client/auction/Auctions.js",
+        "start": 17,
+        "end": 35,
+        "startLoc": {
+          "line": 17,
+          "column": 1,
+          "position": 123
+        },
+        "endLoc": {
+          "line": 35,
+          "column": 33,
+          "position": 340
+        }
+      },
+      "secondFile": {
+        "name": "client/auction/Timer.js",
+        "start": 17,
+        "end": 34,
+        "startLoc": {
+          "line": 17,
+          "column": 1,
+          "position": 113
+        },
+        "endLoc": {
+          "line": 34,
+          "column": 30,
+          "position": 330
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 6,
+      "fragment": ">\n      {timeLeft.days != 0 && `${timeLeft.days} d `} \n      {timeLeft.hours != 0 && `${timeLeft.hours} h `} \n      {timeLeft.minutes != 0 && `${timeLeft.minutes} m `} \n      {timeLeft.seconds != 0 && `${timeLeft.seconds} s`} left\n    </",
+      "tokens": 93,
+      "firstFile": {
+        "name": "client/auction/Auctions.js",
+        "start": 39,
+        "end": 44,
+        "startLoc": {
+          "line": 39,
+          "column": 38,
+          "position": 398
+        },
+        "endLoc": {
+          "line": 44,
+          "column": 7,
+          "position": 491
+        }
+      },
+      "secondFile": {
+        "name": "client/auction/Timer.js",
+        "start": 52,
+        "end": 56,
+        "startLoc": {
+          "line": 52,
+          "column": 68,
+          "position": 516
+        },
+        "endLoc": {
+          "line": 56,
+          "column": 78,
+          "position": 608
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 11,
+      "fragment": ")\n\n    useEffect(() => {\n      const abortController = new AbortController()\n      const signal = abortController.signal\n  \n      read({auctionId: match.params.auctionId}, signal).then((data) => {\n        if (data.error) {\n          setError(data.error)\n        } else {\n          setAuction",
+      "tokens": 94,
+      "firstFile": {
+        "name": "client/auction/Auction.js",
+        "start": 72,
+        "end": 82,
+        "startLoc": {
+          "line": 72,
+          "column": 51,
+          "position": 507
+        },
+        "endLoc": {
+          "line": 82,
+          "column": 21,
+          "position": 601
+        }
+      },
+      "secondFile": {
+        "name": "client/auction/EditAuction.js",
+        "start": 80,
+        "end": 90,
+        "startLoc": {
+          "line": 80,
+          "column": 36,
+          "position": 797
+        },
+        "endLoc": {
+          "line": 90,
+          "column": 13,
+          "position": 892
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 12,
+      "fragment": ", req.fields, req.files)\n    res.json(result)\n  }catch (err){\n    return res.status(400).json({\n      error: errorHandler.getErrorMessage(err)\n    })\n  }\n}\n\nconst remove = async (req, res) => {\n  try{\n    let deletedProduct",
+      "tokens": 90,
+      "firstFile": {
+        "name": "server/controllers/product.controller.js",
+        "start": 33,
+        "end": 44,
+        "startLoc": {
+          "line": 33,
+          "column": 57,
+          "position": 363
+        },
+        "endLoc": {
+          "line": 44,
+          "column": 23,
+          "position": 453
+        }
+      },
+      "secondFile": {
+        "name": "server/controllers/shop.controller.js",
+        "start": 27,
+        "end": 38,
+        "startLoc": {
+          "line": 27,
+          "column": 51,
+          "position": 303
+        },
+        "endLoc": {
+          "line": 38,
+          "column": 20,
+          "position": 394
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 10,
+      "fragment": ".create(req.fields, req.profile, req.files)\n    res.status(200).json(result)\n  }catch (err){\n    return res.status(400).json({\n      error: errorHandler.getErrorMessage(err)\n    })\n  }\n}\n\nconst auctionByID",
+      "tokens": 77,
+      "firstFile": {
+        "name": "server/controllers/auction.controller.js",
+        "start": 9,
+        "end": 18,
+        "startLoc": {
+          "line": 9,
+          "column": 38,
+          "position": 96
+        },
+        "endLoc": {
+          "line": 18,
+          "column": 18,
+          "position": 173
+        }
+      },
+      "secondFile": {
+        "name": "server/controllers/shop.controller.js",
+        "start": 9,
+        "end": 18,
+        "startLoc": {
+          "line": 9,
+          "column": 35,
+          "position": 96
+        },
+        "endLoc": {
+          "line": 18,
+          "column": 15,
+          "position": 173
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 12,
+      "fragment": ", req.fields, req.files)\n    res.json(result)\n  }catch (err){\n    return res.status(400).json({\n      error: errorHandler.getErrorMessage(err)\n    })\n  }\n}\n\nconst remove = async (req, res) => {\n  try {\n    let deletedAuction",
+      "tokens": 91,
+      "firstFile": {
+        "name": "server/controllers/auction.controller.js",
+        "start": 27,
+        "end": 38,
+        "startLoc": {
+          "line": 27,
+          "column": 57,
+          "position": 303
+        },
+        "endLoc": {
+          "line": 38,
+          "column": 23,
+          "position": 394
+        }
+      },
+      "secondFile": {
+        "name": "server/controllers/shop.controller.js",
+        "start": 27,
+        "end": 38,
+        "startLoc": {
+          "line": 27,
+          "column": 51,
+          "position": 303
+        },
+        "endLoc": {
+          "line": 38,
+          "column": 20,
+          "position": 394
+        }
+      }
+    }
+  ]
+}

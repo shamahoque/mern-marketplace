@@ -1,0 +1,318 @@
+{
+  "../client/MainRouter.js": [
+    "../client/auction/Auction.js",
+    "../client/auction/EditAuction.js",
+    "../client/auction/MyAuctions.js",
+    "../client/auction/NewAuction.js",
+    "../client/auction/OpenAuctions.js",
+    "../client/auth/PrivateRoute.js",
+    "../client/auth/Signin.js",
+    "../client/cart/Cart.js",
+    "../client/core/Home.js",
+    "../client/core/Menu.js",
+    "../client/order/Order.js",
+    "../client/order/ShopOrders.js",
+    "../client/product/EditProduct.js",
+    "../client/product/NewProduct.js",
+    "../client/product/Product.js",
+    "../client/shop/EditShop.js",
+    "../client/shop/MyShops.js",
+    "../client/shop/NewShop.js",
+    "../client/shop/Shop.js",
+    "../client/shop/Shops.js",
+    "../client/user/EditProfile.js",
+    "../client/user/Profile.js",
+    "../client/user/Signup.js",
+    "../client/user/StripeConnect.js",
+    "../client/user/Users.js"
+  ],
+  "../client/assets/images/default.png": [],
+  "../client/assets/images/stripeButton.png": [],
+  "../client/auction/Auction.js": [
+    "../client/auction/Bidding.js",
+    "../client/auction/Timer.js",
+    "../client/auction/api-auction.js",
+    "../client/auth/auth-helper.js"
+  ],
+  "../client/auction/Auctions.js": [
+    "../client/auction/DeleteAuction.js",
+    "../client/auth/auth-helper.js"
+  ],
+  "../client/auction/Bidding.js": [
+    "../client/auth/auth-helper.js"
+  ],
+  "../client/auction/DeleteAuction.js": [
+    "../client/auction/api-auction.js",
+    "../client/auth/auth-helper.js"
+  ],
+  "../client/auction/EditAuction.js": [
+    "../client/auction/api-auction.js",
+    "../client/auth/auth-helper.js"
+  ],
+  "../client/auction/MyAuctions.js": [
+    "../client/auction/Auctions.js",
+    "../client/auction/api-auction.js",
+    "../client/auth/auth-helper.js"
+  ],
+  "../client/auction/NewAuction.js": [
+    "../client/auction/api-auction.js",
+    "../client/auth/auth-helper.js"
+  ],
+  "../client/auction/OpenAuctions.js": [
+    "../client/auction/Auctions.js",
+    "../client/auction/api-auction.js"
+  ],
+  "../client/auction/Timer.js": [],
+  "../client/auction/api-auction.js": [],
+  "../client/auth/PrivateRoute.js": [
+    "../client/auth/auth-helper.js"
+  ],
+  "../client/auth/Signin.js": [
+    "../client/auth/api-auth.js",
+    "../client/auth/auth-helper.js"
+  ],
+  "../client/auth/api-auth.js": [],
+  "../client/auth/auth-helper.js": [
+    "../client/auth/api-auth.js"
+  ],
+  "../client/cart/AddToCart.js": [
+    "../client/cart/cart-helper.js"
+  ],
+  "../client/cart/Cart.js": [
+    "../client/cart/CartItems.js",
+    "../client/cart/Checkout.js",
+    "../config/config.js"
+  ],
+  "../client/cart/CartItems.js": [
+    "../client/auth/auth-helper.js",
+    "../client/cart/cart-helper.js"
+  ],
+  "../client/cart/Checkout.js": [
+    "../client/auth/auth-helper.js",
+    "../client/cart/PlaceOrder.js",
+    "../client/cart/cart-helper.js"
+  ],
+  "../client/cart/PlaceOrder.js": [
+    "../client/auth/auth-helper.js",
+    "../client/cart/cart-helper.js",
+    "../client/order/api-order.js"
+  ],
+  "../client/cart/cart-helper.js": [],
+  "../client/core/Home.js": [
+    "../client/product/Categories.js",
+    "../client/product/Search.js",
+    "../client/product/Suggestions.js",
+    "../client/product/api-product.js"
+  ],
+  "../client/core/Menu.js": [
+    "../client/auth/auth-helper.js",
+    "../client/cart/cart-helper.js"
+  ],
+  "../client/order/MyOrders.js": [
+    "../client/auth/auth-helper.js",
+    "../client/order/api-order.js"
+  ],
+  "../client/order/Order.js": [
+    "../client/order/api-order.js"
+  ],
+  "../client/order/ProductOrderEdit.js": [
+    "../client/auth/auth-helper.js",
+    "../client/order/api-order.js"
+  ],
+  "../client/order/ShopOrders.js": [
+    "../client/auth/auth-helper.js",
+    "../client/order/ProductOrderEdit.js",
+    "../client/order/api-order.js"
+  ],
+  "../client/order/api-order.js": [],
+  "../client/product/Categories.js": [
+    "../client/product/Products.js",
+    "../client/product/api-product.js"
+  ],
+  "../client/product/DeleteProduct.js": [
+    "../client/auth/auth-helper.js",
+    "../client/product/api-product.js"
+  ],
+  "../client/product/EditProduct.js": [
+    "../client/auth/auth-helper.js",
+    "../client/product/api-product.js"
+  ],
+  "../client/product/MyProducts.js": [
+    "../client/product/DeleteProduct.js",
+    "../client/product/api-product.js"
+  ],
+  "../client/product/NewProduct.js": [
+    "../client/auth/auth-helper.js",
+    "../client/product/api-product.js"
+  ],
+  "../client/product/Product.js": [
+    "../client/cart/AddToCart.js",
+    "../client/product/Suggestions.js",
+    "../client/product/api-product.js"
+  ],
+  "../client/product/Products.js": [
+    "../client/cart/AddToCart.js"
+  ],
+  "../client/product/Search.js": [
+    "../client/product/Products.js",
+    "../client/product/api-product.js"
+  ],
+  "../client/product/Suggestions.js": [
+    "../client/cart/AddToCart.js"
+  ],
+  "../client/product/api-product.js": [],
+  "../client/shop/DeleteShop.js": [
+    "../client/auth/auth-helper.js",
+    "../client/shop/api-shop.js"
+  ],
+  "../client/shop/EditShop.js": [
+    "../client/auth/auth-helper.js",
+    "../client/product/MyProducts.js",
+    "../client/shop/api-shop.js"
+  ],
+  "../client/shop/MyShops.js": [
+    "../client/auth/auth-helper.js",
+    "../client/shop/DeleteShop.js",
+    "../client/shop/api-shop.js"
+  ],
+  "../client/shop/NewShop.js": [
+    "../client/auth/auth-helper.js",
+    "../client/shop/api-shop.js"
+  ],
+  "../client/shop/Shop.js": [
+    "../client/product/Products.js",
+    "../client/product/api-product.js",
+    "../client/shop/api-shop.js"
+  ],
+  "../client/shop/Shops.js": [
+    "../client/shop/api-shop.js"
+  ],
+  "../client/shop/api-shop.js": [],
+  "../client/theme.js": [],
+  "../client/user/DeleteUser.js": [
+    "../client/auth/auth-helper.js",
+    "../client/user/api-user.js"
+  ],
+  "../client/user/EditProfile.js": [
+    "../client/auth/auth-helper.js",
+    "../client/user/api-user.js"
+  ],
+  "../client/user/Profile.js": [
+    "../client/assets/images/stripeButton.png",
+    "../client/auction/Auctions.js",
+    "../client/auction/api-auction.js",
+    "../client/auth/auth-helper.js",
+    "../client/order/MyOrders.js",
+    "../client/user/DeleteUser.js",
+    "../client/user/api-user.js",
+    "../config/config.js"
+  ],
+  "../client/user/Signup.js": [
+    "../client/user/api-user.js"
+  ],
+  "../client/user/StripeConnect.js": [
+    "../client/auth/auth-helper.js",
+    "../client/user/api-user.js"
+  ],
+  "../client/user/Users.js": [
+    "../client/user/api-user.js"
+  ],
+  "../client/user/api-user.js": [],
+  "../config/config.js": [],
+  "../template.js": [],
+  "../webpack.config.client.js": [],
+  "controllers/auction.controller.js": [
+    "../client/assets/images/default.png",
+    "helpers/dbErrorHandler.js",
+    "models/auction.model.js"
+  ],
+  "controllers/auth.controller.js": [
+    "../config/config.js",
+    "models/user.model.js"
+  ],
+  "controllers/bidding.controller.js": [
+    "models/auction.model.js"
+  ],
+  "controllers/order.controller.js": [
+    "helpers/dbErrorHandler.js",
+    "models/order.model.js"
+  ],
+  "controllers/product.controller.js": [
+    "../client/assets/images/default.png",
+    "helpers/dbErrorHandler.js",
+    "models/product.model.js"
+  ],
+  "controllers/shop.controller.js": [
+    "../client/assets/images/default.png",
+    "helpers/dbErrorHandler.js",
+    "models/shop.model.js"
+  ],
+  "controllers/user.controller.js": [
+    "../config/config.js",
+    "helpers/dbErrorHandler.js",
+    "models/user.model.js"
+  ],
+  "devBundle.js": [
+    "../config/config.js",
+    "../webpack.config.client.js"
+  ],
+  "express.js": [
+    "../client/MainRouter.js",
+    "../client/theme.js",
+    "../template.js",
+    "devBundle.js",
+    "express.js",
+    "routes/auction.routes.js",
+    "routes/auth.routes.js",
+    "routes/order.routes.js",
+    "routes/product.routes.js",
+    "routes/shop.routes.js",
+    "routes/user.routes.js"
+  ],
+  "helpers/dbErrorHandler.js": [],
+  "models/auction.model.js": [],
+  "models/order.model.js": [],
+  "models/product.model.js": [],
+  "models/shop.model.js": [],
+  "models/user.model.js": [],
+  "routes/auction.routes.js": [
+    "controllers/auction.controller.js",
+    "controllers/auth.controller.js",
+    "controllers/user.controller.js",
+    "express.js"
+  ],
+  "routes/auth.routes.js": [
+    "controllers/auth.controller.js",
+    "express.js"
+  ],
+  "routes/order.routes.js": [
+    "controllers/auth.controller.js",
+    "controllers/order.controller.js",
+    "controllers/product.controller.js",
+    "controllers/shop.controller.js",
+    "controllers/user.controller.js",
+    "express.js"
+  ],
+  "routes/product.routes.js": [
+    "controllers/auth.controller.js",
+    "controllers/product.controller.js",
+    "controllers/shop.controller.js",
+    "express.js"
+  ],
+  "routes/shop.routes.js": [
+    "controllers/auth.controller.js",
+    "controllers/shop.controller.js",
+    "controllers/user.controller.js",
+    "express.js"
+  ],
+  "routes/user.routes.js": [
+    "controllers/auth.controller.js",
+    "controllers/user.controller.js",
+    "express.js"
+  ],
+  "server.js": [
+    "../config/config.js",
+    "controllers/bidding.controller.js",
+    "express.js"
+  ]
+}

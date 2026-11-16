@@ -1,0 +1,8 @@
+Source: b5295dd
+Command: npm test
+Test Suites: 11 passed, 11 total
+Tests: 88 passed, 88 total
+Snapshots: 0 total
+Time: 12.099 s
+Exit status: 0
+No open-handle warning.
