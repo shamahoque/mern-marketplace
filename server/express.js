@@ -12,6 +12,7 @@ import shopRoutes from './routes/shop.routes'
 import productRoutes from './routes/product.routes'
 import orderRoutes from './routes/order.routes'
 import auctionRoutes from './routes/auction.routes'
+import { errorMiddleware } from './helpers/errors'
 
 // modules for server side rendering
 import React from 'react'
@@ -74,14 +75,6 @@ app.get('*', (req, res) => {
     }))
 })
 
-// Catch unauthorised errors
-app.use((err, req, res, next) => {
-  if (err.name === 'UnauthorizedError') {
-    res.status(401).json({"error" : err.name + ": " + err.message})
-  }else if (err) {
-    res.status(400).json({"error" : err.name + ": " + err.message})
-    console.log(err)
-  }
-})
+app.use(errorMiddleware)
 
 export default app

@@ -3,7 +3,7 @@ import Grid from '@material-ui/core/Grid'
 import {makeStyles} from '@material-ui/core/styles'
 import CartItems from './CartItems'
 import {StripeProvider} from 'react-stripe-elements'
-import config from './../../config/config'
+import config from './../../config/public'
 import Checkout from './Checkout'
 
 const useStyles = makeStyles(theme => ({

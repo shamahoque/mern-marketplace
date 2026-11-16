@@ -114,7 +114,11 @@ const read = async (params, credentials, signal) => {
   try {
     let response = await fetch('/api/order/' + params.orderId, {
       method: 'GET',
-      signal: signal
+      signal: signal,
+      headers: {
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ' + credentials.t
+      }
     })
     return response.json()
   } catch(err) {

@@ -1,3 +1,4 @@
+require('dotenv').config()
 const path = require('path')
 const webpack = require('webpack')
 const CURRENT_WORKING_DIR = process.cwd()
@@ -31,6 +32,10 @@ const config = {
             }
         ]
     },  plugins: [
+          new webpack.DefinePlugin({
+          'process.env.STRIPE_PUBLISHABLE_KEY': JSON.stringify(process.env.STRIPE_PUBLISHABLE_KEY),
+          'process.env.STRIPE_CONNECT_CLIENT_ID': JSON.stringify(process.env.STRIPE_CONNECT_CLIENT_ID)
+      }),
           new webpack.HotModuleReplacementPlugin(),
           new webpack.NoEmitOnErrorsPlugin()
       ]

@@ -1,5 +1,7 @@
 import {Order, CartItem} from '../models/order.model'
+import Shop from '../models/shop.model'
 import errorHandler from './../helpers/dbErrorHandler'
+import { asyncHandler, HttpError } from '../helpers/errors'
 
 const create = async (req, res) => {
   try {
@@ -74,11 +76,20 @@ const listByUser = async (req, res) => {
   }
 }
 
+// D-08: only the buyer, or a seller owning a shop in the order, may read it.
+const isBuyerOrSeller = asyncHandler(async (req, res, next) => {
+  if (String(req.order.user) === req.auth._id) return next()
+  const shopIds = req.order.products.map(item => item.shop && item.shop._id)
+  if (await Shop.exists({ _id: { $in: shopIds }, owner: req.auth._id })) return next()
+  throw new HttpError(403, 'User is not authorized')
+})
+
 const read = (req, res) => {
   return res.json(req.order)
 }
 
 export default {
+  isBuyerOrSeller,
   create,
   listByShop,
   update,

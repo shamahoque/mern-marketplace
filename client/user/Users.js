@@ -13,6 +13,7 @@ import ArrowForward from '@material-ui/icons/ArrowForward'
 import Person from '@material-ui/icons/Person'
 import {Link} from 'react-router-dom'
 import {list} from './api-user.js'
+import auth from './../auth/auth-helper'
 
 const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
@@ -33,7 +34,8 @@ export default function Users() {
     const abortController = new AbortController()
     const signal = abortController.signal
 
-    list(signal).then((data) => {
+    const jwt = auth.isAuthenticated()
+    list({t: jwt.token}, signal).then((data) => {
       if (data && data.error) {
         console.log(data.error)
       } else {

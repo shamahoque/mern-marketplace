@@ -1,11 +1,12 @@
 import express from 'express'
 import userCtrl from '../controllers/user.controller'
 import authCtrl from '../controllers/auth.controller'
+import paymentCtrl from '../controllers/payment.controller'
 
 const router = express.Router()
 
 router.route('/api/users')
-  .get(userCtrl.list)
+  .get(authCtrl.requireSignin, userCtrl.list)
   .post(userCtrl.create)
 
 router.route('/api/users/:userId')
@@ -13,7 +14,7 @@ router.route('/api/users/:userId')
   .put(authCtrl.requireSignin, authCtrl.hasAuthorization, userCtrl.update)
   .delete(authCtrl.requireSignin, authCtrl.hasAuthorization, userCtrl.remove)
 router.route('/api/stripe_auth/:userId')
-  .put(authCtrl.requireSignin, authCtrl.hasAuthorization, userCtrl.stripe_auth, userCtrl.update)
+  .put(authCtrl.requireSignin, authCtrl.hasAuthorization, paymentCtrl.stripeAuth, userCtrl.update)
 
 router.param('userId', userCtrl.userByID)
 
