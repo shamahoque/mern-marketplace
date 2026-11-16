@@ -48,16 +48,12 @@ describe('shop API characterization', () => {
     expect((await Shop.findById(shop._id)).name).toBe('After')
   })
 
-  test('owner deletion responds before the removal promise is serialized', async () => {
+  test('owner deletion returns the deleted shop after removal', async () => {
     const owner = await signedInUser({ seller: true })
     const shop = await Shop.create({ name: 'Remove me', owner: owner.user._id })
     const res = await api().delete(`/api/shops/${shop._id}`).set(bearer(owner.token)).expect(200)
-    // characterization: BUG-1, body is {} because shop.remove() is not awaited
-    expect(res.body).toEqual({})
-    const deadline = Date.now() + 500
-    while (await Shop.exists({ _id: shop._id }) && Date.now() < deadline) {
-      await new Promise(resolve => setTimeout(resolve, 20))
-    }
+    // BUG-1 fixed: the deleted document is returned
+    expect(res.body).toMatchObject({ _id: String(shop._id), name: shop.name })
     expect(await Shop.findById(shop._id)).toBeNull()
   })
 

@@ -93,7 +93,7 @@ const update = (req, res) => {
 const remove = async (req, res) => {
   try {
     let auction = req.auction
-    let deletedAuction = auction.remove()
+    let deletedAuction = await auction.remove()
     res.json(deletedAuction)
   } catch (err) {
     return res.status(400).json({

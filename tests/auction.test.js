@@ -53,14 +53,12 @@ describe('auction APIs', () => {
     expect(denied.body).toEqual({ error: 'User is not authorized' })
   })
 
-  test('delete returns a promise body and eventually removes the auction', async () => {
+  test('delete returns the deleted auction after removal', async () => {
     const seller = await signedInUser({ seller: true })
     const auction = await Auction.create({ ...fields(), seller: seller.user._id })
     const res = await api().delete(`/api/auctions/${auction._id}`).set(bearer(seller.token)).expect(200)
-    // characterization: BUG-1, body is {} because auction.remove() is not awaited
-    expect(res.body).toEqual({})
-    const deadline = Date.now() + 500
-    while (await Auction.findById(auction._id) && Date.now() < deadline) await new Promise(resolve => setTimeout(resolve, 20))
+    // BUG-1 fixed: the deleted document is returned
+    expect(res.body).toMatchObject({ _id: String(auction._id), itemName: auction.itemName })
     expect(await Auction.findById(auction._id)).toBeNull()
   })
 
