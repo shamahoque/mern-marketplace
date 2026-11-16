@@ -5,8 +5,13 @@ import { applyImage } from '../helpers/image'
 
 // The auction service layer grows in D-04.
 const placeBid = (auctionId, bid) => {
+  const amount = Number(bid.bid)
+  if (!Number.isFinite(amount) || amount <= 0) return null
+  bid.bid = amount
+  const now = new Date()
   return Auction.findOneAndUpdate(
-    { _id: auctionId, $or: [{ 'bids.0.bid': { $lt: bid.bid } }, { bids: { $eq: [] } }] },
+    { _id: auctionId, bidStart: { $lte: now }, bidEnd: { $gt: now },
+      $or: [{ 'bids.0.bid': { $lt: amount } }, { bids: { $eq: [] }, startingBid: { $lt: amount } }] },
     { $push: { bids: { $each: [bid], $position: 0 } } },
     { new: true })
     .populate('bids.bidder', '_id name')

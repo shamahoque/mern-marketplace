@@ -1,6 +1,7 @@
 import http from 'http'
 import Auction from '../server/models/auction.model'
 import bidding from '../server/sockets/bidding.socket'
+import auctionService from '../server/services/auction.service'
 import { signedInUser } from './helpers'
 
 const ioClient = jest.requireActual('socket.io-client')
@@ -86,4 +87,54 @@ test('a rejected lower bid notifies only the sender without broadcasting an auct
   expect(await rejected).toEqual({ room, reason: 'Bid must be higher than the current highest bid' })
   await silent
   expect((await Auction.findById(auction._id)).bids).toHaveLength(1)
+})
+
+test.each([
+  ['after the end', -120000, -60000, 11],
+  ['before the start', 60000, 120000, 11],
+  ['equal to the starting bid', -60000, 60000, 10],
+  ['not a number', -60000, 60000, 'abc']
+])('rejects a bid %s without a room update', async (label, startOffset, endOffset, amount) => {
+  const seller = await signedInUser({ seller: true })
+  const bidder = await signedInUser()
+  const now = Date.now()
+  const auction = await Auction.create({ itemName: 'Clock', seller: seller.user._id, startingBid: 10,
+    bidStart: new Date(now + startOffset), bidEnd: new Date(now + endOffset) })
+  const room = String(auction._id)
+  const sender = await connect()
+  const observer = await connect()
+  await join(sender, room)
+  await join(observer, room)
+  const rejected = event(sender, 'bid rejected')
+  const silent = Promise.all([noEvent(sender, 'new bid'), noEvent(observer, 'new bid')])
+  sender.emit('new bid', { room, bidInfo: { bid: amount, bidder: bidder.user._id, time: new Date().toISOString() } })
+  expect(await rejected).toEqual({ room, reason: 'Bid must be higher than the current highest bid' })
+  await silent
+  expect((await Auction.findById(auction._id)).bids).toHaveLength(0)
+})
+
+test('accepts starting bid plus one as a numeric value', async () => {
+  const seller = await signedInUser({ seller: true })
+  const bidder = await signedInUser()
+  const auction = await Auction.create({ itemName: 'Clock', seller: seller.user._id, startingBid: 10,
+    bidStart: new Date(Date.now() - 60000), bidEnd: new Date(Date.now() + 60000) })
+  const room = String(auction._id)
+  const sender = await connect()
+  await join(sender, room)
+  const received = event(sender, 'new bid')
+  sender.emit('new bid', { room, bidInfo: { bid: '11', bidder: bidder.user._id, time: new Date().toISOString() } })
+  expect((await received).bids[0].bid).toBe(11)
+  expect((await Auction.findById(auction._id)).bids[0].bid).toBe(11)
+})
+
+test('invalid amounts are rejected before any database query', () => {
+  const query = jest.spyOn(Auction, 'findOneAndUpdate')
+  try {
+    for (const amount of ['abc', 0, -1, Infinity, NaN]) {
+      expect(auctionService.placeBid('unused', { bid: amount })).toBeNull()
+    }
+    expect(query).not.toHaveBeenCalled()
+  } finally {
+    query.mockRestore()
+  }
 })
