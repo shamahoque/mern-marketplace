@@ -1,6 +1,7 @@
 import { requireOwner } from '../middleware/ownership'
 import shopService from '../services/shop.service'
 import errorHandler from './../helpers/dbErrorHandler'
+import { asyncHandler, HttpError } from '../helpers/errors'
 import { photoHandler, defaultPhoto, readWithoutImage } from '../helpers/image'
 
 const create = async (req, res) => {
@@ -14,21 +15,12 @@ const create = async (req, res) => {
   }
 }
 
-const shopByID = async (req, res, next, id) => {
-  try {
-    let shop = await shopService.getById(id)
-    if (!shop)
-      return res.status('400').json({
-        error: "Shop not found"
-      })
-    req.shop = shop
-    next()
-  } catch (err) {
-    return res.status('400').json({
-      error: "Could not retrieve shop"
-    })
-  }
-}
+const shopByID = asyncHandler(async (req, res, next, id) => {
+  const shop = await shopService.getById(id)
+  if (!shop) throw new HttpError(400, 'Shop not found')
+  req.shop = shop
+  next()
+}, new HttpError(400, 'Could not retrieve shop'))
 
 const update = async (req, res) => {
   try {

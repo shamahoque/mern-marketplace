@@ -39,21 +39,12 @@ const getStatusValues = (req, res) => {
   res.json(orderService.statusValues())
 }
 
-const orderByID = async (req, res, next, id) => {
-  try {
-    let order = await orderService.getById(id)
-    if (!order)
-      return res.status('400').json({
-        error: "Order not found"
-      })
-    req.order = order
-    next()
-  } catch (err){
-    return res.status(400).json({
-      error: errorHandler.getErrorMessage(err)
-    })
-  }
-}
+const orderByID = asyncHandler(async (req, res, next, id) => {
+  const order = await orderService.getById(id)
+  if (!order) throw new HttpError(400, 'Order not found')
+  req.order = order
+  next()
+})
 
 const listByUser = async (req, res) => {
   try{

@@ -1,6 +1,7 @@
 import { requireOwner } from '../middleware/ownership'
 import auctionService from '../services/auction.service'
 import errorHandler from '../helpers/dbErrorHandler'
+import { asyncHandler, HttpError } from '../helpers/errors'
 import { photoHandler, defaultPhoto, readWithoutImage } from '../helpers/image'
 
 const create = async (req, res) => {
@@ -14,21 +15,12 @@ const create = async (req, res) => {
   }
 }
 
-const auctionByID = async (req, res, next, id) => {
-  try {
-    let auction = await auctionService.getById(id)
-    if (!auction)
-      return res.status('400').json({
-        error: "Auction not found"
-      })
-    req.auction = auction
-    next()
-  } catch (err) {
-    return res.status('400').json({
-      error: "Could not retrieve auction"
-    })
-  }
-}
+const auctionByID = asyncHandler(async (req, res, next, id) => {
+  const auction = await auctionService.getById(id)
+  if (!auction) throw new HttpError(400, 'Auction not found')
+  req.auction = auction
+  next()
+}, new HttpError(400, 'Could not retrieve auction'))
 
 const update = async (req, res) => {
   try {

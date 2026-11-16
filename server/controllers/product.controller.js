@@ -1,5 +1,6 @@
 import productService from '../services/product.service'
 import errorHandler from './../helpers/dbErrorHandler'
+import { asyncHandler, HttpError } from '../helpers/errors'
 import { photoHandler, defaultPhoto, readWithoutImage } from '../helpers/image'
 
 const create = async (req, res) => {
@@ -13,21 +14,12 @@ const create = async (req, res) => {
   }
 }
 
-const productByID = async (req, res, next, id) => {
-  try {
-    let product = await productService.getById(id)
-    if (!product)
-      return res.status('400').json({
-        error: "Product not found"
-      })
-    req.product = product
-    next()
-  } catch (err) {
-    return res.status('400').json({
-      error: "Could not retrieve product"
-    })
-  }
-}
+const productByID = asyncHandler(async (req, res, next, id) => {
+  const product = await productService.getById(id)
+  if (!product) throw new HttpError(400, 'Product not found')
+  req.product = product
+  next()
+}, new HttpError(400, 'Could not retrieve product'))
 
 const update = async (req, res) => {
   try {
@@ -107,16 +99,10 @@ const list = async (req, res) => {
   }
 }
 
-const decreaseQuantity = async (req, res, next) => {
-   try {
-     await productService.decreaseStock(req.body.order.products)
-     next()
-   } catch (err){
-      return res.status(400).json({
-        error: "Could not update product"
-      })
-   }
-}
+const decreaseQuantity = asyncHandler(async (req, res, next) => {
+  await productService.decreaseStock(req.body.order.products)
+  next()
+}, new HttpError(400, 'Could not update product'))
 
 const increaseQuantity = async (req, res, next) => {
   try {
