@@ -11,12 +11,18 @@ export default (server) => {
       socket.leave(data.room)
     })
     socket.on('new bid', data => {
-      bid(data.bidInfo, data.room)
+      bid(data.bidInfo, data.room, socket)
     })
   })
-  const bid = async (bid, auction) => {
+  const bid = async (bid, auction, socket) => {
     try {
       let result = await auctionService.placeBid(auction, bid)
+      if (result === null) {
+        return socket.emit('bid rejected', {
+          room: auction,
+          reason: 'Bid must be higher than the current highest bid'
+        })
+      }
       io
         .to(auction)
         .emit('new bid', result)

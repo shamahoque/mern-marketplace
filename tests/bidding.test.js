@@ -69,7 +69,7 @@ test('room subscribers receive increasing populated bids, while a departed clien
   await silent
 })
 
-test('a rejected lower bid broadcasts null to both room subscribers', async () => {
+test('a rejected lower bid notifies only the sender without broadcasting an auction', async () => {
   const seller = await signedInUser({ seller: true })
   const bidder = await signedInUser()
   const auction = await Auction.create({ itemName: 'Clock', seller: seller.user._id, bidEnd: new Date(Date.now() + 600000),
@@ -79,9 +79,11 @@ test('a rejected lower bid broadcasts null to both room subscribers', async () =
   const second = await connect()
   await join(first, room)
   await join(second, room)
-  const received = Promise.all([event(first, 'new bid'), event(second, 'new bid')])
+  const rejected = event(first, 'bid rejected')
+  const silent = Promise.all([noEvent(first, 'new bid'), noEvent(second, 'new bid'), noEvent(second, 'bid rejected')])
   first.emit('new bid', { room, bidInfo: { bid: 19, time: new Date().toISOString(), bidder: bidder.user._id } })
-  // characterization: BUG-4, null is broadcast for a rejected bid.
-  expect(await received).toEqual([null, null])
+  // BUG-4 fixed: rejected bids never replace the room's auction with null.
+  expect(await rejected).toEqual({ room, reason: 'Bid must be higher than the current highest bid' })
+  await silent
   expect((await Auction.findById(auction._id)).bids).toHaveLength(1)
 })
