@@ -14,7 +14,7 @@ router.route('/api/orders/shop/:shopId')
   .get(authCtrl.requireSignin, shopCtrl.isOwner, orderCtrl.listByShop)
 
 router.route('/api/orders/user/:userId')
-  .get(authCtrl.requireSignin, orderCtrl.listByUser)
+  .get(authCtrl.requireSignin, authCtrl.hasAuthorization, orderCtrl.listByUser)
 
 router.route('/api/order/status_values')
   .get(orderCtrl.getStatusValues)
