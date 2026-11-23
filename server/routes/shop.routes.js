@@ -2,6 +2,7 @@ import express from 'express'
 import userCtrl from '../controllers/user.controller'
 import authCtrl from '../controllers/auth.controller'
 import shopCtrl from '../controllers/shop.controller'
+import { parseMultipart } from '../middleware/upload'
 
 const router = express.Router()
 
@@ -12,11 +13,11 @@ router.route('/api/shop/:shopId')
   .get(shopCtrl.read)
 
 router.route('/api/shops/by/:userId')
-  .post(authCtrl.requireSignin, authCtrl.hasAuthorization, userCtrl.isSeller, shopCtrl.create)
+  .post(authCtrl.requireSignin, authCtrl.hasAuthorization, userCtrl.isSeller, parseMultipart('Image could not be uploaded'), shopCtrl.create)
   .get(authCtrl.requireSignin, authCtrl.hasAuthorization, shopCtrl.listByOwner)
 
 router.route('/api/shops/:shopId')
-  .put(authCtrl.requireSignin, shopCtrl.isOwner, shopCtrl.update)
+  .put(authCtrl.requireSignin, shopCtrl.isOwner, parseMultipart('Photo could not be uploaded'), shopCtrl.update)
   .delete(authCtrl.requireSignin, shopCtrl.isOwner, shopCtrl.remove)
 
 router.route('/api/shops/logo/:shopId')

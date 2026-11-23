@@ -21,7 +21,7 @@ router.route('/api/order/status_values')
   .get(orderCtrl.getStatusValues)
 
 router.route('/api/order/:shopId/cancel/:productId')
-  .put(authCtrl.requireSignin, shopCtrl.isOwner, productCtrl.increaseQuantity, orderCtrl.update)
+  .put(authCtrl.requireSignin, shopCtrl.isOwner, productCtrl.productBelongsToShop, productCtrl.increaseQuantity, orderCtrl.update)
 
 router.route('/api/order/:orderId/charge/:userId/:shopId')
   .put(authCtrl.requireSignin, shopCtrl.isOwner, paymentCtrl.createCharge, orderCtrl.update)

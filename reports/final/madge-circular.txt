@@ -1,0 +1,10 @@
+Processed 91 files (356ms) 
+
+1) express.js
+2) express.js > routes/auction.routes.js
+3) express.js > routes/auth.routes.js
+4) express.js > routes/order.routes.js
+5) express.js > routes/product.routes.js
+6) express.js > routes/shop.routes.js
+7) express.js > routes/user.routes.js
+
