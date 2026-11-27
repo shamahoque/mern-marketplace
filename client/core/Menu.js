@@ -10,21 +10,15 @@ import {Link, withRouter} from 'react-router-dom'
 import CartIcon from '@material-ui/icons/ShoppingCart'
 import Badge from '@material-ui/core/Badge'
 import cart from './../cart/cart-helper'
+import {useTheme} from '@material-ui/core/styles'
 
-const isActive = (history, path) => {
-  if (history.location.pathname == path)
-    return {color: '#bef67a'}
-  else
-    return {color: '#ffffff'}
-}
-const isPartActive = (history, path) => {
-  if (history.location.pathname.includes(path))
-    return {color: '#bef67a'}
-  else
-    return {color: '#ffffff'}
-}
 const Menu = withRouter(({history}) => {
   const {jwt, signout} = useAuth()
+  // Link colours come from the theme (D-13); one rule now covers both checks.
+  const {navigation} = useTheme().palette
+  const linkColor = active => ({color: active ? navigation.active : navigation.inactive})
+  const isActive = (history, path) => linkColor(history.location.pathname == path)
+  const isPartActive = (history, path) => linkColor(history.location.pathname.includes(path))
   return (
   <AppBar position="static">
     <Toolbar>

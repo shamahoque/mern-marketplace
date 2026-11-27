@@ -8,32 +8,20 @@ import Typography from '@material-ui/core/Typography'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Switch from '@material-ui/core/Switch'
 import { makeStyles } from '@material-ui/core/styles'
+import {submitButton, textField, formCard} from './../styles/form-styles'
 import {useAuth} from './../auth/AuthContext'
 import {read, update} from './api-user.js'
 import {Redirect} from 'react-router-dom'
 import FormError from './../components/FormError'
 
 const useStyles = makeStyles(theme => ({
-  card: {
-    maxWidth: 600,
-    margin: 'auto',
-    textAlign: 'center',
-    marginTop: theme.spacing(5),
-    paddingBottom: theme.spacing(2)
-  },
+  card: formCard(theme),
   title: {
     margin: theme.spacing(2),
     color: theme.palette.protectedTitle
   },
-  textField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: 300
-  },
-  submit: {
-    margin: 'auto',
-    marginBottom: theme.spacing(2)
-  },
+  textField: textField(theme, 300),
+  submit: submitButton(theme),
   subheading: {
     marginTop: theme.spacing(2),
     color: theme.palette.openTitle

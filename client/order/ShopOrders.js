@@ -33,7 +33,7 @@ const useStyles = makeStyles(theme => ({
   customerDetails: {
     paddingLeft: '36px',
     paddingTop: '16px',
-    backgroundColor:'#f8f8f8'
+    backgroundColor:theme.palette.marketplace.panelBackground
   }
 }))
 export default function ShopOrders({match}) {

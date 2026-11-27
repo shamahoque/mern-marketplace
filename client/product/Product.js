@@ -30,9 +30,9 @@ const useStyles = makeStyles(theme => ({
     padding: '16px',
     margin: '16px 0px',
     display: 'flex',
-    backgroundColor: '#93c5ae3d',
+    backgroundColor: theme.palette.marketplace.priceBackground,
     fontSize: '1.3em',
-    color: '#375a53',
+    color: theme.palette.marketplace.priceText,
   },
   media: {
     height: 200,

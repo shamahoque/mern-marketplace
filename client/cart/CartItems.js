@@ -38,7 +38,7 @@ const useStyles = makeStyles(theme => ({
     marginBottom: '5px'
   },
   subheading: {
-    color: 'rgba(88, 114, 128, 0.67)',
+    color: theme.palette.marketplace.subheadingLight,
     padding: '8px 10px 0',
     cursor: 'pointer',
     display: 'inline-block'
@@ -65,7 +65,7 @@ const useStyles = makeStyles(theme => ({
     float: 'right',
     marginRight: '40px',
     fontSize: '1.5em',
-    color: 'rgb(72, 175, 148)'
+    color: theme.palette.marketplace.amount
   },
   checkout: {
     float: 'right',
@@ -73,7 +73,7 @@ const useStyles = makeStyles(theme => ({
   },
   total: {
     fontSize: '1.2em',
-    color: 'rgb(53, 97, 85)',
+    color: theme.palette.marketplace.total,
     marginRight: '16px',
     fontWeight: '600',
     verticalAlign: 'bottom'
@@ -84,7 +84,7 @@ const useStyles = makeStyles(theme => ({
   itemShop: {
     display: 'block',
     fontSize: '0.90em',
-    color: '#78948f'
+    color: theme.palette.marketplace.shopName
   },
   removeButton: {
     fontSize: '0.8em'

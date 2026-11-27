@@ -7,6 +7,7 @@ import {useAuth} from './../auth/AuthContext'
 import TextField from '@material-ui/core/TextField'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
+import {submitButton, textField, formCard} from './../styles/form-styles'
 import {useFormValues, toFormData} from './../lib/form'
 import ImageUpload from './../components/ImageUpload'
 import FormError from './../components/FormError'
@@ -14,27 +15,14 @@ import {create} from './api-shop.js'
 import {Link, Redirect} from 'react-router-dom'
 
 const useStyles = makeStyles(theme => ({
-  card: {
-    maxWidth: 600,
-    margin: 'auto',
-    textAlign: 'center',
-    marginTop: theme.spacing(5),
-    paddingBottom: theme.spacing(2)
-  },
+  card: formCard(theme),
   title: {
     marginTop: theme.spacing(2),
     color: theme.palette.openTitle,
     fontSize: '1em'
   },
-  textField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: 300
-  },
-  submit: {
-    margin: 'auto',
-    marginBottom: theme.spacing(2)
-  }
+  textField: textField(theme, 300),
+  submit: submitButton(theme)
 }))
 
 export default function NewShop() {

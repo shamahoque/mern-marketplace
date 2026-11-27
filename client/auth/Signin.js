@@ -6,32 +6,20 @@ import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
+import {submitButton, textField, formCard} from './../styles/form-styles'
 import {useAuth} from './AuthContext'
 import {Redirect} from 'react-router-dom'
 import {signin} from './api-auth.js'
 import FormError from './../components/FormError'
 
 const useStyles = makeStyles(theme => ({
-  card: {
-    maxWidth: 600,
-    margin: 'auto',
-    textAlign: 'center',
-    marginTop: theme.spacing(5),
-    paddingBottom: theme.spacing(2)
-  },
+  card: formCard(theme),
   title: {
     marginTop: theme.spacing(2),
     color: theme.palette.openTitle
   },
-  textField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: 300
-  },
-  submit: {
-    margin: 'auto',
-    marginBottom: theme.spacing(2)
-  }
+  textField: textField(theme, 300),
+  submit: submitButton(theme)
 }))
 
 export default function Signin(props) {

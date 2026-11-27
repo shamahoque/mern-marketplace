@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.openTitle
   },
   subheading: {
-    color: 'rgba(88, 114, 128, 0.87)',
+    color: theme.palette.marketplace.subheading,
     marginTop: "20px",
   },
   addressField: {

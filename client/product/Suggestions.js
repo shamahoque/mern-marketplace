@@ -62,7 +62,7 @@ const useStyles = makeStyles(theme => ({
     marginBottom: '5px'
   },
   subheading: {
-    color: 'rgba(88, 114, 128, 0.67)'
+    color: theme.palette.marketplace.subheadingLight
   },
   actions: {
     float: 'right',

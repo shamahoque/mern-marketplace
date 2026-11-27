@@ -12,7 +12,7 @@ import {Redirect} from 'react-router-dom'
 
 const useStyles = makeStyles(theme => ({
   subheading: {
-    color: 'rgba(88, 114, 128, 0.87)',
+    color: theme.palette.marketplace.subheading,
     marginTop: "20px",
   },
   checkout: {

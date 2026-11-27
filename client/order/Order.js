@@ -77,12 +77,12 @@ const useStyles = makeStyles(theme => ({
     float: 'right',
     marginRight: '40px',
     fontSize: '1.5em',
-    color: 'rgb(72, 175, 148)'
+    color: theme.palette.marketplace.amount
   },
   itemShop: {
     display: 'block',
     fontSize: '1em',
-    color: '#78948f'
+    color: theme.palette.marketplace.shopName
   },
   checkout: {
     float: 'right',
@@ -90,7 +90,7 @@ const useStyles = makeStyles(theme => ({
   },
   total: {
     fontSize: '1.2em',
-    color: 'rgb(53, 97, 85)',
+    color: theme.palette.marketplace.total,
     marginRight: '16px',
     fontWeight: '600',
     verticalAlign: 'bottom'

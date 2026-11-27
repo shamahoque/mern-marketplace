@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography'
 import Avatar from '@material-ui/core/Avatar'
 import {useAuth} from './../auth/AuthContext'
 import { makeStyles } from '@material-ui/core/styles'
+import {submitButton, textField, bigAvatar} from './../styles/form-styles'
 import {useFormValues, toFormData} from './../lib/form'
 import ImageUpload from './../components/ImageUpload'
 import FormError from './../components/FormError'
@@ -34,20 +35,9 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(2),
     color: theme.palette.openTitle
   },
-  textField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: 400
-  },
-  submit: {
-    margin: 'auto',
-    marginBottom: theme.spacing(2)
-  },
-  bigAvatar: {
-    width: 60,
-    height: 60,
-    margin: 'auto'
-  }
+  textField: textField(theme, 400),
+  submit: submitButton(theme),
+  bigAvatar
 }))
 
 export default function EditShop ({match}) {
