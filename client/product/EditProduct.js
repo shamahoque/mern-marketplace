@@ -1,17 +1,17 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect} from 'react'
 import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
 import Typography from '@material-ui/core/Typography'
-import Icon from '@material-ui/core/Icon'
 import Avatar from '@material-ui/core/Avatar'
 import {useAuth} from './../auth/AuthContext'
-import FileUpload from '@material-ui/icons/AddPhotoAlternate'
 import { makeStyles } from '@material-ui/core/styles'
-import {withStyles} from '@material-ui/core/styles'
 import {read, update} from './api-product.js'
+import {useFormValues, toFormData} from './../lib/form'
+import ImageUpload from './../components/ImageUpload'
+import FormError from './../components/FormError'
 import {Link, Redirect} from 'react-router-dom'
 
 const useStyles = makeStyles(theme => ({
@@ -28,9 +28,6 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.protectedTitle,
     fontSize: '1.2em'
   },
-  error: {
-    verticalAlign: 'middle'
-  },
   textField: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
@@ -44,18 +41,12 @@ const useStyles = makeStyles(theme => ({
     width: 60,
     height: 60,
     margin: 'auto'
-  },
-  input: {
-    display: 'none'
-  },
-  filename:{
-    marginLeft:'10px'
   }
 }))
 
 export default function EditProduct ({match}) {
   const classes = useStyles()
-  const [values, setValues] = useState({
+  const [values, setValues, handleChange] = useFormValues({
       name: '',
       description: '',
       image: '',
@@ -84,14 +75,7 @@ export default function EditProduct ({match}) {
     }
   }, [])
   const clickSubmit = () => {
-    let productData = new FormData()
-    values.name && productData.append('name', values.name)
-    values.description && productData.append('description', values.description)
-    values.image && productData.append('image', values.image)
-    values.category && productData.append('category', values.category)
-    values.quantity && productData.append('quantity', values.quantity)
-    values.price && productData.append('price', values.price)
-  
+    const productData = toFormData(values, ['name', 'description', 'image', 'category', 'quantity', 'price'])
     update({
       shopId: match.params.shopId,
       productId: match.params.productId
@@ -104,12 +88,6 @@ export default function EditProduct ({match}) {
         setValues({...values, 'redirect': true})
       }
     })
-  }
-  const handleChange = name => event => {
-    const value = name === 'image'
-      ? event.target.files[0]
-      : event.target.value
-    setValues({...values,  [name]: value })
   }
     const imageUrl = values.id
           ? `/api/product/image/${values.id}?${new Date().getTime()}`
@@ -124,13 +102,7 @@ export default function EditProduct ({match}) {
             Edit Product
           </Typography><br/>
           <Avatar src={imageUrl} className={classes.bigAvatar}/><br/>
-          <input accept="image/*" onChange={handleChange('image')} className={classes.input} id="icon-button-file" type="file" />
-          <label htmlFor="icon-button-file">
-            <Button variant="contained" color="secondary" component="span">
-              Change Image
-              <FileUpload/>
-            </Button>
-          </label> <span className={classes.filename}>{values.image ? values.image.name : ''}</span><br/>
+          <ImageUpload label="Change Image" color="secondary" file={values.image} onChange={handleChange('image')}/>
           <TextField id="name" label="Name" className={classes.textField} value={values.name} onChange={handleChange('name')} margin="normal"/><br/>
           <TextField
             id="multiline-flexible"
@@ -145,11 +117,7 @@ export default function EditProduct ({match}) {
           <TextField id="category" label="Category" className={classes.textField} value={values.category} onChange={handleChange('category')} margin="normal"/><br/>
           <TextField id="quantity" label="Quantity" className={classes.textField} value={values.quantity} onChange={handleChange('quantity')} type="number" margin="normal"/><br/>
           <TextField id="price" label="Price" className={classes.textField} value={values.price} onChange={handleChange('price')} type="number" margin="normal"/><br/>
-          {
-            values.error && (<Typography component="p" color="error">
-              <Icon color="error" className={classes.error}>error</Icon>
-              {values.error}</Typography>)
-          }
+          {values.error && <FormError message={values.error}/>}
         </CardContent>
         <CardActions>
           <Button color="primary" variant="contained" onClick={clickSubmit} className={classes.submit}>Update</Button>

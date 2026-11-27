@@ -5,11 +5,13 @@ import CardContent from '@material-ui/core/CardContent'
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
 import Typography from '@material-ui/core/Typography'
-import Icon from '@material-ui/core/Icon'
 import Avatar from '@material-ui/core/Avatar'
 import {useAuth} from '../auth/AuthContext'
-import FileUpload from '@material-ui/icons/AddPhotoAlternate'
 import { makeStyles } from '@material-ui/core/styles'
+import {useFormValues, toFormData} from './../lib/form'
+import ImageUpload from './../components/ImageUpload'
+import FormError from './../components/FormError'
+import {getDateString} from './auction-time'
 import {read, update} from './api-auction.js'
 import {Redirect} from 'react-router-dom'
 
@@ -31,9 +33,6 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(2),
     color: theme.palette.openTitle
   },
-  error: {
-    verticalAlign: 'middle'
-  },
   textField: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
@@ -47,18 +46,12 @@ const useStyles = makeStyles(theme => ({
     width: 60,
     height: 60,
     margin: 'auto'
-  },
-  input: {
-    display: 'none'
-  },
-  filename:{
-    marginLeft:'10px'
   }
 }))
 
-export default function EditShop ({match}) {
+export default function EditAuction ({match}) {
   const classes = useStyles()
-  const [auction, setAuction] = useState({
+  const [auction, setAuction, handleChange] = useFormValues({
     itemName: '',
     description: '',
     image: '',
@@ -68,15 +61,6 @@ export default function EditShop ({match}) {
   })
   const [redirect, setRedirect] = useState(false)
   const [error, setError] = useState('')
-  const getDateString = (date) => {
-    let year = date.getFullYear()
-    let day = date.getDate().toString().length == 1 ? '0' + date.getDate() : date.getDate()
-    let month = date.getMonth().toString().length == 1 ? '0' + (date.getMonth()+1) : date.getMonth() + 1
-    let hours = date.getHours().toString().length == 1 ? '0' + date.getHours() : date.getHours()
-    let minutes = date.getMinutes().toString().length == 1 ? '0' + date.getMinutes() : date.getMinutes()
-    let dateString = `${year}-${month}-${day}T${hours}:${minutes}`
-    return dateString
-  }
   const {jwt} = useAuth()
   useEffect(() => {
     const abortController = new AbortController()
@@ -101,14 +85,7 @@ export default function EditShop ({match}) {
     if(auction.bidEnd < auction.bidStart){
       setError("Auction cannot end before it starts")
     }else{
-      let auctionData = new FormData()
-      auction.itemName && auctionData.append('itemName', auction.itemName)
-      auction.description && auctionData.append('description', auction.description)
-      auction.image && auctionData.append('image', auction.image)
-      auction.startingBid && auctionData.append('startingBid', auction.startingBid)
-      auction.bidStart && auctionData.append('bidStart', auction.bidStart)
-      auction.bidEnd && auctionData.append('bidEnd', auction.bidEnd)
-      
+      const auctionData = toFormData(auction, ['itemName', 'description', 'image', 'startingBid', 'bidStart', 'bidEnd'])
       update({
         auctionId: match.params.auctionId
       }, {
@@ -121,12 +98,6 @@ export default function EditShop ({match}) {
         }
       })
     }
-  }
-  const handleChange = name => event => {
-    const value = name === 'image'
-      ? event.target.files[0]
-      : event.target.value
-    setAuction({...auction,  [name]: value })
   }
 
     const logoUrl = auction._id
@@ -143,13 +114,7 @@ export default function EditShop ({match}) {
               </Typography>
               <br/>
               <Avatar src={logoUrl} className={classes.bigAvatar}/><br/>
-              <input accept="image/*" onChange={handleChange('image')} className={classes.input} id="icon-button-file" type="file" />
-              <label htmlFor="icon-button-file">
-                <Button variant="contained" color="default" component="span">
-                  Change Image
-                  <FileUpload/>
-                </Button>
-              </label> <span className={classes.filename}>{auction.image ? auction.image.name : ''}</span><br/>
+              <ImageUpload label="Change Image" color="default" file={auction.image} onChange={handleChange('image')}/>
               <TextField id="name" label="Name" className={classes.textField} value={auction.itemName} onChange={handleChange('itemName')} margin="normal"/><br/>
               <TextField
                 id="multiline-flexible"
@@ -186,12 +151,7 @@ export default function EditShop ({match}) {
                   shrink: true,
                 }}
               /><br/> <br/>
-              {
-                error && (<Typography component="p" color="error">
-                    <Icon color="error" className={classes.error}>error</Icon>
-                    {error}
-                  </Typography>)
-              }
+              {error && <FormError message={error}/>}
             </CardContent>
             <CardActions>
               <Button color="primary" variant="contained" onClick={clickSubmit} className={classes.submit}>Update</Button>

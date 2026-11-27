@@ -1,6 +1,7 @@
 import React, {useState, useEffect}  from 'react'
 import Typography from '@material-ui/core/Typography'
 import {makeStyles} from '@material-ui/core/styles'
+import {calculateTimeLeft} from './auction-time'
 
 const useStyles = makeStyles(theme => ({
     endTime: {
@@ -14,23 +15,6 @@ const useStyles = makeStyles(theme => ({
     },
   }))
 
-const calculateTimeLeft = (date) => {
-    const difference = date - new Date()
-    let timeLeft = {}
-  
-    if (difference > 0) {
-      timeLeft = {
-        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-        hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-        minutes: Math.floor((difference / 1000 / 60) % 60),
-        seconds: Math.floor((difference / 1000) % 60),
-        timeEnd: false
-      }
-    } else {
-        timeLeft = {timeEnd: true}
-    }
-    return timeLeft
-}
 export default function Timer (props) {
   const classes = useStyles()
     const [timeLeft, setTimeLeft] = useState(calculateTimeLeft(new Date(props.endTime)))

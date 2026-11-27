@@ -5,13 +5,13 @@ import CardContent from '@material-ui/core/CardContent'
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
 import Typography from '@material-ui/core/Typography'
-import Icon from '@material-ui/core/Icon'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Switch from '@material-ui/core/Switch'
 import { makeStyles } from '@material-ui/core/styles'
 import {useAuth} from './../auth/AuthContext'
 import {read, update} from './api-user.js'
 import {Redirect} from 'react-router-dom'
+import FormError from './../components/FormError'
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -24,9 +24,6 @@ const useStyles = makeStyles(theme => ({
   title: {
     margin: theme.spacing(2),
     color: theme.palette.protectedTitle
-  },
-  error: {
-    verticalAlign: 'middle'
   },
   textField: {
     marginLeft: theme.spacing(1),
@@ -127,12 +124,7 @@ export default function EditProfile({ match }) {
               />}
             label={values.seller? 'Active' : 'Inactive'}
           />
-          <br/> {
-            values.error && (<Typography component="p" color="error">
-              <Icon color="error" className={classes.error}>error</Icon>
-              {values.error}
-            </Typography>)
-          }
+          <br/> {values.error && <FormError message={values.error}/>}
         </CardContent>
         <CardActions>
           <Button color="primary" variant="contained" onClick={clickSubmit} className={classes.submit}>Submit</Button>

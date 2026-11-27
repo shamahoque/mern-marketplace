@@ -5,11 +5,11 @@ import CardContent from '@material-ui/core/CardContent'
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
 import Typography from '@material-ui/core/Typography'
-import Icon from '@material-ui/core/Icon'
 import { makeStyles } from '@material-ui/core/styles'
 import {useAuth} from './AuthContext'
 import {Redirect} from 'react-router-dom'
 import {signin} from './api-auth.js'
+import FormError from './../components/FormError'
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -18,9 +18,6 @@ const useStyles = makeStyles(theme => ({
     textAlign: 'center',
     marginTop: theme.spacing(5),
     paddingBottom: theme.spacing(2)
-  },
-  error: {
-    verticalAlign: 'middle'
   },
   title: {
     marginTop: theme.spacing(2),
@@ -86,12 +83,7 @@ export default function Signin(props) {
           </Typography>
           <TextField id="email" type="email" label="Email" className={classes.textField} value={values.email} onChange={handleChange('email')} margin="normal"/><br/>
           <TextField id="password" type="password" label="Password" className={classes.textField} value={values.password} onChange={handleChange('password')} margin="normal"/>
-          <br/> {
-            values.error && (<Typography component="p" color="error">
-              <Icon color="error" className={classes.error}>error</Icon>
-              {values.error}
-            </Typography>)
-          }
+          <br/> {values.error && <FormError message={values.error}/>}
         </CardContent>
         <CardActions>
         <Button color="primary" variant="contained" onClick={clickSubmit} className={classes.submit}>Submit</Button>
