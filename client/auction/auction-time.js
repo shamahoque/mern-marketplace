@@ -21,13 +21,10 @@ export const calculateTimeLeft = (date) => {
   return timeLeft
 }
 
+const pad = (n) => String(n).padStart(2, '0')
+
 // Local time as "YYYY-MM-DDTHH:MM", the value format of a datetime-local input.
-export const getDateString = (date) => {
-  let year = date.getFullYear()
-  let day = date.getDate().toString().length === 1 ? '0' + date.getDate() : date.getDate()
-  let month = date.getMonth().toString().length === 1 ? '0' + (date.getMonth()+1) : date.getMonth() + 1
-  let hours = date.getHours().toString().length === 1 ? '0' + date.getHours() : date.getHours()
-  let minutes = date.getMinutes().toString().length === 1 ? '0' + date.getMinutes() : date.getMinutes()
-  let dateString = `${year}-${month}-${day}T${hours}:${minutes}`
-  return dateString
-}
+// BUG-5: the month used to be padded by checking getMonth() (0-based) instead of
+// the month number itself, so October came out as "010" and browsers rejected it.
+export const getDateString = (date) =>
+  `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}T${pad(date.getHours())}:${pad(date.getMinutes())}`
