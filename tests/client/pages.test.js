@@ -50,8 +50,11 @@ const pages = [
 ]
 
 // makeStyles numbers its class names in creation order (makeStyles-card-12). Only the
-// readable part matters for behaviour, so the counter is removed.
-const normalize = html => html.replace(/(makeStyles-[A-Za-z]+)-\d+/g, '$1')
+// readable part matters for behaviour, so the counter is removed. The New Auction form
+// pre-fills the current time, which changes every run, so that value is masked too.
+const normalize = html => html
+  .replace(/(makeStyles-[A-Za-z]+)-\d+/g, '$1')
+  .replace(/value="\d{4}-\d{2}-\d{2}T\d{2}:\d{2}"/g, 'value="(current time)"')
 
 const render = (url) => {
   const context = {}
