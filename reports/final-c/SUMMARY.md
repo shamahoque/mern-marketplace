@@ -54,7 +54,7 @@ New modules: `lib/api-client.js` 40 / 49.8, `lib/storage.js` 32 / 79.0, `lib/for
 | Count | Before | After |
 |---|---:|---:|
 | `fetch(` calls outside the API client | 38 | 0 |
-| `auth.isAuthenticated()` reads in components | 34 | 0 |
+| `auth.isAuthenticated()` reads in components | 38 | 0 |
 | Hard-coded colour literals in `Menu.js` | 4 | 0 |
 | Copies of `calculateTimeLeft` / `getDateString` | 2 / 2 | 1 / 1 |
 

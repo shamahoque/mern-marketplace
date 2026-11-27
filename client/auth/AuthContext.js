@@ -1,6 +1,6 @@
 // One shared source of "who is signed in" for the whole client (D-11).
-// Before this, 21 components read sessionStorage directly through
-// auth.isAuthenticated(), 34 times in total, and the Menu only noticed a
+// Before this, 28 components read sessionStorage directly through
+// auth.isAuthenticated(), 38 times in total, and the Menu only noticed a
 // sign-in or sign-out because it happened to re-render on navigation.
 // Components now call useAuth() and re-render whenever the signed-in user changes.
 import React, {createContext, useContext, useState} from 'react'
