@@ -2,7 +2,7 @@ import React, {useState, useEffect}  from 'react'
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
 import Typography from '@material-ui/core/Typography'
-import auth from '../auth/auth-helper'
+import {useAuth} from '../auth/AuthContext'
 import Grid from '@material-ui/core/Grid'
 import {makeStyles} from '@material-ui/core/styles'
 
@@ -31,8 +31,7 @@ export default function Bidding (props) {
     const classes = useStyles()
     const [bid, setBid] = useState('')
 
-    const jwt = auth.isAuthenticated()
-
+    const {jwt} = useAuth()
     useEffect(() => {
         socket.emit('join auction room', {room: props.auction._id})
         return () => {

@@ -7,7 +7,7 @@ import Grid from '@material-ui/core/Grid'
 import {makeStyles} from '@material-ui/core/styles'
 import {read} from './api-auction.js'
 import {Link} from 'react-router-dom'
-import auth from '../auth/auth-helper'
+import {useAuth} from '../auth/AuthContext'
 import Timer from './Timer'
 import Bidding from './Bidding'
 
@@ -67,6 +67,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function Auction ({match}) {
   const classes = useStyles()
+  const {jwt} = useAuth()
   const [auction, setAuction] = useState({})
   const [error, setError] = useState('')
   const [justEnded, setJustEnded] = useState(false)
@@ -129,8 +130,8 @@ export default function Auction ({match}) {
                                 {` Last bid: $ ${auction.bids[0].bid}`}
                             </Typography>
                         }
-                        { !auth.isAuthenticated() && <Typography>Please, <Link to='/signin'>sign in</Link> to place your bid.</Typography> }
-                        { auth.isAuthenticated() && <Bidding auction={auction} justEnded={justEnded} updateBids={updateBids}/> }
+                        { !jwt && <Typography>Please, <Link to='/signin'>sign in</Link> to place your bid.</Typography> }
+                        { jwt && <Bidding auction={auction} justEnded={justEnded} updateBids={updateBids}/> }
                       </>)
                     : <Typography component="p" variant="h6">{`Auction Starts at ${new Date(auction.bidStart).toLocaleString()}`}</Typography>}
                   </Grid>

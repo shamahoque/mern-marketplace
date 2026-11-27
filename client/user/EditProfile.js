@@ -9,7 +9,7 @@ import Icon from '@material-ui/core/Icon'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Switch from '@material-ui/core/Switch'
 import { makeStyles } from '@material-ui/core/styles'
-import auth from './../auth/auth-helper'
+import {useAuth} from './../auth/AuthContext'
 import {read, update} from './api-user.js'
 import {Redirect} from 'react-router-dom'
 
@@ -53,7 +53,7 @@ export default function EditProfile({ match }) {
       redirectToProfile: false,
       error: ''
   })
-  const jwt = auth.isAuthenticated()
+  const {jwt, updateUser} = useAuth()
   useEffect(() => {
     const abortController = new AbortController()
     const signal = abortController.signal
@@ -88,7 +88,7 @@ export default function EditProfile({ match }) {
       if (data && data.error) {
         setValues({...values, error: data.error})
       } else {
-        auth.updateUser(data, ()=>{
+        updateUser(data, ()=>{
           setValues({...values, userId: data._id, redirectToProfile: true})
         })
       }

@@ -7,7 +7,7 @@ import TextField from '@material-ui/core/TextField'
 import Typography from '@material-ui/core/Typography'
 import Icon from '@material-ui/core/Icon'
 import { makeStyles } from '@material-ui/core/styles'
-import auth from './../auth/auth-helper'
+import {useAuth} from './AuthContext'
 import {Redirect} from 'react-router-dom'
 import {signin} from './api-auth.js'
 
@@ -45,6 +45,7 @@ export default function Signin(props) {
     error: '',
     redirectToReferrer: false
   })
+  const {signin: saveSignin} = useAuth()
 
   const clickSubmit = () => {
     const user = {
@@ -56,7 +57,7 @@ export default function Signin(props) {
       if (data.error) {
         setValues({ ...values, error: data.error})
       } else {
-        auth.authenticate(data, () => {
+        saveSignin(data, () => {
           setValues({ ...values, error: '',redirectToReferrer: true})
         })
       }

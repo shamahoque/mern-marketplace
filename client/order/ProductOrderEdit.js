@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography'
 import MenuItem from '@material-ui/core/MenuItem'
 import TextField from '@material-ui/core/TextField'
 import Divider from '@material-ui/core/Divider'
-import auth from './../auth/auth-helper'
+import {useAuth} from './../auth/AuthContext'
 import {getStatusValues, update, cancelProduct, processCharge} from './api-order.js'
 
 const useStyles = makeStyles(theme => ({
@@ -47,7 +47,7 @@ export default function ProductOrderEdit (props){
       statusValues: [],
       error: ''
   })
-  const jwt = auth.isAuthenticated()
+  const {jwt} = useAuth()
   useEffect(() => {
     const abortController = new AbortController()
     const signal = abortController.signal

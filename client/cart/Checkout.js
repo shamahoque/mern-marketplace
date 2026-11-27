@@ -4,7 +4,7 @@ import {makeStyles} from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
 import Typography from '@material-ui/core/Typography'
 import Icon from '@material-ui/core/Icon'
-import auth from './../auth/auth-helper'
+import {useAuth} from './../auth/AuthContext'
 import cart from './cart-helper.js'
 import PlaceOrder from './PlaceOrder'
 import {Elements} from 'react-stripe-elements'
@@ -44,7 +44,8 @@ const useStyles = makeStyles(theme => ({
 
 export default function Checkout (){
   const classes = useStyles()
-  const user = auth.isAuthenticated().user
+  const {jwt} = useAuth()
+  const user = jwt.user
   const [values, setValues] = useState({
     checkoutDetails: {
       products: cart.getCart(),

@@ -8,7 +8,7 @@ import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
-import auth from './../auth/auth-helper'
+import {useAuth} from './../auth/AuthContext'
 import {remove} from './api-user.js'
 import {Redirect} from 'react-router-dom'
 
@@ -16,7 +16,7 @@ export default function DeleteUser(props) {
   const [open, setOpen] = useState(false)
   const [redirect, setRedirect] = useState(false)
 
-  const jwt = auth.isAuthenticated()
+  const {jwt, signout} = useAuth()
   const clickButton = () => {
     setOpen(true)
   }
@@ -27,8 +27,10 @@ export default function DeleteUser(props) {
       if (data && data.error) {
         console.log(data.error)
       } else {
-        auth.clearJWT(() => console.log('deleted'))
+        // Redirect first: signing out re-renders Profile without this button,
+        // which would unmount this component before it could redirect.
         setRedirect(true)
+        signout(() => console.log('deleted'))
       }
     })
   }

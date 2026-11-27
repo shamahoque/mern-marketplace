@@ -9,7 +9,7 @@ import ExpandLess from '@material-ui/icons/ExpandLess'
 import ExpandMore from '@material-ui/icons/ExpandMore'
 import Collapse from '@material-ui/core/Collapse'
 import Divider from '@material-ui/core/Divider'
-import auth from './../auth/auth-helper'
+import {useAuth} from './../auth/AuthContext'
 import {listByShop} from './api-order.js'
 import ProductOrderEdit from './ProductOrderEdit'
 
@@ -42,7 +42,7 @@ export default function ShopOrders({match}) {
   const [open, setOpen] = useState(0)
 
 
-    const jwt = auth.isAuthenticated()
+    const {jwt} = useAuth()
     useEffect(() => {
       const abortController = new AbortController()
       const signal = abortController.signal

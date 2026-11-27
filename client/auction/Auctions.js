@@ -11,7 +11,7 @@ import Edit from '@material-ui/icons/Edit'
 import ViewIcon from '@material-ui/icons/Visibility'
 import Divider from '@material-ui/core/Divider'
 import DeleteAuction from './DeleteAuction'
-import auth from '../auth/auth-helper'
+import {useAuth} from '../auth/AuthContext'
 import {Link} from 'react-router-dom'
 
 const calculateTimeLeft = (date) => {
@@ -33,6 +33,7 @@ const calculateTimeLeft = (date) => {
 }
 
 export default function Auctions(props){
+  const {jwt} = useAuth()
   const currentDate = new Date()
   const showTimeLeft = (date) => {
     let timeLeft = calculateTimeLeft(date)
@@ -68,7 +69,7 @@ export default function Auctions(props){
                         <ViewIcon/>
                       </IconButton>
                     </Link>
-                { auth.isAuthenticated().user && auth.isAuthenticated().user._id == auction.seller._id &&
+                { jwt.user && jwt.user._id == auction.seller._id &&
                   <>
                     <Link to={"/auction/edit/" + auction._id}>
                       <IconButton aria-label="Edit" color="primary">

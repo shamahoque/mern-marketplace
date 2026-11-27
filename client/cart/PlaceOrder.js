@@ -4,7 +4,7 @@ import {makeStyles} from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 import Icon from '@material-ui/core/Icon'
-import auth from './../auth/auth-helper'
+import {useAuth} from './../auth/AuthContext'
 import cart from './cart-helper.js'
 import {CardElement, injectStripe} from 'react-stripe-elements'
 import {create} from './../order/api-order.js'
@@ -45,13 +45,13 @@ const PlaceOrder = (props) => {
     redirect: false,
     orderId: ''
   })
+  const {jwt} = useAuth()
 
   const placeOrder = ()=>{
     props.stripe.createToken().then(payload => {
       if(payload.error){
         setValues({...values, error: payload.error.message})
       }else{
-        const jwt = auth.isAuthenticated()
         create({userId:jwt.user._id}, {
           t: jwt.token
         }, props.checkoutDetails, payload.token.id).then((data) => {

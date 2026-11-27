@@ -7,6 +7,7 @@ import Signin from './auth/Signin'
 import EditProfile from './user/EditProfile'
 import Profile from './user/Profile'
 import PrivateRoute from './auth/PrivateRoute'
+import {AuthProvider} from './auth/AuthContext'
 import Menu from './core/Menu'
 import NewShop from './shop/NewShop'
 import Shops from './shop/Shops'
@@ -26,8 +27,10 @@ import NewAuction from './auction/NewAuction'
 import EditAuction from './auction/EditAuction'
 import Auction from './auction/Auction'
 
+// AuthProvider sits here, not in App.js, because server-side rendering
+// (server/express.js) renders MainRouter directly.
 const MainRouter = () => {
-  return (<div>
+  return (<AuthProvider><div>
       <Menu/>
       <Switch>
         <Route exact path="/" component={Home}/>
@@ -58,7 +61,7 @@ const MainRouter = () => {
         <Route path="/auction/:auctionId" component={Auction}/>
         <Route path="/auctions/all" component={OpenAuctions}/>
       </Switch>
-    </div>)
+    </div></AuthProvider>)
 }
 
 export default MainRouter

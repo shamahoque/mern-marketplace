@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import auth from './../auth/auth-helper'
+import {useAuth} from './../auth/AuthContext'
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 import CardMedia from '@material-ui/core/CardMedia'
@@ -93,6 +93,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function CartItems (props) {
   const classes = useStyles()
+  const {jwt} = useAuth()
   const [cartItems, setCartItems] = useState(cart.getCart())
 
   const handleChange = index => event => {
@@ -167,7 +168,7 @@ export default function CartItems (props) {
         }
         <div className={classes.checkout}>
           <span className={classes.total}>Total: ${getTotal()}</span>
-          {!props.checkout && (auth.isAuthenticated()?
+          {!props.checkout && (jwt?
             <Button color="secondary" variant="contained" onClick={openCheckout}>Checkout</Button>
             :
             <Link to="/signin">

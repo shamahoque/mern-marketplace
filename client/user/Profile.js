@@ -14,7 +14,7 @@ import Edit from '@material-ui/icons/Edit'
 import Person from '@material-ui/icons/Person'
 import Divider from '@material-ui/core/Divider'
 import DeleteUser from './DeleteUser'
-import auth from './../auth/auth-helper'
+import {useAuth} from './../auth/AuthContext'
 import {read} from './api-user.js'
 import {Redirect, Link} from 'react-router-dom'
 import config from './../../config/public'
@@ -53,8 +53,7 @@ export default function Profile({ match }) {
   const classes = useStyles()
   const [user, setUser] = useState({})
   const [redirectToSignin, setRedirectToSignin] = useState(false)
-  const jwt = auth.isAuthenticated()
-
+  const {jwt} = useAuth()
   const [auctions, setAuctions] = useState([])
 
   useEffect(() => {
@@ -116,7 +115,7 @@ export default function Profile({ match }) {
               </Avatar>
             </ListItemAvatar>
             <ListItemText primary={user.name} secondary={user.email}/> {
-             auth.isAuthenticated().user && auth.isAuthenticated().user._id == user._id &&
+             jwt.user && jwt.user._id == user._id &&
              (<ListItemSecondaryAction>
                {user.seller &&
                  (user.stripe_seller

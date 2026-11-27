@@ -8,13 +8,13 @@ import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
-import auth from './../auth/auth-helper'
+import {useAuth} from './../auth/AuthContext'
 import {remove} from './api-shop.js'
 
 export default function DeleteShop(props) {
   const [open, setOpen] = useState(false)
   
-  const jwt = auth.isAuthenticated()
+  const {jwt} = useAuth()
   const clickButton = () => {
     setOpen(true)
   }

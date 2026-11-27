@@ -13,7 +13,7 @@ import ArrowForward from '@material-ui/icons/ArrowForward'
 import Person from '@material-ui/icons/Person'
 import {Link} from 'react-router-dom'
 import {list} from './api-user.js'
-import auth from './../auth/auth-helper'
+import {useAuth} from './../auth/AuthContext'
 
 const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
@@ -29,12 +29,12 @@ const useStyles = makeStyles(theme => ({
 export default function Users() { 
   const classes = useStyles()
   const [users, setUsers] = useState([])
+  const {jwt} = useAuth()
 
   useEffect(() => {
     const abortController = new AbortController()
     const signal = abortController.signal
 
-    const jwt = auth.isAuthenticated()
     list({t: jwt.token}, signal).then((data) => {
       if (data && data.error) {
         console.log(data.error)

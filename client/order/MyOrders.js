@@ -6,7 +6,7 @@ import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
 import Typography from '@material-ui/core/Typography'
 import Divider from '@material-ui/core/Divider'
-import auth from './../auth/auth-helper'
+import {useAuth} from './../auth/AuthContext'
 import {listByUser} from './api-order.js'
 import {Link} from 'react-router-dom'
 
@@ -26,8 +26,7 @@ const useStyles = makeStyles(theme => ({
 export default function MyOrders(){
   const classes = useStyles()
   const [orders, setOrders] = useState([])
-  const jwt = auth.isAuthenticated()
-
+  const {jwt} = useAuth()
   useEffect(() => {
     const abortController = new AbortController()
     const signal = abortController.signal

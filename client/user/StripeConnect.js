@@ -4,7 +4,7 @@ import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 import queryString from 'query-string'
 import {stripeUpdate} from './api-user.js'
-import auth from './../auth/auth-helper'
+import {useAuth} from './../auth/AuthContext'
 
 const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
@@ -31,7 +31,7 @@ export default function StripeConnect(props){
     connecting: false,
     connected: false
   })
-  const jwt = auth.isAuthenticated()
+  const {jwt} = useAuth()
   useEffect(() => {
     const abortController = new AbortController()
     const signal = abortController.signal

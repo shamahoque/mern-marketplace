@@ -5,7 +5,7 @@ import CardContent from '@material-ui/core/CardContent'
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
 import FileUpload from '@material-ui/icons/AddPhotoAlternate'
-import auth from './../auth/auth-helper'
+import {useAuth} from './../auth/AuthContext'
 import Typography from '@material-ui/core/Typography'
 import Icon from '@material-ui/core/Icon'
 import { makeStyles } from '@material-ui/core/styles'
@@ -57,7 +57,7 @@ export default function NewProduct({match}) {
       redirect: false,
       error: ''
   })
-  const jwt = auth.isAuthenticated()
+  const {jwt} = useAuth()
   const handleChange = name => event => {
     const value = name === 'image'
       ? event.target.files[0]

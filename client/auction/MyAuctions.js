@@ -4,7 +4,7 @@ import Paper from '@material-ui/core/Paper'
 import Icon from '@material-ui/core/Icon'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
-import auth from '../auth/auth-helper'
+import {useAuth} from '../auth/AuthContext'
 import {listBySeller} from './api-auction.js'
 import {Redirect, Link} from 'react-router-dom'
 import Auctions from './Auctions'
@@ -32,8 +32,7 @@ export default function MyAuctions(){
   const classes = useStyles()
   const [auctions, setAuctions] = useState([])
   const [redirectToSignin, setRedirectToSignin] = useState(false)
-  const jwt = auth.isAuthenticated()
-
+  const {jwt} = useAuth()
   useEffect(() => {
     const abortController = new AbortController()
     const signal = abortController.signal

@@ -13,7 +13,7 @@ import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 import Edit from '@material-ui/icons/Edit'
 import Divider from '@material-ui/core/Divider'
-import auth from './../auth/auth-helper'
+import {useAuth} from './../auth/AuthContext'
 import {listByOwner} from './api-shop.js'
 import {Redirect, Link} from 'react-router-dom'
 import DeleteShop from './DeleteShop'
@@ -42,8 +42,7 @@ export default function MyShops(){
   const classes = useStyles()
   const [shops, setShops] = useState([])
   const [redirectToSignin, setRedirectToSignin] = useState(false)
-  const jwt = auth.isAuthenticated()
-
+  const {jwt} = useAuth()
   useEffect(() => {
     const abortController = new AbortController()
     const signal = abortController.signal
@@ -92,7 +91,7 @@ export default function MyShops(){
                   <Avatar src={'/api/shops/logo/'+shop._id+"?" + new Date().getTime()}/>
                 </ListItemAvatar>
                 <ListItemText primary={shop.name} secondary={shop.description}/>
-                { auth.isAuthenticated().user && auth.isAuthenticated().user._id == shop.owner._id &&
+                { jwt.user && jwt.user._id == shop.owner._id &&
                   (<ListItemSecondaryAction>
                     <Link to={"/seller/orders/" + shop.name+ '/'+shop._id}>
                       <Button aria-label="Orders" color="primary">
