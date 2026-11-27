@@ -1,23 +1,19 @@
 import { signout } from './api-auth.js'
+import { session } from './../lib/storage'
+
+const JWT = 'jwt'
 
 const auth = {
+  // The stored {token, user}, or false when nobody is signed in.
   isAuthenticated() {
-    if (typeof window == "undefined")
-      return false
-
-    if (sessionStorage.getItem('jwt'))
-      return JSON.parse(sessionStorage.getItem('jwt'))
-    else
-      return false
+    return session.read(JWT, false)
   },
   authenticate(jwt, cb) {
-    if (typeof window !== "undefined")
-      sessionStorage.setItem('jwt', JSON.stringify(jwt))
+    session.write(JWT, jwt)
     cb()
   },
   clearJWT(cb) {
-    if (typeof window !== "undefined")
-      sessionStorage.removeItem('jwt')
+    session.remove(JWT)
     cb()
     //optional
     signout().then((data) => {
@@ -25,13 +21,11 @@ const auth = {
     })
   },
   updateUser(user, cb) {
-    if(typeof window !== "undefined"){
-      if(sessionStorage.getItem('jwt')){
-         let auth = JSON.parse(sessionStorage.getItem('jwt'))
-         auth.user = user
-         sessionStorage.setItem('jwt', JSON.stringify(auth))
-         cb()
-       }
+    const jwt = session.read(JWT, false)
+    if (jwt) {
+      jwt.user = user
+      session.write(JWT, jwt)
+      cb()
     }
   }
 }

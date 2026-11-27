@@ -1,61 +1,42 @@
+import {local} from './../lib/storage'
+
+const CART = 'cart'
+
 const cart = {
   itemTotal() {
-    if (typeof window !== "undefined") {
-      if (localStorage.getItem('cart')) {
-        return JSON.parse(localStorage.getItem('cart')).length
-      }
-    }
-    return 0
+    return local.read(CART, []).length
   },
   addItem(item, cb) {
-    let cart = []
-    if (typeof window !== "undefined") {
-      if (localStorage.getItem('cart')) {
-        cart = JSON.parse(localStorage.getItem('cart'))
-      }
-      cart.push({
-        product: item,
-        quantity: 1,
-        shop: item.shop._id
-      })
-      localStorage.setItem('cart', JSON.stringify(cart))
-      cb()
-    }
+    if (!local.available()) return
+    const items = local.read(CART, [])
+    items.push({
+      product: item,
+      quantity: 1,
+      shop: item.shop._id
+    })
+    local.write(CART, items)
+    cb()
   },
   updateCart(itemIndex, quantity) {
-    let cart = []
-    if (typeof window !== "undefined") {
-      if (localStorage.getItem('cart')) {
-        cart = JSON.parse(localStorage.getItem('cart'))
-      }
-      cart[itemIndex].quantity = quantity
-      localStorage.setItem('cart', JSON.stringify(cart))
-    }
+    if (!local.available()) return
+    const items = local.read(CART, [])
+    items[itemIndex].quantity = quantity
+    local.write(CART, items)
   },
   getCart() {
-    if (typeof window !== "undefined") {
-      if (localStorage.getItem('cart')) {
-        return JSON.parse(localStorage.getItem('cart'))
-      }
-    }
-    return []
+    return local.read(CART, [])
   },
   removeItem(itemIndex) {
-    let cart = []
-    if (typeof window !== "undefined") {
-      if (localStorage.getItem('cart')) {
-        cart = JSON.parse(localStorage.getItem('cart'))
-      }
-      cart.splice(itemIndex, 1)
-      localStorage.setItem('cart', JSON.stringify(cart))
-    }
-    return cart
+    const items = local.read(CART, [])
+    if (!local.available()) return items
+    items.splice(itemIndex, 1)
+    local.write(CART, items)
+    return items
   },
   emptyCart(cb) {
-    if (typeof window !== "undefined") {
-      localStorage.removeItem('cart')
-      cb()
-    }
+    if (!local.available()) return
+    local.remove(CART)
+    cb()
   }
 }
 
