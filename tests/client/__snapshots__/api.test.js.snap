@@ -1,0 +1,509 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`auction.create sends the same request 1`] = `
+{
+  "authorization": "Bearer TOKEN",
+  "body": {
+    "name": "FORMDATA",
+  },
+  "contentType": null,
+  "cookies": null,
+  "method": "POST",
+  "signal": null,
+  "url": "/api/auctions/by/u1",
+}
+`;
+
+exports[`auction.listByBidder sends the same request 1`] = `
+{
+  "authorization": "Bearer TOKEN",
+  "body": null,
+  "contentType": null,
+  "cookies": null,
+  "method": "GET",
+  "signal": {
+    "name": "SIGNAL",
+  },
+  "url": "/api/auctions/bid/u1",
+}
+`;
+
+exports[`auction.listBySeller sends the same request 1`] = `
+{
+  "authorization": "Bearer TOKEN",
+  "body": null,
+  "contentType": null,
+  "cookies": null,
+  "method": "GET",
+  "signal": {
+    "name": "SIGNAL",
+  },
+  "url": "/api/auctions/by/u1",
+}
+`;
+
+exports[`auction.listOpen sends the same request 1`] = `
+{
+  "authorization": null,
+  "body": null,
+  "contentType": null,
+  "cookies": null,
+  "method": "GET",
+  "signal": {
+    "name": "SIGNAL",
+  },
+  "url": "/api/auctions",
+}
+`;
+
+exports[`auction.read sends the same request 1`] = `
+{
+  "authorization": null,
+  "body": null,
+  "contentType": null,
+  "cookies": null,
+  "method": "GET",
+  "signal": {
+    "name": "SIGNAL",
+  },
+  "url": "/api/auction/a1",
+}
+`;
+
+exports[`auction.remove sends the same request 1`] = `
+{
+  "authorization": "Bearer TOKEN",
+  "body": null,
+  "contentType": null,
+  "cookies": null,
+  "method": "DELETE",
+  "signal": null,
+  "url": "/api/auctions/a1",
+}
+`;
+
+exports[`auction.update sends the same request 1`] = `
+{
+  "authorization": "Bearer TOKEN",
+  "body": {
+    "name": "FORMDATA",
+  },
+  "contentType": null,
+  "cookies": null,
+  "method": "PUT",
+  "signal": null,
+  "url": "/api/auctions/a1",
+}
+`;
+
+exports[`auth.signin sends the same request 1`] = `
+{
+  "authorization": null,
+  "body": "{"email":"a@b.c","password":"secret"}",
+  "contentType": "application/json",
+  "cookies": "include",
+  "method": "POST",
+  "signal": null,
+  "url": "/auth/signin/",
+}
+`;
+
+exports[`auth.signout sends the same request 1`] = `
+{
+  "authorization": null,
+  "body": null,
+  "contentType": null,
+  "cookies": null,
+  "method": "GET",
+  "signal": null,
+  "url": "/auth/signout/",
+}
+`;
+
+exports[`order.cancelProduct sends the same request 1`] = `
+{
+  "authorization": "Bearer TOKEN",
+  "body": "{"cartItemId":"c1","quantity":2}",
+  "contentType": "application/json",
+  "cookies": null,
+  "method": "PUT",
+  "signal": null,
+  "url": "/api/order/s1/cancel/p1",
+}
+`;
+
+exports[`order.create sends the same request 1`] = `
+{
+  "authorization": "Bearer TOKEN",
+  "body": "{"order":{"products":[]},"token":"tok_visa"}",
+  "contentType": "application/json",
+  "cookies": null,
+  "method": "POST",
+  "signal": null,
+  "url": "/api/orders/u1",
+}
+`;
+
+exports[`order.getStatusValues sends the same request 1`] = `
+{
+  "authorization": null,
+  "body": null,
+  "contentType": null,
+  "cookies": null,
+  "method": "GET",
+  "signal": {
+    "name": "SIGNAL",
+  },
+  "url": "/api/order/status_values",
+}
+`;
+
+exports[`order.listByShop sends the same request 1`] = `
+{
+  "authorization": "Bearer TOKEN",
+  "body": null,
+  "contentType": null,
+  "cookies": null,
+  "method": "GET",
+  "signal": {
+    "name": "SIGNAL",
+  },
+  "url": "/api/orders/shop/s1",
+}
+`;
+
+exports[`order.listByUser sends the same request 1`] = `
+{
+  "authorization": "Bearer TOKEN",
+  "body": null,
+  "contentType": null,
+  "cookies": null,
+  "method": "GET",
+  "signal": {
+    "name": "SIGNAL",
+  },
+  "url": "/api/orders/user/u1",
+}
+`;
+
+exports[`order.processCharge sends the same request 1`] = `
+{
+  "authorization": "Bearer TOKEN",
+  "body": "{"cartItemId":"c1","amount":10}",
+  "contentType": "application/json",
+  "cookies": null,
+  "method": "PUT",
+  "signal": null,
+  "url": "/api/order/o1/charge/u1/s1",
+}
+`;
+
+exports[`order.read sends the same request 1`] = `
+{
+  "authorization": "Bearer TOKEN",
+  "body": null,
+  "contentType": null,
+  "cookies": null,
+  "method": "GET",
+  "signal": {
+    "name": "SIGNAL",
+  },
+  "url": "/api/order/o1",
+}
+`;
+
+exports[`order.update sends the same request 1`] = `
+{
+  "authorization": "Bearer TOKEN",
+  "body": "{"cartItemId":"c1","status":"Shipped"}",
+  "contentType": "application/json",
+  "cookies": null,
+  "method": "PUT",
+  "signal": null,
+  "url": "/api/order/status/s1",
+}
+`;
+
+exports[`product.create sends the same request 1`] = `
+{
+  "authorization": "Bearer TOKEN",
+  "body": {
+    "name": "FORMDATA",
+  },
+  "contentType": null,
+  "cookies": null,
+  "method": "POST",
+  "signal": null,
+  "url": "/api/products/by/s1",
+}
+`;
+
+exports[`product.list sends the same request 1`] = `
+{
+  "authorization": null,
+  "body": null,
+  "contentType": null,
+  "cookies": null,
+  "method": "GET",
+  "signal": {
+    "name": "SIGNAL",
+  },
+  "url": "/api/products?category=All&search=bike",
+}
+`;
+
+exports[`product.listByShop sends the same request 1`] = `
+{
+  "authorization": null,
+  "body": null,
+  "contentType": null,
+  "cookies": null,
+  "method": "GET",
+  "signal": {
+    "name": "SIGNAL",
+  },
+  "url": "/api/products/by/s1",
+}
+`;
+
+exports[`product.listCategories sends the same request 1`] = `
+{
+  "authorization": null,
+  "body": null,
+  "contentType": null,
+  "cookies": null,
+  "method": "GET",
+  "signal": {
+    "name": "SIGNAL",
+  },
+  "url": "/api/products/categories",
+}
+`;
+
+exports[`product.listLatest sends the same request 1`] = `
+{
+  "authorization": null,
+  "body": null,
+  "contentType": null,
+  "cookies": null,
+  "method": "GET",
+  "signal": {
+    "name": "SIGNAL",
+  },
+  "url": "/api/products/latest",
+}
+`;
+
+exports[`product.listRelated sends the same request 1`] = `
+{
+  "authorization": null,
+  "body": null,
+  "contentType": null,
+  "cookies": null,
+  "method": "GET",
+  "signal": {
+    "name": "SIGNAL",
+  },
+  "url": "/api/products/related/p1",
+}
+`;
+
+exports[`product.read sends the same request 1`] = `
+{
+  "authorization": null,
+  "body": null,
+  "contentType": null,
+  "cookies": null,
+  "method": "GET",
+  "signal": {
+    "name": "SIGNAL",
+  },
+  "url": "/api/products/p1",
+}
+`;
+
+exports[`product.remove sends the same request 1`] = `
+{
+  "authorization": "Bearer TOKEN",
+  "body": null,
+  "contentType": null,
+  "cookies": null,
+  "method": "DELETE",
+  "signal": null,
+  "url": "/api/product/s1/p1",
+}
+`;
+
+exports[`product.update sends the same request 1`] = `
+{
+  "authorization": "Bearer TOKEN",
+  "body": {
+    "name": "FORMDATA",
+  },
+  "contentType": null,
+  "cookies": null,
+  "method": "PUT",
+  "signal": null,
+  "url": "/api/product/s1/p1",
+}
+`;
+
+exports[`shop.create sends the same request 1`] = `
+{
+  "authorization": "Bearer TOKEN",
+  "body": {
+    "name": "FORMDATA",
+  },
+  "contentType": null,
+  "cookies": null,
+  "method": "POST",
+  "signal": null,
+  "url": "/api/shops/by/u1",
+}
+`;
+
+exports[`shop.list sends the same request 1`] = `
+{
+  "authorization": null,
+  "body": null,
+  "contentType": null,
+  "cookies": null,
+  "method": "GET",
+  "signal": {
+    "name": "SIGNAL",
+  },
+  "url": "/api/shops",
+}
+`;
+
+exports[`shop.listByOwner sends the same request 1`] = `
+{
+  "authorization": "Bearer TOKEN",
+  "body": null,
+  "contentType": null,
+  "cookies": null,
+  "method": "GET",
+  "signal": {
+    "name": "SIGNAL",
+  },
+  "url": "/api/shops/by/u1",
+}
+`;
+
+exports[`shop.read sends the same request 1`] = `
+{
+  "authorization": null,
+  "body": null,
+  "contentType": null,
+  "cookies": null,
+  "method": "GET",
+  "signal": {
+    "name": "SIGNAL",
+  },
+  "url": "/api/shop/s1",
+}
+`;
+
+exports[`shop.remove sends the same request 1`] = `
+{
+  "authorization": "Bearer TOKEN",
+  "body": null,
+  "contentType": null,
+  "cookies": null,
+  "method": "DELETE",
+  "signal": null,
+  "url": "/api/shops/s1",
+}
+`;
+
+exports[`shop.update sends the same request 1`] = `
+{
+  "authorization": "Bearer TOKEN",
+  "body": {
+    "name": "FORMDATA",
+  },
+  "contentType": null,
+  "cookies": null,
+  "method": "PUT",
+  "signal": null,
+  "url": "/api/shops/s1",
+}
+`;
+
+exports[`user.create sends the same request 1`] = `
+{
+  "authorization": null,
+  "body": "{"name":"A","email":"a@b.c","password":"secret"}",
+  "contentType": "application/json",
+  "cookies": null,
+  "method": "POST",
+  "signal": null,
+  "url": "/api/users/",
+}
+`;
+
+exports[`user.list sends the same request 1`] = `
+{
+  "authorization": "Bearer TOKEN",
+  "body": null,
+  "contentType": null,
+  "cookies": null,
+  "method": "GET",
+  "signal": {
+    "name": "SIGNAL",
+  },
+  "url": "/api/users/",
+}
+`;
+
+exports[`user.read sends the same request 1`] = `
+{
+  "authorization": "Bearer TOKEN",
+  "body": null,
+  "contentType": null,
+  "cookies": null,
+  "method": "GET",
+  "signal": {
+    "name": "SIGNAL",
+  },
+  "url": "/api/users/u1",
+}
+`;
+
+exports[`user.remove sends the same request 1`] = `
+{
+  "authorization": "Bearer TOKEN",
+  "body": null,
+  "contentType": null,
+  "cookies": null,
+  "method": "DELETE",
+  "signal": null,
+  "url": "/api/users/u1",
+}
+`;
+
+exports[`user.stripeUpdate sends the same request 1`] = `
+{
+  "authorization": "Bearer TOKEN",
+  "body": "{"stripe":"ac_123"}",
+  "contentType": "application/json",
+  "cookies": null,
+  "method": "PUT",
+  "signal": {
+    "name": "SIGNAL",
+  },
+  "url": "/api/stripe_auth/u1",
+}
+`;
+
+exports[`user.update sends the same request 1`] = `
+{
+  "authorization": "Bearer TOKEN",
+  "body": "{"name":"B"}",
+  "contentType": "application/json",
+  "cookies": null,
+  "method": "PUT",
+  "signal": null,
+  "url": "/api/users/u1",
+}
+`;
