@@ -16,7 +16,8 @@ const useStyles = makeStyles({
 
 export default function ImageUpload({label, color, file, onChange}) {
   const classes = useStyles()
-  return (<>
+  // React.Fragment rather than <>: es6-plato 1.2.3 cannot parse the short form.
+  return (<React.Fragment>
     <input accept="image/*" onChange={onChange} className={classes.input} id="icon-button-file" type="file" />
     <label htmlFor="icon-button-file">
       <Button variant="contained" color={color} component="span">
@@ -24,5 +25,5 @@ export default function ImageUpload({label, color, file, onChange}) {
         <FileUpload/>
       </Button>
     </label> <span className={classes.filename}>{file ? file.name : ''}</span><br/>
-  </>)
+  </React.Fragment>)
 }
