@@ -1,130 +1,28 @@
-const create = async (params, credentials, order, token) => {
-  try {
-    let response = await fetch('/api/orders/'+params.userId, {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + credentials.t
-        },
-        body: JSON.stringify({order: order, token:token})
-      })
-      return response.json()
-    }catch(err) {
-      console.log(err)
-    }
-}
+import request from './../lib/api-client'
 
-const listByShop = async (params, credentials, signal) => {
-  try {
-    let response = await fetch('/api/orders/shop/'+params.shopId, {
-      method: 'GET',
-      signal: signal,
-      headers: {
-        'Accept': 'application/json',
-        'Authorization': 'Bearer ' + credentials.t
-      }
-    })
-    return response.json()
-  }catch(err){
-    console.log(err)
-  }
-}
+const create = (params, credentials, order, token) =>
+  request('/api/orders/' + params.userId, {method: 'POST', credentials, json: {order: order, token: token}})
 
-const update = async (params, credentials, product) => {
-  try {
-    let response = await fetch('/api/order/status/' + params.shopId, {
-      method: 'PUT',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + credentials.t
-      },
-      body: JSON.stringify(product)
-    })
-    return response.json()
-  } catch(err){
-    console.log(err)
-  }
-}
+const listByShop = (params, credentials, signal) =>
+  request('/api/orders/shop/' + params.shopId, {credentials, signal})
 
-const cancelProduct = async (params, credentials, product) => {
-  try {
-    let response = await fetch('/api/order/'+params.shopId+'/cancel/'+params.productId, {
-      method: 'PUT',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + credentials.t
-      },
-      body: JSON.stringify(product)
-    })
-    return response.json()
-  }catch(err){
-    console.log(err)
-  }
-}
+const update = (params, credentials, product) =>
+  request('/api/order/status/' + params.shopId, {method: 'PUT', credentials, json: product})
 
-const processCharge = async (params, credentials, product) => {
-  try {
-    let response = await fetch('/api/order/'+params.orderId+'/charge/'+params.userId+'/'+params.shopId, {
-      method: 'PUT',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + credentials.t
-      },
-      body: JSON.stringify(product)
-    })
-    return response.json()
-  } catch(err) {
-    console.log(err)
-  }
-}
+const cancelProduct = (params, credentials, product) =>
+  request('/api/order/' + params.shopId + '/cancel/' + params.productId, {method: 'PUT', credentials, json: product})
 
-const getStatusValues = async (signal) => {
-  try {
-    let response = await fetch('/api/order/status_values', {
-      method: 'GET',
-      signal: signal
-    })
-    return response.json()
-  }catch(err) { 
-    console.log(err)
-  }
-}
+const processCharge = (params, credentials, product) =>
+  request('/api/order/' + params.orderId + '/charge/' + params.userId + '/' + params.shopId, {method: 'PUT', credentials, json: product})
 
-const listByUser = async (params, credentials, signal) => {
-  try {
-    let response = await fetch('/api/orders/user/'+params.userId, {
-      method: 'GET',
-      signal: signal,
-      headers: {
-        'Accept': 'application/json',
-        'Authorization': 'Bearer ' + credentials.t
-      }
-    })
-    return response.json()
-  }catch(err) {
-    console.log(err)
-  }
-}
+const getStatusValues = (signal) =>
+  request('/api/order/status_values', {signal})
 
-const read = async (params, credentials, signal) => {
-  try {
-    let response = await fetch('/api/order/' + params.orderId, {
-      method: 'GET',
-      signal: signal,
-      headers: {
-        'Accept': 'application/json',
-        'Authorization': 'Bearer ' + credentials.t
-      }
-    })
-    return response.json()
-  } catch(err) {
-    console.log(err)
-  }
-}
+const listByUser = (params, credentials, signal) =>
+  request('/api/orders/user/' + params.userId, {credentials, signal})
+
+const read = (params, credentials, signal) =>
+  request('/api/order/' + params.orderId, {credentials, signal})
 
 export {
   create,

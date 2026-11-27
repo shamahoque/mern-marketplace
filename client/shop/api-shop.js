@@ -1,90 +1,22 @@
-const create = async (params, credentials, shop) => {
-  try {
-    let response = await fetch('/api/shops/by/'+ params.userId, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Authorization': 'Bearer ' + credentials.t
-      },
-      body: shop
-    })
-      return response.json()
-    } catch(err) { 
-      console.log(err)
-    }
-}
+import request from './../lib/api-client'
 
-const list = async (signal) => {
-  try {
-    let response = await fetch('/api/shops', {
-      method: 'GET',
-      signal: signal
-    })
-    return response.json()
-  }catch(err) {
-    console.log(err)
-  }
-}
+const create = (params, credentials, shop) =>
+  request('/api/shops/by/' + params.userId, {method: 'POST', credentials, formData: shop})
 
-const listByOwner = async (params, credentials, signal) => {
-  try {
-    let response = await fetch('/api/shops/by/'+params.userId, {
-      method: 'GET',
-      signal: signal,
-      headers: {
-        'Accept': 'application/json',
-        'Authorization': 'Bearer ' + credentials.t
-      }
-    })
-    return response.json()
-  }catch(err){
-    console.log(err)
-  }
-}
+const list = (signal) =>
+  request('/api/shops', {signal})
 
-const read = async (params, signal) => {
-  try {
-    let response = await fetch('/api/shop/' + params.shopId, {
-      method: 'GET',
-      signal: signal,
-    })
-    return response.json()
-  }catch(err) {
-    console.log(err)
-  }
-}
+const listByOwner = (params, credentials, signal) =>
+  request('/api/shops/by/' + params.userId, {credentials, signal})
 
-const update = async (params, credentials, shop) => {
-  try {
-    let response = await fetch('/api/shops/' + params.shopId, {
-      method: 'PUT',
-      headers: {
-        'Accept': 'application/json',
-        'Authorization': 'Bearer ' + credentials.t
-      },
-      body: shop
-    })
-    return response.json()
-  } catch(err) {
-    console.log(err)
-  }
-}
+const read = (params, signal) =>
+  request('/api/shop/' + params.shopId, {signal})
 
-const remove = async (params, credentials) => {
-  try {
-    let response = await fetch('/api/shops/' + params.shopId, {
-      method: 'DELETE',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + credentials.t
-      }
-    })
-    return response.json()
-  } catch(err) {
-    console.log(err)
-  }
-}
+const update = (params, credentials, shop) =>
+  request('/api/shops/' + params.shopId, {method: 'PUT', credentials, formData: shop})
+
+const remove = (params, credentials) =>
+  request('/api/shops/' + params.shopId, {method: 'DELETE', credentials})
 
 export {
   create,

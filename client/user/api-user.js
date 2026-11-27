@@ -1,103 +1,22 @@
+import request from './../lib/api-client'
 
-const create = async (user) => {
-  try {
-      let response = await fetch('/api/users/', {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(user)
-      })
-    return await response.json()
-  } catch(err) {
-    console.log(err)
-  }
-}
+const create = (user) =>
+  request('/api/users/', {method: 'POST', json: user})
 
-const list = async (credentials, signal) => {
-  try {
-    let response = await fetch('/api/users/', {
-      method: 'GET',
-      signal: signal,
-      headers: {
-        'Accept': 'application/json',
-        'Authorization': 'Bearer ' + credentials.t
-      }
-    })
-    return await response.json()
-  } catch(err) {
-    console.log(err)
-  }
-}
+const list = (credentials, signal) =>
+  request('/api/users/', {credentials, signal})
 
-const read = async (params, credentials, signal) => {
-  try {
-    let response = await fetch('/api/users/' + params.userId, {
-      method: 'GET',
-      signal: signal,
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + credentials.t
-      }
-    })
-    return await response.json()
-  } catch(err) {
-    console.log(err)
-  }
-}
+const read = (params, credentials, signal) =>
+  request('/api/users/' + params.userId, {credentials, signal})
 
-const update = async (params, credentials, user) => {
-  try {
-    let response = await fetch('/api/users/' + params.userId, {
-      method: 'PUT',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + credentials.t
-      },
-      body: JSON.stringify(user)
-    })
-    return await response.json()
-  } catch(err) {
-    console.log(err)
-  }
-}
+const update = (params, credentials, user) =>
+  request('/api/users/' + params.userId, {method: 'PUT', credentials, json: user})
 
-const remove = async (params, credentials) => {
-  try {
-    let response = await fetch('/api/users/' + params.userId, {
-      method: 'DELETE',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + credentials.t
-      }
-    })
-    return await response.json()
-  } catch(err) {
-    console.log(err)
-  }
-}
+const remove = (params, credentials) =>
+  request('/api/users/' + params.userId, {method: 'DELETE', credentials})
 
-const stripeUpdate = async (params, credentials, auth_code, signal) => {
-  try {
-    let response = await fetch ('/api/stripe_auth/'+params.userId, {
-      method: 'PUT',
-      signal: signal,
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + credentials.t
-      },
-      body: JSON.stringify({stripe: auth_code})
-    })
-    return await response.json()
-  } catch(err) {
-    console.log(err)
-  }
-}
+const stripeUpdate = (params, credentials, auth_code, signal) =>
+  request('/api/stripe_auth/' + params.userId, {method: 'PUT', credentials, json: {stripe: auth_code}, signal})
 
 export {
   create,

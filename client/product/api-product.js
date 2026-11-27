@@ -1,124 +1,32 @@
 import queryString from 'query-string'
-const create = async (params, credentials, product) => {
-  try {
-    let response = await fetch('/api/products/by/'+ params.shopId, {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Authorization': 'Bearer ' + credentials.t
-        },
-        body: product
-      })
-      return response.json()
-    }catch(err) {
-      console.log(err)
-    }
-}
+import request from './../lib/api-client'
 
-const read = async (params, signal) => {
-  try {
-    let response = await fetch('/api/products/' + params.productId, {
-      method: 'GET',
-      signal: signal
-    })
-    return response.json()
-  } catch(err) {
-    console.log(err)
-  }
-}
+const create = (params, credentials, product) =>
+  request('/api/products/by/' + params.shopId, {method: 'POST', credentials, formData: product})
 
-const update = async (params, credentials, product) => {
-  try {
-    let response = await fetch('/api/product/' + params.shopId +'/'+params.productId, {
-      method: 'PUT',
-      headers: {
-        'Accept': 'application/json',
-        'Authorization': 'Bearer ' + credentials.t
-      },
-      body: product
-    })
-    return response.json()
-  } catch(err) {
-    console.log(err)
-  }
-}
+const read = (params, signal) =>
+  request('/api/products/' + params.productId, {signal})
 
-const remove = async (params, credentials) => {
-  try {
-    let response = await fetch('/api/product/' + params.shopId +'/'+params.productId, {
-      method: 'DELETE',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + credentials.t
-      }
-    })
-    return response.json()
-  } catch(err) {
-    console.log(err)
-  }
-}
+const update = (params, credentials, product) =>
+  request('/api/product/' + params.shopId + '/' + params.productId, {method: 'PUT', credentials, formData: product})
 
-const listByShop = async (params, signal) => {
-  try {
-    let response = await fetch('/api/products/by/'+params.shopId, {
-      method: 'GET',
-      signal: signal
-    })
-    return response.json()
-  } catch(err) {
-    console.log(err)
-  }
-}
+const remove = (params, credentials) =>
+  request('/api/product/' + params.shopId + '/' + params.productId, {method: 'DELETE', credentials})
 
-const listLatest = async (signal) => {
-  try {
-    let response = await fetch('/api/products/latest', {
-      method: 'GET',
-      signal: signal
-    })
-    return response.json()
-  } catch(err) {
-    console.log(err)
-  }
-}
+const listByShop = (params, signal) =>
+  request('/api/products/by/' + params.shopId, {signal})
 
-const listRelated = async (params, signal) => {
-  try {
-    let response = await fetch('/api/products/related/'+params.productId, {
-    method: 'GET',
-    signal: signal
-  })
-    return response.json()
-  }catch(err) {
-  console.log(err)  
-  }
-}
+const listLatest = (signal) =>
+  request('/api/products/latest', {signal})
 
-const listCategories = async (signal) => {
-  try {
-    let response = await fetch('/api/products/categories', {
-      method: 'GET',
-      signal: signal
-    })
-    return response.json()
-  } catch(err) {
-    console.log(err)
-  }
-}
+const listRelated = (params, signal) =>
+  request('/api/products/related/' + params.productId, {signal})
 
-const list = async (params, signal) => {
-  const query = queryString.stringify(params)
-  try {
-    let response = await fetch('/api/products?'+query, {
-      method: 'GET',
-      signal: signal
-    })
-    return response.json()
-  }catch(err) {
-    console.log(err)
-  }
-}
+const listCategories = (signal) =>
+  request('/api/products/categories', {signal})
+
+const list = (params, signal) =>
+  request('/api/products?' + queryString.stringify(params), {signal})
 
 export {
   create,

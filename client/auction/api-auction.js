@@ -1,106 +1,25 @@
-const create = async (params, credentials, auction) => {
-  try {
-    let response = await fetch('/api/auctions/by/'+ params.userId, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Authorization': 'Bearer ' + credentials.t
-      },
-      body: auction
-    })
-      return response.json()
-    } catch(err) { 
-      console.log(err)
-    }
-}
+import request from './../lib/api-client'
 
-const listOpen = async (signal) => {
-  try {
-    let response = await fetch('/api/auctions', {
-      method: 'GET',
-      signal: signal
-    })
-    return response.json()
-  }catch(err) {
-    console.log(err)
-  }
-}
+const create = (params, credentials, auction) =>
+  request('/api/auctions/by/' + params.userId, {method: 'POST', credentials, formData: auction})
 
-const listBySeller = async (params, credentials, signal) => {
-  try {
-    let response = await fetch('/api/auctions/by/'+params.userId, {
-      method: 'GET',
-      signal: signal,
-      headers: {
-        'Accept': 'application/json',
-        'Authorization': 'Bearer ' + credentials.t
-      }
-    })
-    return response.json()
-  }catch(err){
-    console.log(err)
-  }
-}
+const listOpen = (signal) =>
+  request('/api/auctions', {signal})
 
-const listByBidder = async (params, credentials, signal) => {
-  try {
-    let response = await fetch('/api/auctions/bid/'+params.userId, {
-      method: 'GET',
-      signal: signal,
-      headers: {
-        'Accept': 'application/json',
-        'Authorization': 'Bearer ' + credentials.t
-      }
-    })
-    return response.json()
-  }catch(err){
-    console.log(err)
-  }
-}
+const listBySeller = (params, credentials, signal) =>
+  request('/api/auctions/by/' + params.userId, {credentials, signal})
 
-const read = async (params, signal) => {
-  try {
-    let response = await fetch('/api/auction/' + params.auctionId, {
-      method: 'GET',
-      signal: signal,
-    })
-    return response.json()
-  }catch(err) {
-    console.log(err)
-  }
-}
+const listByBidder = (params, credentials, signal) =>
+  request('/api/auctions/bid/' + params.userId, {credentials, signal})
 
-const update = async (params, credentials, auction) => {
-  try {
-    let response = await fetch('/api/auctions/' + params.auctionId, {
-      method: 'PUT',
-      headers: {
-        'Accept': 'application/json',
-        'Authorization': 'Bearer ' + credentials.t
-      },
-      body: auction
-    })
-    return response.json()
-  } catch(err) {
-    console.log(err)
-  }
-}
+const read = (params, signal) =>
+  request('/api/auction/' + params.auctionId, {signal})
 
-const remove = async (params, credentials) => {
-  try {
-    let response = await fetch('/api/auctions/' + params.auctionId, {
-      method: 'DELETE',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + credentials.t
-      }
-    })
-    return response.json()
-  } catch(err) {
-    console.log(err)
-  }
-}
+const update = (params, credentials, auction) =>
+  request('/api/auctions/' + params.auctionId, {method: 'PUT', credentials, formData: auction})
+
+const remove = (params, credentials) =>
+  request('/api/auctions/' + params.auctionId, {method: 'DELETE', credentials})
 
 export {
   create,
